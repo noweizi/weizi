@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.12.3.js"></script>
+    <script src="../js/test.js"></script>
+    <script src="../js/test2.js"></script>
+    <style type="text/css">
+        .t1{
+            width: 200px;
+            height: 200px;
+            border: 10px solid #f00;
+            padding: 10px;
+        }
+        .s1{
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 10px solid #f00;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .arrcontent >span {
+            height: 50px;
+            background: #f00;
+            min-width: 50px;
+            text-align: center;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: bottom;
+            position: relative;
+            border-radius: 5px;
+            line-height: 50px;
+            font-size: 14px;
+            padding: 0 5px;
+            margin-bottom: 10px;
+        }
+        .arrcontent >span>em{
+            position: absolute;
+            left: 50%;
+            bottom: -30px;
+            width: 50px;
+            height: 20px;
+            background: #fff;
+            border: 1px #02b875 solid;
+            color: #222;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            margin-left: -35px;
+            line-height: 20px;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+<!--盒子的实际宽度:width+padding+border
+box-sizing: border-box &ndash;&gt;盒子的实际宽度:width
+box-sizing: content-box &ndash;&gt;盒子的实际宽度:width+padding+border
+box-sizing 浏览器支持IE8以上及火狐、谷歌、Opera等等。-->
+<div class="t1">
+    test
+    <span class="s1">dd</span>
+</div>
+<ol id="test-list">
+    <li class="lang">Scheme</li>
+    <li class="lang">JavaScript</li>
+    <li class="lang">Python</li>
+    <li class="lang">Ruby</li>
+    <li class="lang">Haskell</li>
+</ol>
+<div class="wrap">
+    <div>
+        <div style="margin-bottom:10px">tag:</div>
+        <input id="tag" type="text" placeholder="输入标签"/>
+    </div>
+
+    <div class="arrcontent" id="tagContent"></div>
+    <textarea id="char" name="" id="" cols="30" rows="10"></textarea>
+    <div class="btn_wrap">
+        <div id="likeBtn">添加爱好</div>
+    </div>
+
+    <div class="arrcontent" id="likeContent"></div>
+</div>
+  <script type="text/javascript">
+      /*在一个对象中绑定函数，称为这个对象的方法。*/
+      var obj={
+          name:"xxt",
+          birth:1990,
+          age:function(){
+              var y=new Date().getFullYear();
+              return y - this.birth;
+          }
+      }
+      console.log(obj.age())
+
+      /*filter:过滤*/
+      var arr = [1, 2, 4, 5, 6, 9, 10, 15];
+      var r = arr.filter(function (x) {
+          return x % 2 !== 0;
+      });
+      console.log(r)
+
+      /*sort:排序*/
+      var arr=[10,20,1,2]
+      arr.sort(function(x,y){
+          if (x < y) {
+              return -1;
+          }
+          else{
+              return 1;
+          }
+          return 0;
+      })
+      console.log(arr)
+
+      function count() {
+          var arr = [];
+          for (var i=1; i<=3; i++) {
+              arr.push(function () {
+                  return i * i;
+              });
+          }
+          return arr;
+      }
+
+      var results = count();
+      var f0=results[0];
+      var f1=results[1];
+      var f2=results[2];
+      f0();
+      f1();
+      f2();
+
+      var objin={
+          name:'xiaom',
+          age:14,
+          gender:true,
+          height:1.60,
+          skills:['dance','song','draw']
+      }
+      console.log(JSON.stringify(objin));
+      //第二个参数用于控制如何筛选对象的键值
+      console.log(JSON.stringify(objin, null,'  '))
+      console.log(JSON.stringify(objin, ['name', 'skills'], '  '))
+      //还可以传入一个函数，这样对象的每个键值对都会被函数先处理：
+      function convert(key, value) {
+          if (typeof value === 'string') {
+              return value.toUpperCase();
+          }
+          return value;
+      }
+      console.log(JSON.stringify(objin, convert, '  '))
+      //反序列化:拿到一个JSON格式的字符串，我们直接用JSON.parse()把它变成一个JavaScript对象：
+      JSON.parse('{"name":"小明","age":14}'); // Object {name: '小明', age: 14}
+      //JSON.parse()还可以接收一个函数，用来转换解析出的属性：
+      JSON.parse('{"name":"小明","age":14}', function (key, value) {
+          if (key === 'name') {
+              return value + '同学';
+          }
+          return value;
+      }); // Object {name: '小明同学', age: 14}
+
+
+      var list = document.querySelector("#test-list");
+      var arr = list.innerHTML.match(/(<.+?>)(.+?)(<.+?>)/g);
+      list.innerHTML=arr.sort().join("")
+
+
+      //javascript的方法可以分为三类：a 类方法 b 对象方法 c 原型方法
+      function People(name)
+      {
+          this.name=name;
+          //对象方法
+          this.Introduce=function(){
+//              alert("My name is "+this.name);
+          }
+      }
+
+      //类方法
+      People.Run=function(){
+//          alert("I can run");
+      }
+
+      //原型方法
+      People.prototype.IntroduceChinese=function(){
+//          alert("我的名字是"+this.name);
+      }
+
+      //测试
+      var p1=new People("Windking");
+      p1.Introduce();
+      People.Run();
+      p1.IntroduceChinese();
+
+      $(".lang").myPlugin({
+          'color':'pink',
+          'fontSize':'20px',
+          'textDecoration':'none'
+      });
+
+      function JoinDemo(){
+          var a, b;
+          a = new Array(0,1,2,3,4);
+          b = a.join("-");
+          return(b);
+      }
+      console.log(JoinDemo(5));
+
+      var obj={
+          bar:1,
+          f00:2,
+          baz:3
+      }
+      obj.bar=undefined;
+      obj.f00=null;
+      //删除属性的唯一方法是使用 delete 操作符
+      delete obj.baz;
+      for(var i in obj){
+          console.log(i);
+      }
+
+    /*  要求：
+      如示例图上方，实现一个tag输入框
+      要求遇到用户输入空格，逗号，回车时，都自动把当前输入的内容作为一个tag放在输入框下面。
+      Tag不能有重复的，遇到重复输入的Tag，自动忽视。
+      每个Tag请做trim处理
+      最多允许10个Tag，多于10个时，按照录入的先后顺序，把最前面的删掉
+      当鼠标悬停在tag上时，tag前增加删除二字，点击tag可删除
+      如示例图下方，实现一个兴趣爱好输入的功能
+      通过一个Textarea进行兴趣爱好的输入，可以通过用回车，逗号（全角半角均可），顿号，空格（全角半角、Tab等均可）等符号作为间隔。
+      当点击“确认兴趣爱好”的按钮时，将textarea中的输入按照你设定的间隔符，拆解成一个个的爱好，显示在textarea下方
+      爱好不能重复，所以在下方呈现前，需要做一个去重
+      每个爱好内容需要做trim处理
+      最多允许10个兴趣爱好，多于10个时，按照录入的先后顺序，把最前面的删掉*/
+
+      //对数组去重//去空格
+      Array.prototype.unique = function(){
+          var res = [];
+          var json = {};
+          for(var i=0;i<this.length;i++){
+              if (!json[this[i]]&&this[i]!=""){
+                  res.push(this[i]);
+                  json[this[i]] = 1;
+              }
+          }
+          return res;
+      }
+
+      function  inputPar(ele){
+          //默认数组
+          this.arr = []; //当前存入的值
+          this.Allarr = [];
+          this.ele = ele;
+
+          //去空格 私有方法
+          var trim = function(str){
+              return str.replace(/(^\s*)|(\s*$)/g, '');
+          }
+          //对输入的信息进行验证
+          this.regString = function(){
+              if (this.Texts==""||this.Texts==null){
+                  this.arr = [];  //当前存入的值
+                  return false;
+              }else{
+                  var array = this.Texts.split(/[,，、 \n\t\r]+/);//把输入的内容进行分割
+                  array = array.unique(); //去重,去空
+                  this.arr = [];
+                  if (this.Allarr.length > 0){
+                      for (var i=0;i<array.length;i++){
+                          var flage = false;
+                          for (var j=0;j<this.Allarr.length;j++){
+                              if (array[i] == this.Allarr[j]){
+                                  flage = true;
+                              }
+                          }
+                          if (!flage){
+                              this.arr.push(array[i]);
+                          }
+                      }
+                  }else{
+                      for (var i=0;i<array.length;i++){
+                          this.arr.push(array[i]);
+                      }
+                  }
+              }
+          }
+          //插入
+          this.chaRu = function (inputText) {
+              this.Texts = inputText;
+              this.regString();
+              if (!this.arr[0]||this.arr[0]==null){
+                  return false;
+              }
+              for(var i=0;i<this.arr.length;i++){
+                  this.Allarr.push(this.arr[i]);
+              }
+              if ( this.Allarr.length>10){
+                  this.Allarr = this.Allarr.slice(this.Allarr.length-10,this.Allarr.length)
+              }
+              //执行渲染
+              this.render();
+          };
+          //渲染
+          this.render = function(){
+              var html='';
+              var htmlContent = "<span>{num}</span>"
+              for(var i=0;i<this.Allarr.length;i++){
+                  html += htmlContent.replace("{num}",this.Allarr[i]);
+              }
+              this.ele.innerHTML = html;
+          }
+      }
+      //tag 继承inputPar
+      function tagInput(ele){
+          inputPar.call(this,ele);//继承父层
+          //划过显示删除文字
+          this.hoverTag=function(){
+              var span=this.ele.getElementsByTagName('span');
+              var em=document.createElement('em');
+              em.innerHTML = '点击删除';
+              for(var i=0;i<span.length;i++){
+                  (function(i){
+                      span[i].addEventListener('mouseenter',function(e){
+                          span[i].appendChild(em);
+                      })
+                      span[i].addEventListener('mouseout',function(e){
+                          span[i].removeChild(em);
+                      })
+                  })(i)
+              }
+          }
+          //点击本身删除
+          this.clickDel=function(){
+              var span =this.ele.getElementsByTagName('span');
+              var self=this;
+              for (var i=0;i<span.length;i++){
+                  (function(i){
+                      span[i].addEventListener('click',function(){
+                          self.Allarr.splice(i,1);
+                          self.render();
+                          self.hoverTag();
+                          self.clickDel();
+                      })
+                  })(i)
+              }
+          }
+      }
+      //爱好继承父类
+      function likeFun(ele){
+          inputPar.call(this,ele);
+      }
+      var bangDing = function(){
+          var tagText = document.getElementById("tag");
+          var likeText =document.getElementById("char");
+          var tagContent =document.getElementById("tagContent");
+          var likeContent =document.getElementById("likeContent");
+          var likeBtn =document.getElementById("likeBtn");
+
+          var tag1 =new tagInput(tagContent);
+          var like1 = new  likeFun(likeContent);
+          return{
+              tag:function(){
+                  document.onkeyup=function(event){
+                      var e=event||window.event;
+                      var keyCode= e.keyCode || e.which;
+                      if (keyCode ==32 || keyCode==13|| keyCode==188){
+                          if (tagText.value == "" || tagText.value==null){
+                              return false;
+                          }
+                          tag1.chaRu(tagText.value);
+                          tag1.hoverTag();
+                          tag1.clickDel();
+                      }
+                  }
+              },
+              like:function(){
+                  likeBtn.addEventListener('click',function(){
+                      like1.chaRu(likeText.value);
+                  })
+              }
+          }
+      }
+      //入口函数
+      function init(){
+          bangDing().tag();
+          bangDing().like();
+      }
+      init();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习+测试</title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style type="text/css">
+        .gallery{
+            margin: 0 0 25px;
+            text-align: center;
+        }
+        .tape li{
+            display: inline-block;
+            width: 170px;
+            padding: 5px;
+            margin: 15px 10px;
+            border: 1px solid #cac09f;
+            background: #fdf8e4;
+            text-align: center;
+            box-shadow: inset 0 1px rgba(255,255,255,.8), 0 1px 2px rgba(0,0,0,.2);
+        }
+        .tape figure{
+            position: relative;
+            margin: 0;
+        }
+        .tape figcaption{ color: #787568;}
+        .demo{ margin: 20px 40px;}
+        .imgbox{
+            width: 500px;
+            height: 344px;
+            background: url("../img/03.jpg") no-repeat;
+        }
+        .txt{
+            position: relative;
+            width: 350px;
+            height: 250px;
+            margin: auto;
+            padding-top: 50px;
+            z-index: 1;
+        }
+        .txt::before{
+            content: '';
+            position: absolute;
+            top:50%;
+            left:0;
+            right: 0;
+            bottom: 0;
+            margin-top: -112px;
+            border-radius: 5px;
+            background: rgba(255,255,255,.5);
+            z-index: -1;
+        }
+        .box figure {
+            position: relative;
+            float: left;
+            overflow: hidden;
+            margin: 10px 1%;
+            min-width: 320px;
+            max-width: 480px;
+            max-height: 360px;
+            width: 48%;
+            background: #3085a3;
+            text-align: center;
+            cursor: pointer;
+        }
+        .box figure figcaption {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 2em;
+            text-align: left;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 1.25em;
+            box-sizing: border-box;
+        }
+        .box figure h2 {
+            position: relative;
+            font-size: 1.5em;
+            word-spacing: -0.15em;
+            font-weight: 300;
+        }
+        .box figure img{
+            position: relative;
+            display: block;
+            min-height: 100%;
+            max-width: none;
+            opacity: 0.7;
+           /* transform: scale(1);
+            -webkit-transform: scale(1);*/
+        }
+        .box figure figcaption > div {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 2em;
+            width: 100%;
+            height: 50%;
+            box-sizing: border-box;
+        }
+        .box figure p {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 0 5px;
+            letter-spacing: 1px;
+            font-size: 68.5%;
+            color: #000;
+            background: #fff;
+            opacity: 0;
+            transform: translate3d(-100%,0,0);
+            -webkit-transform: translate3d(-100%,0,0);
+        }
+        .box figure img ,.box figure p {
+            transition: opacity .35s, transform .35s;
+            -webkit-transition: opacity .35s, -webkit-transform .35s;
+        }
+        .box figure:hover p:nth-of-type(1){
+            -webkit-transition-delay: 0.05s;
+            transition-delay: 0.05s;
+        }
+        .box figure:hover p:nth-of-type(2){
+            -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
+        }
+        .box figure:hover p:nth-of-type(3){
+            -webkit-transition-delay: 0.5s;
+            transition-delay: 0.5s;
+        }
+        .box figure:hover img{
+            -webkit-transform: scale3d(1.1,1.1,1);
+            transform: scale3d(1.1,1.1,1);
+        }
+        .box figure:hover p{
+            transform: translate3d(0,0,0);
+            -webkit-transform: translate3d(0,0,0);
+        }
+        .box figure:hover img, .box figure:hover p{
+            opacity: 1;
+        }
+
+        @keyframes shake{
+            0%,100%{
+                -webkit-transform:translateX(0);
+                -ms-transform:translateX(0);
+                transform:translateX(0)
+            }
+            10%,30%,50%,70%,90%{
+                -webkit-transform:translateX(-10px);
+                -ms-transform:translateX(-10px);
+                transform:translateX(-10px)
+            }
+            20%,40%,60%,80%{
+                -webkit-transform:translateX(10px);
+                -ms-transform:translateX(10px);
+                transform:translateX(10px)
+            }
+        }
+        @keyframes swing{
+            20%{-webkit-transform:rotate(15deg);transform:rotate(15deg)}
+            40%{-webkit-transform:rotate(-10deg);transform:rotate(-10deg)}
+            60%{-webkit-transform:rotate(5deg);transform:rotate(5deg)}
+            80%{-webkit-transform:rotate(-5deg);transform:rotate(-5deg)}
+            100%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}
+        }
+        .gallery li:hover{
+            -webkit-animation:swing 1s infinite both;
+            animation:swing 1s infinite both;
+
+        }
+        .tlist li{
+            height: 30px;
+            line-height: 30px;
+            background: #fff;
+            padding-left: 30px;
+        }
+        /*.tlist li:not(:last-child){
+            border-bottom: 1px solid #f00;
+        }*/
+        .tlist li:first-child ~ li{
+            border-top: 1px solid #f00;
+        }
+        .figbox{
+            padding: 10px;
+            border: 1px solid #f00;
+        }
+
+        .figbox figure{
+            max-width: 500px;
+            max-width: min-content;
+            margin: auto;
+        }
+        .figbox figure > img { max-width: inherit; }
+    </style>
+</head>
+<body>
+<ul class="tlist">
+    <li><a href="sumstyleGather.html;">常用的样式集合</a></li>
+    <li><a href="listGather.html">列表</a></li>
+    <li><a href="iconGather.html;">icon列表</a></li>
+</ul>
+<ul class="gallery tape">
+    <li>
+        <figure>
+            <img src="../img/01.jpg" alt="image" width="170" />
+            <figcaption>舍不得</figcaption>
+        </figure>
+    </li>
+    <li>
+        <figure>
+            <img src="../img/02.jpg" alt="image" width="170" />
+            <figcaption>多幸运</figcaption>
+        </figure>
+    </li>
+    <li>
+        <figure>
+            <img src="../img/03.jpg" alt="image" width="170"/>
+            <figcaption>国王与乞丐</figcaption>
+        </figure>
+    </li>
+</ul>
+<div class="figbox">
+    <figure>
+        <img src="../img/02.jpg" alt="image" />
+        <figcaption>
+            <div>
+                <h2>生活中的偶遇总是那么让人心暖。朔风吹着的黄昏，幽僻无人的小径，悠然走过的人，就这么邂逅了这份泠泠的冷清，然，需仰视才得！虽说少年心事当拏云，终不似沧桑历尽颜色深！</h2>
+            </div>
+        </figcaption>
+    </figure>
+</div>
+<div class="demo">
+    <div class="imgbox">
+        <p class="txt">became a searcher,wanting to find out who I was and what made me unique. My view of myself was changing. I wanted a solid base to start from. I started to resist3 pressure to act in ways that I didn’t like any more,and I was delighted by who I really was. I came to feel much more sure that no one can ever take my place.</p>
+        <!--<img src="../img/03.jpg" alt="" />-->
+    </div>
+    <div class="box" id="box">
+        <fig-item v-for="item in figobj" v-bind:fig="item"></fig-item>
+        <!--<figure>
+            <img src="../img/01.jpg" alt="image" />
+            <figcaption>
+                <div>
+                    <h2>Nice <span>Lily</span></h2>
+                    <p>Lily likes to play with crayons and pencils</p>
+                </div>
+            </figcaption>
+        </figure>
+        <figure>
+            <img src="../img/02.jpg" alt="image" />
+            <figcaption>
+                <div>
+                    <h2>Nice <span>Lily</span></h2>
+                    <p>Julia dances in the deep dark</p>
+                    <p>She loves the smell of the ocean</p>
+                    <p>And dives into the morning light</p>
+                </div>
+            </figcaption>
+        </figure>-->
+    </div>
+</div>
+<script>
+    Vue.component('fig-item',{
+        props:['fig'],
+        template:'<figure><img v-bind:src="fig.src" v-bind:alt="fig.alt" /><figcaption><div>' +
+        '<h2>{{fig.ttile}}</h2><p>{{fig.tit}}</p></div></figcaption></figure>'
+    })
+    new Vue({
+        el:'#box',
+        data:{
+            figobj:[
+                {src:'../img/01.jpg',alt:'image',ttile:'Nice Lily',tit:'Lily likes to play with crayons and pencils'},
+                {src:'../img/02.jpg',alt:'image2',ttile:'Julia dances',tit:'She loves the smell of the ocean'}
+            ]
+        },
+        render:function(createElement){
+            if(this.figobj.length){
+                return createElement('ul',this.figobj.map(function(item){
+                    return createElement('li',item.ttile);
+                }))
+            }else{
+                return createElement('p','No items found')
+            }
+        }
+    })
+    var items={
+        template:''
+    }
+
+    //高阶函数，此类函数可以接收其他函数作为参数，也可以返回一个函数作为返回值：
+    function grandParent(g1, g2) {
+        var g3 = 3;
+        return function parent(p1, p2) {
+            var p3 = 33;
+            return function child(c1, c2) {
+                var c3 = 333;
+                return g1 + g2 + g3 + p1 + p2 + p3 + c1 + c2 + c3;
+            };
+        };
+    }
+    var parentFunc = grandParent(1, 2); // returns parent()
+    var childFunc = parentFunc(11, 22); // returns child()
+    console.log(childFunc(111, 222)); // prints 738
+    //child能访问自身变量parent的变量和grandParent的变量。
+    //parent能访问自身变量和grandParent的变量。
+    //grandParent只能访问自身变量。
+    //这种现象叫做闭包。
+    //闭包是通过引用其他函数来保持该函数作用域的现象。
+
+    //模块创建
+    var JavaScriptModule=(function(){
+        var javascriptModuleObject,privateFunction;
+        privateFunction=function(){
+            return  'privateFunction is called!';
+        }
+        javascriptModuleObject={
+            //所以如果我们想让其它函数也变成公有的我们只要将它添加到这个对象上就可以了。 方法一
+            methodOne:function(){
+                console.log('methodOne')
+                return 'methodOne is called!';
+            },
+            methodTwo:function(){
+                console.log('methodTwo')
+                return 'methodTwo is called!';
+            }
+        };
+        //所以如果我们想让其它函数也变成公有的我们只要将它添加到这个对象上就可以了。 方法二
+        javascriptModuleObject.methodThree=function(){
+            console.log('methodThree');
+            return 'methodThree is called!';
+        }
+        //如果一个函数被返回了就将变为公有的。否则，它会保持私有！
+        return javascriptModuleObject;
+    })();
+    //console.log(JavaScriptModule.privateFunction()); // 这个函数只有模块内部可以访问。无法从外部访问
+    console.log(JavaScriptModule.methodOne()); //公有函数可以在你的模块外执行。
+    console.log(JavaScriptModule.methodThree());
+
+
+    //1.函数声明
+    function isEven (num) {
+        return num % 2 === 0;
+    }
+    //2.函数表达式:是由一个function关键词，紧随其后的是一个可选的函数名，一串参数(para1,...,paramN)放在小括号内和代码主体放在大括号内{...}。
+    var count = function(array) {
+        return array.length;
+    }
+    //3.方法定义
+    var collection={
+        items:[],
+        add:function(){
+
+        }
+    }
+
+    //排序
+    var arr=[40,20,15,56,5]
+    //主要功能是判断是按升序或降序排列
+    function compare(a,b){
+        if (a<b){
+            return -1  // a排在b的前面
+        }else if(a>b){
+            return 1  // a排在b的后面
+        }else{
+            return 0  // a和b的位置保持不变
+        }
+    }
+//    arr.sort(compare);
+
+    function where(arr,num){
+        arr.push(num);
+        arr.sort(compare);
+        return arr.indexOf(num);
+    }
+    var index=where(arr, 6.5);
+    console.log(arr);
+    console.log(index);
+
+    var object1 = {
+        apple: 0,
+        banana: { weight: 52, price: 100 },
+        cherry: 97
+    };
+    var object2 = {
+        banana: { price: 200 },
+        durian: 100
+    };
+    $.extend( object1, object2 );
+    $( ".figbox" ).append( JSON.stringify( object1 ) );
+    $( ".figbox" ).append( JSON.stringify( object2 ) );
+</script>
+</body>
+</html>

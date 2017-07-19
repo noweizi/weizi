@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <title>活动页</title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <!--字体大小自适应-->
+    <script src="../js/slip/flexible_css.debug.js"></script>
+    <script src="../js/slip/flexible.debug.js"></script>
+    <!--字体大小自适应-->
+    <script src="../js/jquery-1.12.3.js"></script>
+    <!--第一种方式-->
+    <script src="../js/slip/slip.js"></script>
+    <!--第二种方式-->
+    <script src="../js/activity/jquery.mobile-1.3.2.min.js"></script>
+    <!--jquerymobile-swipeupdown 要配合jquery.mobile.min.js 不然没反应-->
+    <script src="../js/activity/jquerymobile-swipeupdown.js"></script>
+    <script src="../js/activity/TweenMax.min.js"></script>
+    <script src="../js/activity/activity.js"></script>
+    <script src="../js/activity/echarts-all-3.js"></script>
+</head>
+<body class="page-index">
+    <div class="mod_topbar">
+        <i class="back"  onclick="history.go(-1)" ></i>
+        <div class="hd">活动页</div>
+    </div>
+    <!--滑屏 第一种方式:使用slip插件 -->
+    <div id="container" class="hide" >
+        <div class="page page_1">
+            <div class="data-box">
+                <div class="data-item">
+                    <div class="data-header">用户性别分布比例</div>
+                    <div class="pic">
+                        <canvas id="gender" height="140" width="140"></canvas>
+                    </div>
+                    <div class="data-left">
+                        <p><i class="circle blue"></i>男性比例：68.95%</p>
+                        <p><i class="circle rose-red"></i>女性比例：30.05%</p>
+                    </div>
+                </div>
+                <div class="data-item">
+                    <div class="data-header">用户年龄分布比例</div>
+                    <div class="pic">
+                        <canvas id="age" height="140" width="140"></canvas>
+                    </div>
+                    <div class="data-left">
+                        <p><i class="circle yellow"></i>90后比例：9.32%</p>
+                        <p><i class="circle red"></i>80后比例：42.37%</p>
+                        <p><i class="circle green"></i>70后比例：40.20%</p>
+                        <p><i class="circle blue"></i>60后比例：8.11%</p>
+                    </div>
+                </div>
+            </div>
+            <div class="up BottomtTop"></div>
+        </div>
+        <div class="page page_2">
+            <div class="con_tit">
+                时光流转，嫣然浅笑。 阔别文字两年，我很少写字，在空闲里用很多时间来阅读，有朋友说，悄然幸福了，所以不写了，我只能说，幸福有时跟文字无关，呵，真不承认自己是个口是心非的人，怎么掩饰才能逃脱欲盖弥障的嫌疑？ 两年，深深浅浅的时光边缘。改变了多少人            </div>
+            <div class="up BottomtTop"></div>
+        </div>
+        <div class="page page_3">
+            <div class="events-box">
+                <div class="events">
+                    <p class="events-tit">2015年12月23日</p>
+                    <p>腾邦创投荣获“2015年度最具发展潜力平台”称号。</p>
+                    <i class="events-light"></i>
+                </div>
+
+                <div class="events">
+                    <p class="events-tit">2015年11月19日</p>
+                    <p>累积成交金额突破20亿元。</p>
+                    <i class="events-light"></i>
+                </div>
+
+                <div class="events">
+                    <p class="events-tit">2015年9月12日</p>
+                    <p>腾邦创投入围“2015年中国互联网金融总 评榜”年度50强</p>
+                    <i class="events-light"></i>
+                </div>
+
+                <div class="events">
+                    <p class="events-tit">2015年9月10日</p>
+                    <p>2015中国企业500强”榜单公布，腾邦排名第65位。</p>
+                    <i class="events-light"></i>
+                </div>
+
+                <div class="events">
+                    <p class="events-tit">2015年7月27日</p>
+                    <p>累积成交金额突破10亿元。</p>
+                    <i class="events-light"></i>
+                </div>
+
+                <div class="events">
+                    <p class="events-tit">2015年5月</p>
+                    <p>腾邦国际对全资子公司腾邦创投增资至1亿元。</p>
+                    <i class="events-light"></i>
+                </div>
+
+                <div class="events">
+                    <p class="events-tit">2015年1月24日</p>
+                    <p>参加中国深圳前海互联网金融高峰论坛,获深圳十大互联网创新企业奖。</p>
+                    <i class="events-light"></i>
+                </div>
+            </div>
+            <div class="up BottomtTop"></div>
+        </div>
+    </div>
+    <!--滑屏 第二种方式:-->
+    <div class="container_T" class="show">
+        <div class="btn_prev" id="J_btn_prev"></div>
+        <div class="btn_next" id="J_btn_next"></div>
+        <div class="section_box">
+            <!--第一页-->
+            <section class="s0">
+                <h2>欣欣市场快报</h2>
+                <p class="summary">欣欣市场快报，是以欣欣海量交易，浏览数据为基础的免费旅游同业数据报告。在这里，你可以研究目的地的市场走向，关键词搜索趋势、洞察热销产品背后的共性</p>
+            </section>
+            <!--第二页-->
+            <section class="s1">
+                <h2>槐花开</h2>
+                <p class="summary">路边的国槐真是很多，每到这个季节，一树树、一地地的槐花像满天的星星。
+                    有的花像樱花开至绚丽之极便从枝头飘然而落，把最美丽的样子留在世间。更多的花除了攀折他人手或者经受不住狂风暴雨而飘零外，会一直在</p>
+            </section>
+            <!--第三页-->
+            <section class="s2">
+                <h2>夏梦悠长，不负风月锦年</h2>
+                <p class="summary">一弯明月，一壶老茶，茶早已泡到索然无味，唯独只剩消遣这温柔的月色，很久没有看到这么亮眼的星星了，像是谁的眼睛，清澈透明，总是在这样的夜色，是的总是，会忽然想念起一个人，也或许是一段旧时光，无关风月，无</p>
+            </section>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // 滑动
+        var obj=Slip(document.getElementById('container'), 'y')
+        var H_l=obj.webapp().pageHeight - 46
+        Slip(document.getElementById('container'), 'y').slider().height(H_l).start(function() {
+            if (this.page === 2) {
+                this.jump(-1);
+                this.duration = 400;
+            };
+        });
+        // canvas画图
+        function drawCircle(ring){
+            var canvas = document.getElementById(ring.id);
+            var ctx = canvas.getContext("2d");
+            var startPoint= 1.5 * Math.PI;
+            console.log(startPoint)
+            for(var i=0;i<ring.data.length;i++){
+                ctx.beginPath();
+                ctx.strokeStyle = ring.color[i];
+                ctx.arc(ring.x,ring.y,ring.y-10,startPoint,startPoint-Math.PI*2*(ring.data[i]/100),true);
+                ctx.lineWidth = 20;
+                ctx.stroke();
+                ctx.closePath();
+                startPoint -= Math.PI*2*(ring.data[i]/100);
+                console.log("startPoint"+startPoint)
+            }
+            console.log(ring);
+        }
+        var genderdata = {
+            id: "gender",
+            x: 70,
+            y: 65,
+            color: ["#2f82ff","#ff2bb2"],
+            data: [68,32]
+        };
+        var agedata = {
+            id: "age",
+            x: 70,
+            y: 65,
+            color: ["#68c26a","#2f82ff","#ffae43","#ff4835"],
+            data: [40,10,15,35]
+        };
+        drawCircle(genderdata);
+        drawCircle(agedata);
+    </script>
+</body>
+</html>

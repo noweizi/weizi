@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <title>上下移动和置顶</title>
+    <link type="text/css" rel="stylesheet" href="../../../static/asset/mobile/dest/css/usual.css">
+    <style type="text/css">
+        .countdown em{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            background: #f77304;
+            color: #fff;
+            border-radius: 2px;
+        }
+        .countdown  i{
+            padding: 0 2px;
+            font-size: .5rem;
+            vertical-align: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mod_topbar">
+        <a class="back" href="javascript:;"  onclick="history.go(-1)"><i class="icon-arr-left"></i></a>
+        <div class="title">交互</div>
+        <a class="lik" href="javascript:;">明细<i class="icon-arr-right"></i></a>
+    </div>
+    <div class="mod-form-item space spacing">
+        <div class="item-unit">
+            <div class="item-tit">列表1</div>
+            <div class="item-con tr"><i class="icon-arr-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-arr-up"></i>&nbsp;&nbsp;<span class="top">置顶</span></div>
+        </div>
+        <div class="item-unit">
+            <div class="item-tit">列表2</div>
+            <div class="item-con tr"><i class="icon-arr-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-arr-up"></i>&nbsp;&nbsp;<span class="top">置顶</span></div>
+        </div>
+        <div class="item-unit">
+            <div class="item-tit">列表3</div>
+            <div class="item-con tr"><i class="icon-arr-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-arr-up"></i>&nbsp;&nbsp;<span class="top">置顶</span></div>
+        </div>
+        <div class="item-unit">
+            <div class="item-tit">列表4</div>
+            <div class="item-con tr"><i class="icon-arr-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-arr-up"></i>&nbsp;&nbsp;<span class="top">置顶</span></div>
+        </div>
+    </div>
+    <script src="../../../static/asset/mobile/dest/js/jquery-2.1.4.min.js"></script>
+    <script>
+        //上移
+        var $up = $(".icon-arr-up")
+        $up.click(function(){
+            var $div = $(this).parents(".item-unit");
+            if ($div.index() != 0) {
+                $div.fadeOut().fadeIn();
+                $div.prev().before($div);
+            }
+        })
+        //下移
+        var $down = $(".icon-arr-down")
+        var len = $down.length; 
+        $down.click(function(){
+            var $div = $(this).parents(".item-unit");
+            if ($div.index() != len - 1) {
+                $div.fadeOut().fadeIn();
+                $div.next().after($div);
+            }
+        })
+        //置顶 
+        var $top = $(".top"); 
+        $top.click(function(){ 
+          var $div = $(this).parents(".item-unit"); 
+          $div.fadeOut().fadeIn(); 
+          $(".mod-form-item").prepend($div); 
+          $div.css("color","#f60"); 
+        }); 
+    </script>
+</body>
+</html>

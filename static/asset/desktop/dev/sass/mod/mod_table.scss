@@ -1,0 +1,18 @@
+@charset "utf-8";
+.mod-table{
+    width: 100%;
+    border: 1px solid #e8e8e8;
+    th,td{ 
+      text-align: center;
+      border: 1px solid #e8e8e8;
+    }
+    td {
+        color: #666;
+        padding: 8px 10px;
+    }
+    th {
+        padding: 12px 10px;
+        color: #333;
+        background-color: #f0f0f0;
+    }
+}

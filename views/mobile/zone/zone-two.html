@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <title>省市区三级联动 -- 方法二</title>
+        <link type="text/css" rel="stylesheet" href="../../../static/asset/mobile/dest/css/zone.css">
+    </head>
+    <body>
+        <div class="mod-form">
+            <div class="mod-form-item">
+                <div class="item-unit">
+                    <div class="item-tit">所在城市</div>
+                    <div class="item-con tr" id="J_select_city_btn">
+                        <span id="J_choose_city">请选择城市</span>
+                        <input type="hidden" name="zone_id" id="zone_id" value="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../../../static/asset/mobile/dest/js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="../../../static/asset/mobile/dest/js/zone/mobile-select-area.js"></script>
+        <script type="text/javascript" src="../../../static/asset/mobile/dest/js/zone/zone.js"></script>
+        <script type="text/javascript" src="../../../static/asset/mobile/dest/js/lib/layer/layer.js"></script>
+        <script type="text/javascript">
+            // 所在城市
+            function chooseCity () {
+                var zone_id = $('#J_choose_city').html(),
+                        province_id = zone_id.substr(0,4),
+                        city_id = zone_id.substr(0,2),
+                        district_id = zone_id.substr(0),
+                        html = '请选择';
+                for (var i = 0; i < json.length; i++) {
+                    if (province_id == json[i].id ) {
+                        html += json[i].name;
+                        for (var j = 0; j < json[i].child.length; j++) {
+                            if (city_id == json[i].child[j].id) {
+                                if (json[i].name == json[i].child[j].name) {
+                                    html = html;
+                                }else{
+                                    html+= " " + json[i].child[j].name;
+                                }
+                                for (var k = 0; k < json[i].child[j].child.length; k++) {
+                                    if (district_id == json[i].child[j].child[k].id) {
+                                        html+= " " + json[i].child[j].child[k].name;
+                                    }
+                                }
+                            };
+                        };
+                    };
+                };
+                $('#J_choose_city').html(html);
+                var selectArea2 = new MobileSelectArea();
+                selectArea2.init({trigger:'#J_choose_city',value:$('#J_choose_city').html(),data:json,eventName:'click'});
+            }
+            chooseCity()
+        </script>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+@charset "utf-8";
+/*
+Author: sly
+Date: 2016-01-12
+tip: 平常所需样式
+*/
+//初始化
+@import "layout/initial.scss";
+@import "layout/function.scss";
+@import "layout/iconfont.scss";
+//报表样式
+@import "mod/highcharts.scss";
+//结构布局样式
+@import "mod/structure.scss";
+//表格样式
+@import "mod/mod_table.scss";

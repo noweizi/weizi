@@ -1,0 +1,172 @@
+@charset "utf-8";
+/*
+前缀总结:
+-webkit  !*为Chrome/Safari*!
+-moz  !*为Firefox*!
+-ms   !*为IE*!
+-o  !*为Opera*!
+*/
+//字体颜色
+.color_gray{ color: #999;}
+
+//防止遮罩层随页面滚动
+.prevent_bodyscroll{
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+.prevent_bodyscroll body{
+    height: 100%;
+    overflow: hidden;
+}
+//ios 弹窗滚动列表滚动时 禁止屏幕[body,html]随着滑动
+.prevent-bodyscroll{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    z-index: -100;
+}
+
+//标题栏  -->头部
+.mod_topbar{
+    height:45px;
+    background:#f9f9f9;
+    position:relative;
+    z-index:10;
+    border-bottom:1px solid $colBorder;
+    .title{
+        height:45px;
+        line-height:45px;
+        overflow:hidden;
+        font-size:1.06rem;
+        text-align:center;
+        margin: 0 40px;
+    }
+    .back,.lik{
+        position: absolute;
+        top: 13px;
+        @extend %f15;
+    }
+    .back{ left: 10px;}
+    .lik{ right: 10px;}
+}
+
+//工具栏 -->底部
+.mod_toolbar{
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    position:fixed;
+    left:0;
+    bottom:0;
+    width: 100%;
+    height:50px;
+    background: $white;
+    .btn{
+        -moz-box-flex: 1;
+        -webkit-box-flex: 1;
+        box-flex: 1;
+        flex: 1;
+        line-height: 49px;
+        text-align: center;
+        @extend %f16;
+        border-top: 1px solid $colBorderOut;
+        &.orange{
+            color: $white;
+            border-top: 1px solid $themeOrange;
+            background: $themeOrange;
+        }
+    }
+}
+//按钮组
+.btn{
+    @include btn;
+    &.btn_block{
+        display: block;
+        width: 100%;
+    }
+    &.orange{ background: $themeOrange;}
+ }
+//遮罩层
+.mask{
+    display:none;
+    width:100%;
+    height:100%;
+    background:#000;
+    opacity:0.5;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:3;
+}
+//集合样式
+.arrbox{
+    padding: 0 15px;
+    background: #fff;
+    .title{
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #dedede;
+    }
+}
+//单行文本溢出显示省略号
+.ellipsis{
+    display: block;
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+//多行文本溢出显示省略号[比较合适WebKit浏览器或移动端（绝大部分是WebKit内核的）浏览器]  ps:在IE,火狐上就截断了不会显示省略号 高度有差异
+.ellipsis-mult{
+    width: 200px;
+    max-height: 40px;
+    overflow:hidden;
+    display:-webkit-box; //设置或检索伸缩盒对象的子元素的排列方式。
+    -webkit-box-orient:vertical;
+    -moz-box-orient:horizontal;
+    -ms-box-orient:horizontal;
+    -webkit-line-clamp:2; //块元素显示的文本的行数。 Chrome
+    text-overflow:ellipsis;
+}
+//多行文本溢出显示省略号 跨浏览器兼容:设置相对定位的容器高度，用包含省略号(…)的元素模拟实现； ps:缺点:字会被省略号覆盖显示不全
+.ellipsis-multiple{
+    position:relative;
+    width: 200px;
+    height:40px;
+    line-height: 20px;
+    overflow:hidden;
+    &:after{
+        content:"...";
+        font-weight:bold;
+        position:absolute;
+        bottom:0;
+        right:0;
+        padding:0 10px 1px 2px;
+        background-color:#fff;
+    }
+}
+//返回头部
+.return{
+    display: none;
+    position:fixed;
+    right:15px;
+    bottom:60px;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    border:1px solid #ff500b;
+    z-index: 10;
+    i{ 
+      display: inline-block;
+      color: #f00;
+      font-size: 24px;
+    }
+}

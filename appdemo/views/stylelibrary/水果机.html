@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>水果机</title>
+    <link type="text/css" rel="stylesheet" href="../../css/mobile.css">
+    <script src="../../js/jquery-1.12.3.js"></script>
+</head>
+<body>
+    <div class="webapp-views-fruit-activity-index">
+    <section class="fruit_main">
+        <a href="javascript:;" class="btn_common btn_prize" id="myPrize">我的奖品</a>
+        <section class="fruit_machine">
+            <div class="fruit_scroll">
+                <ul class="column">
+                    <li><img src="../../img/fruit_machine/fruit_1.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_2.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_3.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_4.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_5.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_6.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_7.png" alt=""></li>
+                </ul>
+                <ul class="column">
+                    <li><img src="../../img/fruit_machine/fruit_1.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_2.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_3.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_4.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_5.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_6.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_7.png" alt=""></li>
+                </ul>
+                <ul class="column">
+                    <li><img src="../../img/fruit_machine/fruit_1.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_2.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_3.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_4.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_5.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_6.png" alt=""></li>
+                    <li><img src="../../img/fruit_machine/fruit_7.png" alt=""></li>
+                </ul>
+            </div>
+            <p>您还有<span id="count">5</span>次抽奖机会，加油！</p>
+            <input type="button" data-type="start" class="start_btn" value="开始游戏">
+        </section>
+    </section>
+    <input name="activity" id="activity" type="hidden" value="3130">
+    <!-- 游戏结束 -->
+    <div class="game_over">
+        <div class="cont">
+            <h2>游戏已经结束</h2>
+            <dl>
+                <dd>
+                    <span class="close"></span>
+                    <p class="latter">哎呀，来晚一步~</p>
+                    <p class="explain">扫码关注后续更精彩的活动</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <!-- 次数用完 -->
+    <div class="times_out hasShare">
+        <div class="cont">
+            <h2>很抱歉</h2>
+            <dl>
+                <dd>
+                    <span class="close"></span>
+                    您今天的次数已用完
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- 总次数用完 -->
+    <div class="all_times_out hasShare" >
+        <div class="cont">
+            <h2>很抱歉</h2>
+            <dl>
+                <dd>
+                    <span class="close"></span>
+                    您的参加总次数已用完
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- 未中奖 -->
+    <div class="no_winning hasShare">
+        <div class="cont">
+            <h2>很抱歉 没抽中</h2>
+            <dl>
+                <dd>
+                    <span class="close"></span>
+                    <p class="little">哎哟，真倒霉，就差一点~</p>
+                    <p class="share_exp">据说把霉运转移，好运就会回来！</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- 中奖啦 -->
+    <div class="winning hasShare">
+        <div class="cont">
+            <h2>恭喜您 中奖啦！</h2>
+            <dl>
+                <dd>
+                    <span class="close"></span>
+                    <p class="prize">XXXX</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var stopArr = [];
+    var ajaxData = {};
+    var stoped = false;
+
+    ajaxData.status = 3; //1:次数用完 2.游戏已结束
+    ajaxData.is_win = 0; //1:中奖 0:未中奖
+    ajaxData.fruit_numbers = '312';
+    // 开始摇奖
+    $('.start_btn').click(function() {
+
+        var state = $(this).attr('data-type');
+
+        if (state == 'start') {
+            // 防止重复点击
+            if ($('body').hasClass('ajaxing')) {
+                return false;
+            }
+            $('body').addClass('ajaxing');
+
+            // 判断页面是否过期
+            if($('body').attr('data-date') == 'over') {
+                $('.game_over').show();
+                $('body').removeClass('ajaxing');
+                return false;
+            }
+
+            // 判断活动是否开始
+            if($('body').attr('data-date') == 'unstart') {
+                $('.no_start').show();
+                $('body').removeClass('ajaxing');
+                return false;
+            }
+
+            var lastTimes = Number($('#count').text());
+            // 次数用完
+            if (lastTimes <= 0) {
+                $('.times_out').show();
+                return false;
+            }
+
+            $(this).attr('data-type', 'stop').val('停止');
+            var length = $('.column').eq(0).find('img').length;
+            switch(length) {
+                case 7:
+                    $('.column').addClass('scroll_seven');
+                    break;
+                case 6:
+                    $('.column').addClass('scroll_six');
+                    break;
+                case 5:
+                    $('.column').addClass('scroll_five');
+                    break;
+                case 4:
+                    $('.column').addClass('scroll_four');
+                    break;
+                case 3:
+                    $('.column').addClass('scroll_third');
+                    break;
+            }
+
+            var activityId = $('#activity').val();
+            var _this = $(this);
+            if(ajaxData.status == 1){
+                $('.all_times_out').show();
+                $('body').removeClass('ajaxing');
+                $('.column').attr('class', 'column');
+                _this.attr('data-type', 'start').val('再来一次');
+                return;
+            }
+            //游戏已结束
+            if (ajaxData.status == 2){
+                $('.game_over').show();
+                $('body').removeClass('ajaxing');
+                $('.column').attr('class', 'column');
+                _this.attr('data-type', 'start').val('再来一次');
+                return;
+            }
+            var stopPos = ajaxData.fruit_numbers.toString();
+            stopArr = stopPos.split('');
+
+            // 次数减少1
+            var lastTimes = Number($('#count').text());
+            $('#count').text(lastTimes - 1);
+        } else { // 停止
+            if (stoped) {
+                return false;
+            }
+            stoped = true;
+
+            for (var i = 0; i < stopArr.length; i++) {
+                if (i == 0) {
+                    stopScroll(stopArr[i], i);
+                }
+                if (i == 1) {
+                    var index = i;
+                    setTimeout(function() {
+                        stopScroll(stopArr[index], index);
+                    }, 2000);
+                }
+                if (i == 2) {
+                    var index_f = i;
+                    setTimeout(function() {
+                        stopScroll(stopArr[index_f], index_f);
+                    }, 4000);
+                }
+            }
+
+            var _this = $(this);
+            setTimeout(function() {
+                stoped = false;
+                $('body').removeClass('ajaxing');
+                _this.attr('data-type', 'start').val('再来一次');
+
+                if (ajaxData.is_win == 0) { // 未中奖
+                    $('.no_winning').show();
+                } else if(ajaxData.is_win == 1) { // 中奖
+                    $('.winning .prize').html("蜗牛跑跑");
+                    $('.winning').show();
+                }
+
+            }, 6000);
+        }
+    });
+    // 停止旋转
+    function stopScroll(num, i) {
+        num = Number(num);
+        switch(num) {
+            case 1:
+                $('.column').eq(i).attr('class', 'column stop_area_1');
+                break;
+            case 2:
+                $('.column').eq(i).attr('class', 'column stop_area_2');
+                break;
+            case 3:
+                $('.column').eq(i).attr('class', 'column stop_area_3');
+                break;
+            case 4:
+                $('.column').eq(i).attr('class', 'column stop_area_4');
+                break;
+            case 5:
+                $('.column').eq(i).attr('class', 'column stop_area_5');
+                break;
+            case 6:
+                $('.column').eq(i).attr('class', 'column stop_area_6');
+                break;
+            case 7:
+                $('.column').eq(i).attr('class', 'column stop_area_7');
+                break;
+        }
+
+    }
+
+    // 关闭次数用完提示
+    $('.times_out .close').click(function() {
+        $('.times_out').hide();
+    })
+
+    // 关闭总次数用完提示
+    $('.all_times_out .close').click(function() {
+        $('.all_times_out').hide();
+    })
+
+    // 关闭活动结束提示
+    $('.game_over .close').click(function() {
+        $('.game_over').hide();
+    })
+
+    // 未中奖，再来一次
+    $('.no_winning .close').click(function() {
+        $('.no_winning').hide();
+    });
+
+</script>
+</html>

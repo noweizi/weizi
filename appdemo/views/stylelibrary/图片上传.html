@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>图片上传</title>
+    <link type="text/css" rel="stylesheet" href="../../css/mobile.css">
+    <script src="../../js/jquery-1.12.3.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style type="text/css">
+
+        .mod_listview .list {
+            background-color: #fff;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: #dedede;
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: #dedede;
+            margin-top: -1px;
+        }
+        .mod_listview .list.mt10{ margin-top: 10px;}
+        .mod_listview .unit {
+            padding: 7px 15px 7px 93px;
+            margin-left: 15px !important;
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: #dedede;
+            position: relative;
+            overflow: hidden;
+            min-height: 30px;
+            border-bottom:none;
+        }
+        .mod_listview .unit:first-child {
+            margin-top: -1px !important;
+        }
+        .mod_listview.max_mid .unit {
+            padding-left: 130px !important;
+        }
+        /*提示*/
+        .mod_listview .tips {
+            padding-bottom: 15px !important;
+        }
+        .mod_listview .tips{
+            color: #999;
+            font-size: 0.75rem;
+            padding: 6px 15px;
+            background-color: #f1f1f1;
+        }
+        /*必填*/
+        .mod_listview .required .caption:before{
+            content: '*';
+            font-size: 1rem;
+            color: #fe6025;
+            position: relative;
+            top: 3px;
+            margin-right: 5px !important;
+        }
+        /*日期控件*/
+        .mod_listview .date {
+            width: 100%;
+            font-size: 0.875rem;
+            color: #333;
+            height: 25px;
+            text-align: left !important;
+        }
+        /*日期文本提示*/
+        .mod_listview .date_box .default {
+            -webkit-tap-highlight-color: rgba(255,0,0,0);
+            outline: none;
+            position: absolute;
+            font-size: 0.875rem;
+            top: 7px;
+            left: 93px;
+            padding-right: 35px;
+            color: #aeaeae;
+            height: 30px;
+            line-height: 30px;
+            background-color: #fff;
+            /*width: 100%;*/
+        }
+        .mod_listview.max_mid .date_box .default {
+            left: 130px;
+        }
+        /*单张 上传图片控件*/
+        .code_image .file {
+            position: absolute;
+            left: 0;
+            height: 45px;
+            top: 0;
+            width: 100%;
+            opacity: 0;
+            z-index: 10;
+        }
+        /*富文本框*/
+        .mod_listview .textarea {
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: #dedede;
+        }
+        .mod_listview textarea {
+            padding: 10px 15px;
+            border: 0 none;
+            width: 100%;
+            resize: none;
+            height: 120px;
+            box-sizing: border-box;
+        }
+        /*预览图片*/
+        .preview {
+            padding: 10px 15px 15px 15px;
+        }
+        .preview .view_box {
+            float: left;
+        }
+        .preview .list_pic {
+            float: left;
+            width: 59px;
+            height: 59px;
+            position: relative;
+            margin-right: 10px;
+        }
+        .preview .add_pic {
+            margin-right: 10px !important;
+            float: left;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #dedede;
+            width: 59px;
+            height: 59px;
+            position: relative;
+        }
+        .preview .file {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            opacity: 0;
+            height: 100%;
+            z-index: 2;
+        }
+        .preview .add_pic .file {
+            height: 100%;
+            z-index: 2;
+        }
+        .preview .add_pic .add {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 32px;
+            height: 32px;
+            background: url(../../img/m-add.png) no-repeat 0 0;
+            background-size: 32px 32px;
+            margin: -16px 0 0 -16px;
+        }
+        .preview .icon_del {
+            cursor: pointer;
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 16px;
+            height: 16px;
+            background: url(../../img/del.png) no-repeat 0 0;
+            background-size: 16px 16px;
+        }
+    </style>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+    <input name="csrf_test_name" value="c2f4e4b2773c82e434ac0f13e1c711ea" type="hidden">
+    <input name="bg_image" value="" type="hidden">
+    <div class="mod_listview max_mid" id="mod_list">
+        <lists v-for="item in listsobj" v-bind:thinobj="item"></lists>
+      <!--  <div class="list">
+            <div class="unit date_box required ">
+                <div class="caption">开始时间</div>
+                <div class="detail mr20 align_r">
+                    <input type="date" name="start_time" value="" class="date" id="start_time">
+                    <label class="default" for="start_time">请选择开始时间</label>
+                </div>
+                <i class="ico-thin"></i>
+            </div>
+            <div class="unit date_box required ">
+                <div class="caption">结束时间</div>
+                <div class="detail mr20 align_r">
+                    <input type="date" name="end_time" value="" class="date" id="end_time">
+                    <label class="default" for="end_time">请选择结束时间</label>
+                </div>
+                <i class="ico-thin"></i>
+            </div>
+        </div>-->
+        <!--list End-->
+        <div class="list mt10">
+            <div class="unit">
+                <div class="caption">关注公众号</div>
+                <div class="detail align_r">
+                    <label class="slide_btn">
+                        <input type="checkbox" id="followSwitch" name="wechat_follow" value="1" class="chk" checked="checked">
+                        <span class="switch checked"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="list code_image">
+            <div class="unit ">
+                <div class="caption">二维码图片</div>
+                <input type="file" name="wechat_qrcode" id="wechat_qrcode" class="file J_file">
+                <div class="detail J_upload"></div>
+                <i class="ico-thin"></i>
+            </div>
+        </div>
+        <div class="list">
+            <div class="tips">
+                <p>产品详情</p>
+            </div>
+            <div class="textarea ">
+                <textarea name="detail" placeholder="输入详情内容（800字以内）" maxlength="800"></textarea>
+            </div>
+            <div class="preview">
+                <div class="clearfix">
+                    <div class="view_box"></div>
+                    <b class="add_pic" style="display: block;">
+                        <input type="file" class="file J_file" data-type="product"><i class="add"></i>
+                    </b>
+                </div>
+                <em class="more">最多支持上传3张 每张小于2M 建议尺寸:750*380 格式:jpg、png</em>
+            </div>
+        </div>
+        <div class="btn_box">
+            <a href="javascript:" id="submit" class="btn orange_btn">下一步</a>
+        </div>
+    </div>
+    <!--mod_listview End-->
+</form>
+
+<!-- 子组件模板 -->
+ <template id="child-template">
+     <div class="detail">
+         <input type="date" :name="msgobj.name" :class="msgobj.inputclass" :id="msgobj.id" />
+         <label class="default" :for="msgobj.name">{{msgobj.tips}}</label>
+     </div>
+ </template>
+<script src="../../js/form.js"></script>
+<script>
+    var Lists={
+        props:['thinobj'],
+        template:'<div class="list">' +
+        '<div class="unit" v-bind:class="thinobj.classname"><div class="caption">{{thinobj.title}}</div><dettxt  v-bind:msgobj="thinobj"></dettxt></div>' +
+        '</div>',
+        components:{
+            'dettxt':{
+                props:['msgobj'],
+                template:'#child-template'
+            }
+        }
+    }
+    new Vue({
+        el:'#mod_list',
+        data: {
+            listsobj: [
+                {classname:'date_box required',title: '开始时间', name: 'start_time', inputclass: 'date', id: 'start_time', tips: '请选择开始时间'},
+                {classname:'date_box required',title: '结束时间', name: 'end_time', inputclass: 'date', id: 'end_time', tips: '请选择结束时间'}
+            ]
+        },
+        components:{
+            'lists':Lists
+        }
+    })
+    //页面初始化
+    activity.init([
+        'upload',//上传图片
+        'dateTips',
+        'switch'//关联
+    ]);
+</script>
+</body>
+</html>

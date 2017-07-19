@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>动画效果:transform,transition,Animation</title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <link type="text/css" rel="stylesheet" href="../css/ionicons.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+</head>
+<body>
+<style>
+    .ts{
+        width: 100%;
+    }
+    .icon{
+        font-size: 32px;
+        color: #f00;
+    }
+    .col1 figure{
+        position: absolute;
+        float: left;
+        width:265px;
+        height: 344px;
+        overflow: hidden;
+    }
+    .col1 figure img {
+        margin-left: 0;
+        padding-left: 0;
+    }
+    .col1 figure figcaption{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width:99%;
+        height: 99%;
+    }
+    figure.effect-bubba {
+        background:rgba(213, 38, 133, 0.83);
+    }
+    figure.effect-bubba:hover img {
+        opacity: 0.3;
+    }
+    figure.effect-bubba figcaption::before,
+    figure.effect-bubba figcaption::after{
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        bottom: 30px;
+        left: 30px;
+        content: '';
+        opacity: 1;
+    }
+    figure.effect-bubba figcaption::before {
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        -webkit-transform: scale(0,1);
+        -moz-transform: scale(0,1);
+        -o-transform: scale(0,1);
+        -ms-transform: scale(0,1);
+        transform: scale(0,1);
+    }
+    figure.effect-bubba figcaption::after {
+        border-right: 1px solid #fff;
+        border-left: 1px solid #fff;
+        -webkit-transform: scale(1,0);
+        -moz-transform: scale(1,0);
+        -o-transform: scale(1,0);
+        -ms-transform: scale(1,0);
+        transform: scale(1,0);
+    }
+    figure.effect-bubba:hover figcaption::before,
+    figure.effect-bubba:hover figcaption::after {
+        -webkit-transform: scale(1,1);
+        -moz-transform: scale(1,1);
+        -o-transform: scale(1,1);
+        -ms-transform: scale(1,1);
+        transform: scale(1,1);
+        -webkit-transition: opacity 0.35s,-webkit-transform 0.35s;
+        -moz-transition: opacity 0.35s, -moz-transform 0.35s;
+        -o-transition: opacity 0.35s, -o-transform 0.35s;
+        -ms-transition: opacity 0.35s, -ms-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+    }
+    figure.effect-bubba h4 p{
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        -moz-transition: opacity 0.35s, -moz-transform 0.35s;
+        -o-transition: opacity 0.35s, -o-transform 0.35s;
+        -ms-transition: opacity 0.35s, -ms-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+        -webkit-transform: translate3d(0,-100px,0);
+        -moz-transform: translate3d(0,-100px,0);
+        -o-transform: translate3d(0,-100px,0);
+        -ms-transform: translate3d(0,-100px,0);
+        transform: translate3d(0,-100px,0);
+        opacity: 0;
+        color:#fff;
+        font-family:'Signika-Regular';
+    }
+    figure.effect-bubba h4.gal {
+        padding-top: 31%;
+    }
+    .gal2{font-size: 16px;}
+    .gal3{font-size: 14px;}
+    .gal1 {padding: 0 0;margin-top: 20px;}
+    figure.effect-bubba p {
+        padding: 5px 44px;
+        opacity: 0;
+        color:#fff;
+        font-size: 14px;
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        -moz-transition: opacity 0.35s, -moz-transform 0.35s;
+        -o-transition: opacity 0.35s, -o-transform 0.35s;
+        -ms-transition: opacity 0.35s, -ms-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+        -webkit-transform: translate3d(0,100px,0);
+        -moz-transform: translate3d(0,100px,0);
+        -o-transform: translate3d(0,100px,0);
+        -ms-transform: translate3d(0,100px,0);
+        transform: translate3d(0,100px,0);
+    }
+    figure.effect-bubba:hover h4,
+    figure.effect-bubba:hover p {
+        opacity: 1;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+    }
+</style>
+   <div class="ts">
+       <i class="icon ion-clothes"></i>
+   </div>
+   <!-- transform:可用于内联(inline)元素和块级(block)元素,可进行多种属性操作,需要有空格隔开.
+    transform(变形):2D旋转rotate、扭曲skew、缩放scale和移动translate以及矩阵变形matrix
+    transform-origin:默认基点就是其中心位置,都是以元素自己中心位置进行变化的
+    -->
+    <!--2D旋转rotate:顺时针或逆时针-->
+    <div class="rotate_box">
+        <span class="normal"></span>
+        <span class="normal shun"></span>
+        <span class="normal ni"></span>
+    </div>
+   <!--移动translate  translate(x,y)水平方向和垂直方向同时移动,translateX(x)仅水平方向移动（X轴移动）,translateY(Y)反之。 值可为负数。-->
+   <div class="translate_box">
+       <span class="normal"></span>
+       <span class="normal y"></span>
+       <span class="normal x"></span>
+       <span class="normal xy"></span>
+   </div>
+   <!--缩放scale:跟移动translate是极其相似,scale(x,y),scaleX(x),scaleY(y) 缩放基数>1 放大 缩放基数<1 缩小-->
+   <div class="scale_box">
+       <span class="normal"></span>
+       <span class="normal y"></span>
+       <span class="normal x"></span>
+       <span class="normal xy"></span>
+   </div>
+   <!--扭曲skew:跟移动translate是极其相似,skew(x,y),skewX(x),skewY(y) 按角度-->
+   <div class="skew_box">
+       <span class="normal"></span>
+       <span class="normal y"></span>
+       <span class="normal x"></span>
+       <span class="normal xy"></span>
+   </div>
+ <!--  矩阵matrix &ndash;&gt; matrix(<number>, <number>, <number>, <number>, <number>, <number>) ：
+       以一个含六值的(a,b,c,d,e,f)变换矩阵的形式指定一个2D变换，相当于直接应用一个[a b c d e f]变换矩阵。就是基于水平方向（X轴）和垂直方向（Y轴）重新定位元素,-->
+  <!-- transform-origin(X,Y):用来设置元素的运动的基点（参照点）。默认点是元素的中心点。其中X和Y的值可以是百分值,em,px，其中X也可以是字符参数值left,center,right；
+                         Y和X一样除了百分值外还可以设置字符值top,center,bottom
+   transform-origin:(left,top);transform-origin:right;transform-origin(25%,75%)-->
+
+
+ <!--  transition[转换]:允许css的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS的属性值.
+   transition主要包含四个属性值：执行变换的属性：transition-property,变换延续的时间：transition-duration,在延续时间段，变换的速率变化transition-timing-function,变换延迟时间transition-delay。
+   transition-property是用来指定当元素其中一个属性改变时执行transition效果，其主要有以下几个值：none(没有属性改变)；all（所有属性改变）这个也是其默认值；indent（元素属性名）。
+                      当其值为none时，transition马上停止执行，当指定为all时，则元素产生任何属性值变化时都将执行transition效果，ident是可以指定元素的某一个属性值。
+   transition-duration是用来指定元素 转换过程的持续时间，单位为s（秒）或者ms(毫秒),可以作用于所有元素，包括:before和:after伪元素。其默认值是0，也就是变换时是即时的。
+   transition-timing-function的值允许你根据时间的推进去改变属性值的变换速率，transition-timing-function有6个可能值：ease：（逐渐变慢）默认值,linear：（匀速）,ease-in：(加速),
+                             ease-out：（减速）,ease-in-out：（加速然后减速）,cubic-bezier：（该值允许你去自定义一个时间曲线）
+   transition-delay是用来指定一个动画开始执行的时间，也就是说当改变元素属性值后多长时间开始执行transition效果,单位为s（秒）或者ms(毫秒),也可以作用于所有元素，包括:before和:after伪元素。
+                   默认大小是"0"，也就是变换立即执行，没有延迟。-->
+   <div class="transition_box">
+       <a id="btn">点击</a>
+       <div class="timings">
+           <div class="demo-box ease">Ease</div>
+           <div class="demo-box ease-in">Ease-in</div>
+           <div class="demo-box ease-out">Ease-out</div>
+           <div class="demo-box ease-in-out">Ease-in-out</div>
+           <div class="demo-box linear">Linear</div>
+       </div>
+   </div>
+   <!--小圆在大圆里旋转-->
+   <div class="rotating_box">
+       <div class="boc">
+           <span class="circle"></span>
+       </div>
+   </div>
+    <!--饼图-->
+    <div class="piechart"></div>
+
+    <div class="colq">
+        <div class="col col1 ">
+            <a href="" rel="title" >
+                <figure class="effect-bubba ">
+                    <img  src="../img/02.jpg" alt="">
+                    <figcaption>
+                        <h4 class="gal">
+                            <p class="gal2">吴冰</p>
+                            <p class="gal3">星图艺考宣传部</p>
+                        </h4>
+                        <p class="gal1">
+                        <p>中国教育界领军人物</p>
+                        <p>全国十大名牌教师</p>
+                        <p>出色的激励大师、孩子成才设计师</p>
+                        </p>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+    </div>
+   <script>
+      $(document).ready(function(){
+          $("#btn").hover(
+              function(){
+                  $(this).next(".timings").addClass("timings-hover");
+              },function(){
+                  $(this).next(".timings").removeClass("timings-hover");
+              }
+          );
+      });
+   </script>
+</body>
+</html>

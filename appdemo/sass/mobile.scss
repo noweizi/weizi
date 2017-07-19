@@ -1,0 +1,26 @@
+@charset "UTF-8";
+// 初始化
+@import "lib/function.scss";
+@import "lib/initial.scss";
+//公共样式
+@import "mod/mod_public.scss";
+//首页
+@import "mod/mod_index.scss";
+//列表
+@import "mod/mod_list.scss";
+//表单
+@import "mod/mod_form.scss";
+//图标集合
+@import "mod/mod_icon.scss";
+//滚动样式
+@import "mod/iscroll.scss";
+//平常遇到的样式
+@import "mod/sumstyle.scss";
+//滑屏样式
+@import "mod/activity.scss";
+//动画效果 变形(transform)、转换(transition)和动画(animation)
+@import "mod/animate.scss";
+//大转盘
+@import "mod/bigwheel.scss";
+//水果机
+@import "mod/fruit_machine.scss";

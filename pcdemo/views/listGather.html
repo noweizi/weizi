@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../css/pc.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+</head>
+<body>
+  <div class="pc_const">
+      <h1 class="list_h1">第一种</h1>
+      <div class="list_1">
+          <div class="hd_l">
+              <p>可用KB券</p>
+              <p>￥<strong class="f_b28 orange">10000.00</strong></p>
+          </div>
+          <div class="hd_r">
+              <div>
+                  <p>即将过期KB券</p>
+                  <p>￥<strong class="f_b28">80000.00</strong><small>过期时间:201611</small></p>
+              </div>
+              <a href="javascript:;" class="btn">查看可抵用的产品</a>
+          </div>
+      </div>
+      <h1 class="list_h1">第二种</h1>
+      <div class="mainTab">
+          <div class="t1">
+              <div class="li">
+                  <a href="javascript:;" data-ots_url="0" class="current">领取记录<em>2317</em></a>
+                  <a href="javascript:;" data-ots_url="1">使用记录</a>
+                  <a href="javascript:;" data-ots_url="2">过期记录</a>
+              </div>
+              <div id="rightBtnLi1"></div>
+          </div>
+      </div>
+      <div class="mod_basic" >
+          <table class="pro_table bg_white kb_table" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <tr>
+                  <th>来源</th>
+                  <th>金额</th>
+                  <th>领取时间</th>
+                  <th>过期时间</th>
+              </tr>
+              <tr>
+                  <td>预定赠送</td>
+                  <td class="orange"><strong>+1000</strong></td>
+                  <td>2015-05-01</td>
+                  <td>2016-06-01</td>
+              </tr>
+              <tr>
+                  <td>预定赠送</td>
+                  <td class="orange"><strong>+100</strong></td>
+                  <td>2015-07-01</td>
+                  <td>2016-06-01</td>
+              </tr>
+          </table>
+          <div class="box_list_operate ">
+              <span class="sum">共有<em>12</em>条订单</span>
+              <div class="page_global">
+                  <a href="javascript:;" title="第1页" class="on">1</a>
+                  <a href="javascript:;" title="第2页" >2</a>
+                  <a href="javascript:;" title="第3页" >3</a>
+                  <a href="javascript:;" title="第4页" >4</a>
+                  <span >...</span>
+                  <a href="javascript:;" title="第6页" >120</a>
+                  <a href="javascript:;" class="prev_page p_disable">上一页</a>
+                  <a href="javascript:;" title="第2页" class="next_page">下一页</a>
+              </div>
+          </div>
+      </div>
+  </div>
+<script>
+    $(".mainTab .t1 .li a").on('click',function(){
+        $(this).addClass("current").siblings().removeClass("current")
+    });
+</script>
+</body>
+</html>

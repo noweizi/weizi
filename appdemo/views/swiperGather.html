@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <title>轮播图集合</title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <link type="text/css" rel="stylesheet" href="../css/swiper.min.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+    <style type="text/css">
+        #demo{
+            position:relative;text-indent:2em;line-height:20px;color:#67553A;width:100%;height:20px; overflow: hidden;
+            white-space: nowrap;
+        }
+        .tip_msg{
+            padding: 8px;
+            padding-right: 30px;
+        }
+        .gundongk{
+            overflow: hidden;
+        }
+        .gundong{
+            display: inline-block;
+            width: 300%;
+        }
+        .gundong1{
+            float: left;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body class="">
+    <div class="mod_topbar">
+        <i class="back"  onclick="history.go(-1)" ></i>
+        <div class="hd">轮播图</div>
+    </div>
+    <div class="tip_msg">
+        <s></s>
+        <div class="gundongk">
+            <span class="gundong">
+                <span class="gundong1">2015-10-11日，10000个库存已下单待付款，请做好控位准备</span>
+                <span class="gundong2"></span>
+            </span>
+        </div>
+    </div>
+    <div class="tip_msg">
+        <s></s>
+        <div class="gundongk">
+            <span class="gundong">
+                <span class="gundong1">2016-11-01日，80000个库存已下单待付款，请做好控位准备</span>
+                <span class="gundong2"></span>
+            </span>
+        </div>
+    </div>
+    <!--文字轮播图-->
+    <div id="demo" >
+        <div id="demo1" style="float:left;">
+            轻轻的我来了，正如我轻轻的走。我挥一挥衣袖，不带走一片云彩。我们是对方特别的人，奋不顾身，难舍难分，不是一般的认真。你就是我愿意遇见的特别的人。有时候我们特别的寂寞，害怕淘汰，未来谁会来，
+            人山人海，生命中有万种的可能。
+        </div>
+        <div id="demo2" style="float:left;"></div>
+    </div>
+    <marquee direction=left>欢迎光临科讯青年学习频道！除了方向，我们还可以添加其他限制的元素：动态的元素，更加吸引读者的眼球！如何使你的文字舞动起来呢</marquee>
+    <!--图文轮播图-->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="../img/02.jpg" width="100%" alt="" />
+            </div>
+            <div class="swiper-slide">
+                <img src="../img/03.jpg" width="100%" alt="" />
+            </div>
+            <div class="swiper-slide">
+                <img src="../img/04.jpg" width="100%" alt="" />
+            </div>
+            <div class="swiper-slide">
+                <img src="../img/05.jpg" width="100%" alt="" />
+            </div>
+        </div>
+    </div>
+    <script src="../js/swiper/swiper.min.js"></script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 5000,//可选选项，自动滑动
+            effect:'cube',
+            cube: {
+                slideShadows: false,
+                shadow: false
+            }
+        });
+        //文字滚动
+        $('.tip_msg').each(function () {
+            var speed = 30;
+            var tab = $(this).find('.gundongk')[0];
+            var tab1 = $(this).find('.gundong1')[0];
+            var tab2 = $(this).find('.gundong2')[0];
+            if (tab1.offsetWidth - tab.clientWidth >= 0) {
+                tab2.innerHTML = tab1.innerHTML;
+            } else {
+                tab2.innerHTML = null;
+            }
+
+            function Marquee() {
+                if (tab2.offsetWidth - tab.scrollLeft <= 0) {
+                    tab.scrollLeft -= tab1.offsetWidth;
+                }
+                else {
+                    tab.scrollLeft++;
+                }
+            }
+            var MyMar = setInterval(Marquee, speed);
+        });
+
+        //从右到左无缝滚动
+        var speed1=25//速度数值越大速度越慢
+        document.getElementById("demo2").innerHTML=document.getElementById("demo1").innerHTML
+        function Marquee1(){
+            if(document.getElementById("demo2").offsetWidth-document.getElementById("demo").scrollLeft-$(document).width()<=0)
+            {
+                document.getElementById("demo").scrollLeft=0;
+            }
+            else{
+                document.getElementById("demo").scrollLeft++;
+            }
+        }
+        var MyMar1=setInterval(Marquee1,speed1);
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+HTM布局方式：
+1.自然布局。 没有任何修饰的布局是自动靠左的。
+2.流动布局。 上面讲的float:left的情况。
+3.定位布局。
+常见布局方法：
+1.T型布局   顶部一般放置横网站的标志或Banner广告，下方左侧是导航栏菜单，下方右侧则用于放置网页正文等主要内容
+2.国字型布局    顶部是网站的标题以及Banner广告，接下来是网站的主要内容，左右分列一些小条内容，中问是主要部分，与左右一起罗列到底，最下方是网站的一些基本信息、联系方式、版权声明等。
+3.POP布局  指页面布局像一张宣传海报
+4.左右布局型
+5.上下布局型
+6.圣杯布局和双飞燕布局  实现的都是三栏布局，两边的盒子宽度固定，中间盒子自适应 -->效果是一样的，差别在其实现的思想。
+
+
+基础布局：
+    <!--wrapper 总容器 begin-->
+    <div class="wrapper">
+        <!--sidebar-menu 右侧边栏-菜单 begin-->
+        <div class="sidebar-right"></div>
+        <!--header 头部 begin-->
+        <div class="header"></div>
+        <!--sidebar-menu 左侧边栏-菜单 begin-->
+        <div class="sidebar-menu"></div>
+        <!--main 身体 begin-->
+        <div class="main"></div>
+        <!--footer 尾部 begin-->
+        <div class="footer"></div>
+    </div>

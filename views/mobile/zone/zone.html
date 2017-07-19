@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <title>省市区三级联动 -- 方法一</title>
+        <link type="text/css" rel="stylesheet" href="../../../static/asset/mobile/dest/css/zone.css">
+    </head>
+    <body>
+        <div class="mod-form">
+            <div class="mod-form-item">
+                <div class="item-unit">
+                    <div class="item-tit">所在城市</div>
+                    <div class="item-con tr"><input type="text" id='city-picker' placeholder="省份    市"/></div>
+                </div>
+            </div>
+        </div>
+        <script src="../../../static/asset/mobile/dest/js/zone/zepto.js"></script>
+        <script src="../../../static/asset/mobile/dest/js/zone/sm.js"></script>
+        <script src="../../../static/asset/mobile/dest/js/zone/cityjson.js"></script>
+        <script src="../../../static/asset/mobile/dest/js/zone/sm-city-picker.js"></script>
+        <script type="text/javascript">
+            Zepto("#city-picker").cityPicker({
+                toolbarTemplate: '<header class="bar bar-nav">\
+                <button class="button button-link pull-right close-picker">确定</button>\
+                <h1 class="title">请选择省市</h1>\
+                </header>'
+              });
+        </script>
+    </body>
+</html>

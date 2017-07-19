@@ -1,0 +1,27 @@
+@charset "UTF-8";
+@font-face {
+    font-family: "Ionicons";
+    src: url("../fonts/ionicons.ttf");
+    src: url("../fonts/ionicons.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+.ion-clothes:before, .ion-empty_clothes:before,.ion-add:before,.ion-alarm:before  {
+    display: inline-block;
+    font-family: "Ionicons";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
+
+.ion-clothes:before { content: "\f4f6"; }
+
+.ion-empty_clothes:before { content: "\f4f7"; }
+
+.ion-add:before { content: "\f4f8"; }
+.ion-alarm:before{ content: "\f35a"; }

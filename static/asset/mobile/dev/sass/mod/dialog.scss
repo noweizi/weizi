@@ -1,0 +1,169 @@
+@charset "utf-8";
+//对话框 默认弹窗
+.dialog-com{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    display: none;
+    //头部
+    .dialog-head{
+        position: relative;
+        width: 100%;
+        background: #f5f5f5;
+        border-bottom: 1px solid #ddd;
+        border-radius: 20px 20px 0 0;
+        .title{
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+        .close,.back{
+            display: inline-block;
+            position: absolute;
+            top: 12px;
+            font-size: 14px;
+        }
+        .close{
+            right: 15px;
+           /* width: 13px;
+            height: 13px;
+            background: url("../../dest/img/dialog/close.png") no-repeat;
+            background-size: contain;*/
+        }
+        .back{
+            left: 8px;
+           /* width: 23px;
+            height: 13px;
+            background: url(../../img/back.png) no-repeat center;
+            background-size: contain;*/
+        }
+    }
+    //身体
+    .dialog-box{
+        width: 80%;
+        margin: 25% 10%;
+        //白底弹窗
+        &.prompt{
+            .dialog-uper{
+                padding: 20px 0 13px;
+                background: #fff;
+                .uper-tips{
+                    color: #333;
+                    p{margin-bottom: 7px;}
+                }
+            }
+        }
+    }
+    //内容
+    .dialog-uper{
+        background: url("../../dest/img/dialog/dialog-bgg.png") no-repeat top left;
+        background-size: cover;
+        padding: 30px 0;
+        text-align: center;
+        width: 100%;
+        .uper-tips {
+            color: #fff;
+            margin-top: 10px;
+            //多段落
+            &.more{
+                text-align: left;
+                margin-left: 12%;
+            }
+        }
+    }
+    //按钮组
+    .dialog-hart{
+        background: #fff;
+        border-radius: 0 0 20px 20px;
+        padding: 6% 20%;
+        //多个按钮
+        &.more{
+            text-align: center;
+            padding: 6% 2%;
+            .btn{
+                width: 43%;
+                height: 42px;
+                padding: 0;
+                line-height: 42px;
+                border-radius: 20px;
+                &.white{
+                    margin-right: 4%;
+                    border: 1px solid $themeOrange;
+                    color: $themeOrange;
+                    background: transparent;
+                }
+            }
+        }
+    }
+    //从下往上 弹窗
+    .dialog-downup{
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        .dialog-head,.dialog-hart{ border-radius: 0;}
+        .img-box{
+            text-align: center;
+            border-bottom: 2px solid #f2c828;
+            img{ vertical-align: -2px;}
+        }
+        .dialog-uper{
+            background: #fff;
+            .uper-tips{ color: #333;}
+            .bank-list{
+                max-height: 208px;
+                overflow: auto;
+                li{
+                    position: relative;
+                    padding: 15px 40px 15px 60px;
+                    border-bottom: 1px solid #ddd;
+                }
+                .def{
+                    position: absolute;
+                    top: 18px;
+                    left: 15px;
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                }
+                .txt{
+                    font-size: 14px;
+                    text-align: left;
+                }
+                .txt-num{ color: #999;}
+                .del-bank{
+                    width: 21px;
+                    height: 20px;
+                    position: absolute;
+                    background: url("../../dest/img/dialog/del-bank.png") no-repeat;
+                    background-size: contain;
+                    right: 15px;
+                    top: 50%;
+                    margin-top: -10px;
+                }
+            }
+        }
+        //下拉列表
+        &.list{
+            .dialog-uper,.dialog-hart{ padding: 0;}
+            .dialog-hart{
+                .choose-new{
+                    display: block;
+                    height: 50px;
+                    padding: 0 15px;
+                    line-height: 50px;
+                    border-bottom: 1px solid #ddd;
+                }
+                .txt-right{
+                    font-size: 20px;
+                    color: #666;
+                    font-family: '宋体', simsum;
+                    float: right;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <title>CSS Grid布局</title>
+    <link type="text/css" rel="stylesheet" href="../../css/mobile.css">
+    <script src="../../js/jquery-1.12.3.js"></script>
+    <style type="text/css">
+        .wrapper{
+            display: grid;
+            grid-template-columns: 220px 20px 220px 20px 220px;
+            grid-template-rows: auto 20px auto 20px auto;
+        }
+        .box {
+            background-color: #444;
+            color: #fff;
+            font-size: 150%;
+            padding: 20px;
+            text-align: center;
+        }
+        .header{
+            grid-area: 1/1/2/6;
+        }
+        .sidebar{
+            grid-area: 3/1/4/2;
+        }
+        .content{
+            grid-area: 3/3/4/6;
+        }
+        .footer{
+            grid-area: 5/1/6/6;
+        }
+        @supports ((background: rgba(0,0,0,.5)) and ((background: rgba(0,0,0,.5)) or (background: rgba(0,0,0,.5)))) {
+            .footer {
+                background: pink;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header box">Header Area</div>
+        <div class="content box">
+            <h2>Content Area</h2>
+            <ul>
+                <li>List item</li>
+                <li>List item</li>
+                <li>List item</li>
+                <li>List item</li>
+            </ul>
+        </div>
+        <div class="sidebar box">Sidebar Area</div>
+        <div class="footer box">Footer Area</div>
+    </div>
+</body>
+</html>

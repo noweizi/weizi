@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.rawgit.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e/raw/98739fb8ac6779cb2da11aaa9ab6032e52f3be00/currency-validator.js"></script>
+</head>
+<body style="padding: 20px;">
+    <div id="app" v-bind:class="classObject">
+      <!--声明式渲染 绑定-->
+      <a v-bind:title="message" v-bind:class="[activeClass, errorClass]">{{txt}} ---  {{now}}</a>
+      <!--缩写-->
+      <a :title="message">{{tips}} </a>
+      <!--条件与循环-->
+      <p v-if="show" v-on:click="changecl">蜗牛跑跑 乌龟跳跳</p>
+      <!--缩写-->
+      <!--<p v-if="show" @click="changecl">乌龟跳跳 蜗牛跑跑 </p>-->
+      <!--双向数据绑定-->
+      <p v-bind:style="{color:'red',fontSize:'18px'}">{{values}}</p>
+      <input type="text" v-model="values"/>
+    </div>
+    <div id="app2">
+        <ul>
+            <li v-for="(item,index,key) in objs" >{{item.text | capitalize}} --- {{index}}--- {{key}}</li>
+        </ul>
+    </div>
+    <div id="app3">
+        <ul>
+            <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+        </ul>
+    </div>
+    <div id="app4">
+        <input
+                v-model.number="newTodoText"
+                v-on:keyup.enter="addNewTodo"
+                placeholder="Add a todo"
+        >
+        <ul>
+            <tdo-item v-for="(item,index) in eventNumbers" v-bind:tdo="item" v-on:remove="eventNumbers.splice(index, 1)"></tdo-item>
+        </ul>
+    </div>
+    <div id="app5">
+        <button v-on:click="counter += 1">增加 1</button>
+        <!--<button v-on:click="addNumber">增加 1</button>-->
+        <p>这个按钮被点击了 {{counter}}次</p>
+    </div>
+    <div id="app6">
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+        <br>
+        <input type="radio" id="one" value="One" v-model="picked">
+        <label for="one">One</label>
+        <br>
+        <input type="radio" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <br>
+        <span>Picked: {{ picked }}</span>
+        <br>
+        <select v-model="selected">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+    <div id="app7">
+        <parents></parents>
+        <childs></childs>
+        <br>
+        <input v-model="parentMsg">
+        <br>
+        <someth v-bind:mymess="parentMsg"></someth>
+        <br>
+        <p>{{total}}</p>
+        <btn-counter v-on:increment="incrementTotal"></btn-counter>
+        <btn-counter v-on:increment="incrementTotal"></btn-counter>
+    </div>
+    <div id="app8">
+        <currency-input label="Price" v-model="price"></currency-input>
+        <currency-input label="Shipping" v-model="shipping"></currency-input>
+        <currency-input label="Handling" v-model="handling"></currency-input>
+        <currency-input label="Discount" v-model="discount"></currency-input>
+        <p>Total: {{total}}</p>
+        <button v-on:click="show =! show">toggle</button>
+        <transition name="slide-fade">
+            <p v-if="show">hello </p>
+        </transition>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'You loaded this page on ',
+                txt: "测试ing",
+                show: true,
+                values:"想想也是。",
+                tips: "言叶之庭",
+                isActive: true,
+                error: null,
+                activeClass: 'red',
+                errorClass: 'button'
+                /*classObject:{
+                    active: true,
+                    'text-danger': false
+                }*/
+            },
+            // 如果 txt 发生改变，这个函数就会运行
+            watch:{
+                txt:function(newtxt){
+                    this.values="红豆大红豆";
+                }
+            },
+            //计算属性
+            computed:{
+                txt: function () {
+                    return this.tips.split('').reverse().join('')
+                },
+                now:function(){
+                    return Date.now()
+                },
+                classObject:function(){
+                    return{
+                        active: this.isActive && !this.error,
+                        'text-danger' : this.error && this.error.type === 'fatal',
+                    }
+                }
+            },
+            //事件
+            methods:{
+                changecl:function(){
+                    this.tips= "如果，盐亭之余";
+                }
+            }
+        });
+        var app2 = new Vue({
+            el: "#app2",
+            data: {
+                objs:[
+                    {text: 'english'},
+                    {text: 'chinese'},
+                    {text: 'match'}
+                ]
+            },
+            //自定义过滤器
+            filters:{
+                capitalize: function (value) {
+                    if (!value) return ''
+                    value = value.toString()
+                    return value.charAt(0).toUpperCase() + value.slice(1)
+                }
+            }
+        });
+        //组件系统
+        Vue.component('todo-item', {
+            //我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个 prop 字段：
+            props: ['todo'],
+            template: '<li>{{ todo.text }}</li>'
+        })
+        var app3 = new Vue({
+            el: "#app3",
+            data:{
+                groceryList:[
+                    { text: 'Vegetables' },
+                    { text: 'Cheese' },
+                    { text: 'Whatever else humans are supposed to eat' }
+                ]
+            }
+        })
+
+        Vue.component('tdo-item',{
+            template:'<li>{{tdo}}<button v-on:click="$emit(\'remove\')">X</button></li>',
+            props:['tdo']
+        })
+        new Vue({
+            el:'#app4',
+            data:{
+                newTodoText:'',
+                todos: [1, 2, 3, 4, 5]
+            },
+            computed:{
+              eventNumbers:function(){
+                  return this.todos.filter(function(number){
+                      return number % 2 === 0
+                  })
+              }
+            },
+            methods:{
+                addNewTodo:function(){
+                    this.eventNumbers.push(this.newTodoText)
+                    this.newTodoText = ''
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app5',
+            data:{
+                counter: 0
+            },
+            methods:{
+                addNumber:function(){
+                    this.counter +=1;
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app6',
+            data: {
+                checkedNames: [],
+                picked: ' ',
+                selected: ' '
+            }
+        })
+        //定义子组件，子组件必须在父组件之前定义。
+       /* var Childs =Vue.extend({template: '<div>A child component!</div>'});
+        var Parents = Vue.extend({
+            template: '<div style="border: 1px solid #ccc;width:200px;">Parent<child-component></child-component>父模版内部</div>',
+            components: {
+                // 调用子组件
+                'child-component': Childs
+            }
+        });
+        // 注册父组件
+        Vue.component('parents', Parents);
+        //复用子组件。
+        Vue.component('child', Childs);*/
+
+        var Childs={
+            template: '<div>我是子模板</div>'
+        }
+        var Parents={
+            template: '<div style="border: 1px solid #ccc;width:200px;">Parent<childs></childs>父模版内部</div>',
+            components: {
+                'childs': Childs
+            }
+        }
+        var Someth={
+            props:['mymess'],
+            template:'<p>{{mymess}}</p>'
+        }
+        Vue.component('btn-counter',{
+            template:'<button v-on:click="increment">{{counter}}</button>',
+            data:function(){
+                return{ counter:0}
+            },
+            methods:{
+                increment:function(){
+                    this.counter +=1;
+                    this.$emit('increment'); //使用 $emit(eventName) 触发事件
+                }
+            }
+        })
+        new Vue({
+            el: '#app7',
+            data:{
+                parentMsg:'message for pipi',
+                total: 0
+            },
+            components: {
+                'someth': Someth,
+                'parents':Parents,
+                'childs':Childs
+            },
+            methods:{
+                incrementTotal:function(){
+                    this.total += 1;
+                }
+            }
+        });
+
+        Vue.component('currency-input',{
+            template: '<div><label v-if="label">{{ label }}</label><input ref="input" v-bind:value="value" v-on:input="updateValue($event.target.value)" v-on:focus="selectAll" v-on:blur="formatValue"></div>',
+            props:{
+                value:{
+                    type: Number,
+                    default: 0
+                },
+                label:{
+                    type:String,
+                    default:''
+                }
+            },
+            mounted: function () {
+                this.formatValue()
+            },
+            methods:{
+                updateValue:function(value){
+                    var result= currencyValidator.parse(value,this.value);
+                    if (result.warning){
+                        this.$refs.input.value =result.value;
+                    }
+                    this.$emit('input',result.value);
+                },
+                formatValue:function(){
+                    this.$refs.input.value = currencyValidator.format(this.value);
+                },
+                selectAll:function(event){
+                    setTimeout(function(){
+                        event.target.select()
+                    },0)
+                }
+            }
+
+        })
+        new Vue({
+            el:'#app8',
+            data:{
+                price: 0,
+                shipping: 0,
+                handling: 0,
+                discount: 0,
+                show: true
+            },
+            computed:{
+                total:function(){
+                    return ((
+                            this.price * 100 +
+                            this.shipping * 100 +
+                            this.handling * 100 -
+                            this.discount * 100
+                    ) / 100).toFixed(2)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

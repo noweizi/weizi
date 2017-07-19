@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <title>js页面滚动时层智能浮动定位实现</title>
+    <link type="text/css" rel="stylesheet" href="../../../static/asset/mobile/dest/css/usual.css">
+</head>
+<body>
+    <div class="mod_topbar">
+        <a class="back" href="javascript:;"  onclick="history.go(-1)"><i class="icon-arr-left"></i></a>
+        <div class="title">层的智能浮动效果</div>
+    </div>
+    <div class="floatbox">
+        <div class="float" id="float">
+            我是个腼腆羞涩的浮动层...
+        </div>
+        <div class="txt">
+            <p>跟你在一起的时光全都很耀眼﻿﻿</p>
+            <p>因为天气好﻿﻿</p>
+            <p>因为天气不好﻿﻿</p>
+            <p>因为天气刚刚好﻿﻿</p>
+            <p>每一天 都很美好﻿﻿</p>
+            <p>&nbsp;</p>
+            <p>质量与体积不成正比，</p>
+            <p>那个紫罗兰一般小巧的丫头，</p>
+            <p>那个似花瓣一般轻曳的丫头，</p>
+            <p>以远超过地球的质量吸引着我，</p>
+            <p>咚地一声，咚咚一声，一瞬间，</p>
+            <p>我就如同牛顿的苹果般，</p>
+            <p>不受控制地滚落在她脚下，</p>
+            <p>从天空到大地，</p>
+            <p>心脏在持续着令人眩晕的摆动，</p>
+            <p>那是初恋。</p>
+            <p>&nbsp;</p>
+            <p>你既是我的生路、亦是我的死途， </p>
+            <p>而我，喜欢这样的你。</p>
+            <p>因此，我怀揣著这个秘密，祈求上天能够允许：</p>
+            <p>希望能再多瞒你一天，就这样，只要再多瞒你百年，</p>
+            <p>然后，如此活了百年后的某一天，</p>
+            <p>天气刚刚好的某一天，</p>
+            <p>「你是我的初恋。」希望能这样和你告白......</p>
+            <p>我由衷乞求上天允许。</p>
+            <p>&nbsp;</p>
+            <p>此生遇见你，无与伦比，化成雨，化成初雪，我会祈求神，让我化成这些。</p>
+            <p>所以</p>
+            <p>在世之人 一定要更努力的生活</p>
+            <p>虽然偶尔会哭泣</p>
+            <p>但要笑得更多</p>
+            <p>活得更坚强</p>
+            <p>这就是对所受的爱的报答。</p>
+            <p>&nbsp;</p>
+            <p>说过只留下幸福的回忆，但你说让我忘记你。这反而顺序不对啊，跟你在一起的所有的瞬间，就连那些难过，伤心的瞬间，我都觉得是好的。</p>
+            <p>人类的寿命区区百年，让我想要转身再回头看一眼的，是我这永生不灭的人生，还是你这张脸？</p>
+            <p>29岁的你还是一样笑靥如花，但你的身边，却没有我。</p>
+            <p>没有悲伤能持续千年万年，也没有持续数千年的爱情。</p>
+            <p>人生嘛，原本就是暂借，暂时的停留。</p>
+            <p>地狱，也不是地狱里才有。</p>
+            <p>寻常小事也许会在某一天成为人生的契机，</p>
+            <p>表面上迟来的东西也许只是在最恰当的时候出现了。</p>
+            <p>困顿不会没有出口，</p>
+            <p>只要你不放弃努力前行，</p>
+            <p>你总会等到柳暗花明。</p>
+            <p>以后不要再召唤我了，没有必要，因为我会一直在你身边，回家吧！回我生活的家，因为你是鬼怪新娘。如果你想听，我也可以说，我爱你。</p>
+        </div>
+        <div class="imgbox">
+            <div class="xfbox" style="position:absolute; top:100px;left:100px;">
+                <img src="../../../static/asset/mobile/dest/img/public/01.jpg" width="50" height="50" alt="test"/>
+                <div class="showbox">
+                    <img src="../../../static/asset/mobile/dest/img/public/02.jpg" width="50" height="50" alt="dd" />
+                </div>
+            </div>
+            <div class="xfbox" style="position:absolute; top:300px;left:150px;">
+                <img src="../../../static/asset/mobile/dest/img/public/01.jpg" width="50" height="50" alt="test"/>
+                <div class="showbox">
+                    <img src="../../../static/asset/mobile/dest/img/public/02.jpg" width="50" height="50" alt="dd" />
+                </div>
+            </div>
+            <div class="xfbox" style="position:absolute; top:500px;left:250px;">
+                <img src="../../../static/asset/mobile/dest/img/public/01.jpg" width="50" height="50" alt="test"/>
+                <div class="showbox">
+                    <img src="../../../static/asset/mobile/dest/img/public/02.jpg" width="50" height="50" alt="dd" />
+                </div>
+            </div>
+            <div class="xfbox" style="position:absolute; bottom:300px;left:280px;">
+                <img src="../../../static/asset/mobile/dest/img/public/01.jpg" width="50" height="50" alt="test"/>
+                <div class="showbox">
+                    <img src="../../../static/asset/mobile/dest/img/public/02.jpg" width="50" height="50" alt="dd" />
+                </div>
+            </div>
+            <div class="xfbox" style="position:absolute; bottom:0px;left:100px;">
+                <img src="../../../static/asset/mobile/dest/img/public/01.jpg" width="50" height="50" alt="test"/>
+                <div class="showbox">
+                    <img src="../../../static/asset/mobile/dest/img/public/02.jpg" width="50" height="50" alt="dd" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../static/asset/mobile/dest/js/jquery-2.1.4.min.js"></script>
+    <script>
+        //智能浮动效果
+        $.fn.smartFloat = function() {
+            var position = function(element) {
+                var top = element.position().top, pos = element.css("position");
+                $(window).scroll(function() {
+                    var scrolls = $(this).scrollTop();
+                    if (scrolls > top) {
+                        if (window.XMLHttpRequest) {
+                            element.css({
+                                position: "fixed",
+                                top: 0
+                            });
+                        } else {
+                            element.css({
+                                top: scrolls
+                            });
+                        }
+                    }else {
+                        element.css({
+                            position: "absolute",
+                            top: top
+                        });
+                    }
+                });
+            };
+            return $(this).each(function() {
+                position($(this));
+            });
+        };
+        $("#float").smartFloat();
+
+        //悬停时 出现隐藏的盒子
+        var hei = $(window).height();
+        $(".xfbox").hover(
+                function (e) {
+                    console.log("dd")
+                    var documentTop = $(document).scrollTop(),
+                            y = e.pageY,
+                            qrHeight = 50;
+                    if( (y - documentTop) + qrHeight > hei ){
+                        // 鼠标距顶部位置-顶部滚动掉的高度+浮层高度 > 屏幕高度，则显示不全，所以.up
+                        $(this).find(".showbox").addClass("showleft");
+                    }else{
+                        $(this).find(".showbox").addClass("show");
+                    }
+                },
+                function () {
+                    console.log("xx")
+                    $(this).find(".showbox").removeClass("show showleft");
+                }
+        );
+
+        //滚动条到底部时候触发的事件  jQuery(window).height()代表了当前可见区域的大小，而jQuery(document).height()则代表了整个文档的高度，可视具体情况使用.
+        $(window).scroll(function () {
+            var scrollTop = $(this).scrollTop(),
+                    windowHeight = $(this).height(), //是获取当前 也就是你浏览器所能看到的页面的那部分的高度  这个大小在你缩放浏览器窗口大小时 会改变
+                    scrollHeight = $(document).height(); //是获取整个页面的高度
+            if (scrollTop + windowHeight == scrollHeight) { //底端
+                var page = parseInt($('#J_page_num').val());  //当前页面
+                var total_page = $('#J_total_page').val();    //总页面
+                if(page > total_page){
+                    layer.open({content: '已显示全部'+$("#J_total").val()+'条记录', time: 1});
+                    return false;
+                }
+                var url = '/gongying/order/index';
+                var data = {
+                    page : page
+                };
+                $.ajax({
+                    type: 'get',
+                    url: url,
+                    data: data,
+                    beforeSend:function(){
+                        layer.open({type:2});  //加遮罩层 在success,complete前执行
+                    },
+                    complete:function(){
+                        layer.closeAll();  //关闭遮罩层 在success后执行
+                    },
+                    success: function(retdat) {
+                        $('.J_list').append(retdat);
+                        if (page <= total_page) {
+                            page += 1;
+                            $('#J_page_num').val(page);
+                        }
+                    }
+                });
+
+            }
+        });
+    </script>
+</body>
+</html>

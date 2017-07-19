@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+</head>
+<body>
+<style type="text/css">
+    li{
+        height: 30px;
+        line-height: 30px;
+        padding-left: 15px;
+        border-bottom: 1px solid #ddd;
+        list-style: none;
+    }
+</style>
+<ul name="delivery_province_id" id="delivery_province_id">
+    <ul name="delivery_city_id" id="delivery_city_id">
+    </ul>
+</ul>
+<div class="pro_form">
+    <div class="row J_address">
+        <label class="pro_name"><em>*</em>地址</label>
+        <div class="pro_input">
+                <span class="label">
+                    <label class="input_select">
+                        <select name="delivery_province_id" id="delivery_province_id">
+                        </select>
+                    </label>
+                    <label class="input_select">
+                        <select name="delivery_city_id" id="delivery_city_id">
+                        </select>
+                    </label>
+                </span>
+        </div>
+    </div>
+</div>
+<script src="js/zone.js"></script>
+<script>
+    setOption('delivery_province_id','delivery_city_id','350200');
+</script>
+</body>
+</html>

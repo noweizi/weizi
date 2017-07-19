@@ -1,0 +1,365 @@
+@charset "UTF-8";
+/*
+Date: 2016-09-09
+tips:大转盘
+*/
+
+// 首页背景
+.big_wheel {
+    background: #c71b2a;
+}
+// 转盘区域
+.play_cont {
+	position: relative;
+	.bg {
+		display: block;
+		width: 100%;
+	}
+	.rotate_area {
+		position: absolute;
+		left: 50%;
+		top: 29%;
+		width: 344px;
+		height: 344px;
+		margin-left: -172px;
+		background: url(../img/bigwheel/compass.png) no-repeat 0 0;
+		background-size: 100%;
+		z-index: 2;
+	}
+	.pointer {
+		position: absolute;
+		left: 50%;
+		top: 122px;
+		width: 102px;
+		height: 134px;
+		margin: 0 0 0 -51px;
+		background: url(../img/bigwheel/pointer.png) no-repeat 0 0;
+		background-size: 100%;
+		-webkit-transform-origin: 50% 51px;
+		z-index: 999;
+		-webkit-tap-highlight-color: transparent;
+	}
+	.my_prizes {
+		position: absolute;
+		top: -8.5%;
+		left: 4%;
+		width: 70px;
+		border-bottom: 2px solid #c71b2a;
+		color: #fedd01;
+		font-size: 13px;
+		line-height: 24px;
+		background: #db2738;
+		text-align: center;
+        border-radius: 12px;
+	}
+	.pointer_rotate {
+		-webkit-animation: rotate 1s ease-in 0s infinite;
+	}
+	.pointer_rotate_uniform {
+		-webkit-animation: rotate_uniform 3s linear 0s infinite;
+	}
+	.pointer_rotate_first {
+		-webkit-animation: rotate_first 3s ease-out 0s;
+		-webkit-animation-fill-mode: forwards;
+	}
+	.pointer_rotate_second {
+		-webkit-animation: rotate_second 3s ease-out 0s;
+		-webkit-animation-fill-mode: forwards;
+	}
+	.pointer_rotate_third {
+		-webkit-animation: rotate_third 3s ease-out 0s;
+		-webkit-animation-fill-mode: forwards;
+	}
+	.pointer_rotate_four {
+		-webkit-animation: rotate_four 3s ease-out 0s;
+		-webkit-animation-fill-mode: forwards;
+	}
+	.pointer_rotate_five {
+		-webkit-animation: rotate_five 3s ease-out 0s;
+		-webkit-animation-fill-mode: forwards;
+	}
+	.pointer_rotate_six {
+		-webkit-animation: rotate_six 3s ease-out 0s;
+		-webkit-animation-fill-mode: forwards;
+	}
+	.pointer_rotate_seven {
+		-webkit-animation: rotate_seven 3s ease-out 0s;
+		-webkit-animation-fill-mode: forwards;
+	}
+	.pointer_rotate_eight {
+		-webkit-animation: rotate_eight 3s ease-out 0s;
+		-webkit-animation-fill-mode: forwards;
+	}
+	.pointer_txt {
+		position: absolute;
+		left: 50%;
+		top: 151px;
+		width: 38px;
+		height: 43px;
+		margin: 0 0 0 -19px;
+		background: url(../img/bigwheel/click_on.png) no-repeat 0 0;
+		background-size: 100%;
+		z-index: 1000;
+		-webkit-tap-highlight-color: transparent;
+	}
+	.several_prize {
+		li {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 80px;
+			height: 30px;
+			margin: -15px 0 0 -40px;
+			color: #f0394c;
+			font-size: 15px;
+			font-weight: bold;
+			line-height: 30px;
+            text-align: center;
+		}
+		li:nth-child(4) {
+			transform: rotate(-22.5deg) translateY(-124px);
+		}
+		li:nth-child(5) {
+			transform: rotate(22.5deg) translateY(-124px);
+		}
+		li:nth-child(6) {
+			transform: rotate(67.5deg) translateY(-124px);
+		}
+		li:nth-child(7) {
+			transform: rotate(112.5deg) translateY(-124px);
+		}
+		li:nth-child(8) {
+			transform: rotate(157.5deg) translateY(-124px);
+		}
+		li:nth-child(1) {
+			transform: rotate(202.5deg) translateY(-124px);
+		}
+		li:nth-child(2) {
+			transform: rotate(247.5deg) translateY(-124px);
+		}
+		li:nth-child(3) {
+			transform: rotate(292.5deg) translateY(-124px);
+		}
+		.color_pink {
+			color: #fedd01;
+		}
+	}
+	.prize_pic {
+		li {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 40px;
+			height: 40px;
+			margin: -20px 0 0 -20px;
+			background: url(../img/bigwheel/gift.png) no-repeat center center;
+			background-size: contain;
+		}
+		li:nth-child(4) {
+			transform: rotate(-22.5deg) translateY(-90px);
+		}
+		li:nth-child(5) {
+			transform: rotate(22.5deg) translateY(-90px);
+		}
+		li:nth-child(6) {
+			transform: rotate(67.5deg) translateY(-90px);
+		}
+		li:nth-child(7) {
+			transform: rotate(112.5deg) translateY(-90px);
+		}
+		li:nth-child(8) {
+			transform: rotate(157.5deg) translateY(-90px);
+		}
+		li:nth-child(1) {
+			transform: rotate(202.5deg) translateY(-90px);
+		}
+		li:nth-child(2) {
+			transform: rotate(247.5deg) translateY(-90px);
+		}
+		li:nth-child(3) {
+			transform: rotate(292.5deg) translateY(-90px);
+		}
+	}
+	.other_inf {
+		position: absolute;
+		bottom: 7%;
+		left: 0;
+		width: 100%;
+		.times {
+			width: 250px;
+			margin: 0 auto 26px;
+			background: #db2738;
+			color: #fff;
+			font-size: 15px;
+			line-height: 28px;
+			text-align: center;
+			border-radius: 14px;
+			em {
+				display: inline-block;
+			    vertical-align: top;
+			    padding: 3px 3px 0;
+			    color: #fdec50;
+			    font-size: 20px;
+			    line-height: 20px;
+			    font-weight: normal;
+			}
+		}
+	}
+}
+
+@-webkit-keyframes rotate {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(720deg); }
+}
+@-webkit-keyframes rotate_uniform {
+	100% { -webkit-transform: rotate(2160deg); }
+}
+@-webkit-keyframes rotate_first {
+	100% { -webkit-transform: rotate(2182.5deg); }
+}
+@-webkit-keyframes rotate_second {
+	100% { -webkit-transform: rotate(2227.5deg); }
+}
+@-webkit-keyframes rotate_third {
+	100% { -webkit-transform: rotate(2272.5deg); }
+}
+@-webkit-keyframes rotate_four {
+	100% { -webkit-transform: rotate(2317.5deg); }
+}
+@-webkit-keyframes rotate_five {
+	100% { -webkit-transform: rotate(2362.5deg); }
+}
+@-webkit-keyframes rotate_six {
+	100% { -webkit-transform: rotate(2407.5deg); }
+}
+@-webkit-keyframes rotate_seven {
+	100% { -webkit-transform: rotate(2452.5deg); }
+}
+@-webkit-keyframes rotate_eight {
+	100% { -webkit-transform: rotate(2497.5deg); }
+}
+
+
+// 小于4.7寸的屏幕
+@media screen and (max-width: 370px) {
+    .play_cont {
+    	margin-bottom: 20px;
+        .rotate_area {
+            top: 29%;
+            width: 310px;
+            height: 310px;
+            margin-left: -155px;
+        }
+        .pointer {
+            top: 108px;
+            width: 94px;
+            height: 123px;
+            margin: 0 0 0 -47px;
+            -webkit-transform-origin: 50% 47px;
+        }
+        .pointer_txt {
+            top: 135px;
+        }
+
+
+        .several_prize {
+            li:nth-child(4) {
+                transform: rotate(-22.5deg) translateY(-115px);
+            }
+            li:nth-child(5) {
+                transform: rotate(22.5deg) translateY(-115px);
+            }
+            li:nth-child(6) {
+                transform: rotate(67.5deg) translateY(-115px);
+            }
+            li:nth-child(7) {
+                transform: rotate(112.5deg) translateY(-115px);
+            }
+            li:nth-child(8) {
+                transform: rotate(157.5deg) translateY(-115px);
+            }
+            li:nth-child(1) {
+                transform: rotate(202.5deg) translateY(-115px);
+            }
+            li:nth-child(2) {
+                transform: rotate(247.5deg) translateY(-115px);
+            }
+            li:nth-child(3) {
+                transform: rotate(292.5deg) translateY(-115px);
+            }
+        }
+
+        .prize_pic {
+            li:nth-child(4) {
+                transform: rotate(-22.5deg) translateY(-81px);
+            }
+            li:nth-child(5) {
+                transform: rotate(22.5deg) translateY(-81px);
+            }
+            li:nth-child(6) {
+                transform: rotate(67.5deg) translateY(-81px);
+            }
+            li:nth-child(7) {
+                transform: rotate(112.5deg) translateY(-81px);
+            }
+            li:nth-child(8) {
+                transform: rotate(157.5deg) translateY(-81px);
+            }
+            li:nth-child(1) {
+                transform: rotate(202.5deg) translateY(-81px);
+            }
+            li:nth-child(2) {
+                transform: rotate(247.5deg) translateY(-81px);
+            }
+            li:nth-child(3) {
+                transform: rotate(292.5deg) translateY(-81px);
+            }
+        }
+
+        .other_inf {
+            bottom: 2%!important;
+            .times {
+                margin-bottom: 6px;
+            }
+        }
+    }
+    .close {
+        right: 32px!important;
+    }
+    .prize .prize_list li em {
+        margin-left: 6%;
+    }
+    // 游戏结束公用模块
+    .game_over, .times_out, .no_winning, .winning, .no_start, .all_times_out {
+        .cont {
+            width: 320px;
+            margin: 30px auto 0;
+            padding-top: 35px;
+            dl {
+                padding: 20px 0;
+                width: 220px;
+                margin: -22px auto 0;
+            }
+        }
+    }
+    // 中奖
+    .winning  {
+        .cont:before {
+            top: 0;
+            height: 81%;
+        }
+        .close {
+            right: 32px;
+        }
+    }
+}
+
+@media screen and (min-width:371px) and (max-width:400px) {
+	.play_cont .other_inf {
+		bottom: 5%;
+	}
+}
+
+
+
+

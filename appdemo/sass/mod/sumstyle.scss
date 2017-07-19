@@ -1,0 +1,133 @@
+@charset "UTF-8";
+.inline{
+    display: inline-block;
+}
+div[class^=btn]{
+    display: none;
+    position: absolute;
+}
+/*限制字数两行  要注意火狐的样式。*/
+.text-hiddenIn{
+    display:-webkit-box;
+    white-space:pre-wrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    word-break: break-all;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; /*火狐不支持 有可能导致成块状*/
+    min-height: 40px
+}
+/*换行*/
+.text-wrap{
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap:break-word;
+    overflow: visible;
+}
+//多行文字垂直居中
+//不定宽高的水平垂直居中
+.xxx{
+    position:absolute;
+    top:50%;
+    left:50%;
+    z-index:3;
+    -webkit-transform:translate(-50%,-50%);
+    border-radius:6px;
+    background:#fff;
+}
+//[flexbox版]不定宽高的水平垂直居中
+.xx{
+    justify-content:center;//子元素水平居中，
+    align-items:center;//子元素垂直居中;
+    display:-webkit-flex;
+}
+//磨砂效果
+.bobox-mosha{
+    margin: 0 10px;
+    height: 108px;
+    position: relative;
+    background: hsla(0,0%,100%,.3);
+    overflow: hidden;
+    &::before {
+        background: #d0000f;
+        content: '';
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        -webkit-filter: blur(20px);
+        -moz-filter: blur(20px);
+        -ms-filter: blur(20px);
+        -o-filter: blur(20px);
+        filter: blur(20px);
+        filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);
+        margin: -30px;
+    }
+}
+//用背景图片作为边框
+.bobox-image{
+    color: #fff;
+    position: relative;
+    /*width: 200px;*/
+    height: 100px;
+    margin: 0 10px;
+    margin-top: -108px;
+    /*margin: 100px auto;*/
+    padding: 0 10px;
+    border:4px solid #d0000f;
+    /* border-image-source:url(../img/test.png);
+     border-image-slice:16 12 16 12; //指定边框图像顶部、右侧、底部、左侧内偏移量,没有具体的单位值
+     border-image-width:16px 12px 16px 12px; //代替盒子本身的边框宽度border-width
+     border-image-outset:16px 12px 16px 12px; //边框背景延伸到盒子外。*/
+    border-image-source:url(../img/test2.png);
+    border-image-slice:4 4 4 4; /*指定边框图像顶部、右侧、底部、左侧内偏移量,没有具体的单位值*/
+    border-image-width:4px 4px 4px 4px; /*代替盒子本身的边框宽度border-width*/
+    border-image-outset:4px 4px 4px 4px;
+    border-image-repeat:repeat; /*stretch:拉伸  repeat:重复  round:环绕*/
+}
+//文字的竖排版
+.verticle-mode {
+    writing-mode: tb-rl;
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+    /* IE7比较弱，需要做点额外的动作 */
+    *width: 120px;
+    h4，p{
+        *display: inline;
+        *writing-mode: tb-rl;
+    }
+    h4{ *float:right;}
+}
+//动态水平居中对齐
+.level-center{
+    display: table;
+    margin: auto;
+    li{
+        float: left;
+        background-color: #BD4932;
+        a {
+            display: block;
+            padding: .5em 1em;
+            color: #FFFAD5;
+        }
+    }
+}
+.level-center2 {
+    margin-top: 10px;
+    display:table;
+    width: 100%;
+    height: 100%;
+    .boxs{
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 2em;
+    }
+    .box1 {
+        background: #bd4932;
+    }
+    .box2 {
+        background: #105b63;
+    }
+    .box3 {
+        background: #ffd34e;
+    }
+}

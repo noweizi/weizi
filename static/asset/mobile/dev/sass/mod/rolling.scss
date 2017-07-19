@@ -1,0 +1,104 @@
+@charset "utf-8";
+//tab悬浮
+.vainbox{
+    .words{
+        padding: 15px;
+        margin-bottom: 10px;
+        background: #fff;
+        border-bottom: 1px solid #dedede;
+    }
+    .tabs_menu_outside{ height: 35px;}
+    .tabs_menu{
+        &.fixed{
+            position: fixed;
+            top: 0px;
+            z-index: 9;
+        }
+    }
+    .tabs_content{
+        padding: 15px;
+        background: #fff;
+        .tabs_item{
+            p{ line-height: 30px;}
+            .intro{
+                display: block;
+                margin-bottom: 5px;
+                text-indent: 2em;
+                font-size: 16px;
+                font-weight: 700;
+                color: #fff;
+                background: #fc8c84;
+            }
+        }
+    }
+}
+//智能浮动
+.floatbox{
+    padding: 15px;
+    background: #Fff;
+    p{ line-height: 30px;}
+    .float{
+        position: absolute;
+        right: 10%;
+        top: 131px;
+        width: 60px;
+        padding: 10px;
+        border: 1px solid #ffecb0;
+        background-color: #fffee0;
+        -moz-box-shadow: 1px 1px 2px rgba(0,0,0,.2);
+        -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,.2);
+        box-shadow: 1px 1px 2px rgba(0,0,0,.2);
+    }
+    .showbox{
+        display: none;
+        &.show,&.showleft{
+            display: inline-block;
+            position: absolute;
+        }
+        &.show{
+            top: 60px;
+            left: 0;
+        }
+        &.showleft{
+            right: 60px;
+            bottom: 0;
+        }
+    }
+}
+//滚动指示器
+.indicatorbox{
+    background: #fff;
+    .header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        background: #fff;
+        border-bottom: 1px solid #ccc;
+        .header-proper{
+            width: 80%;
+            margin: 0 auto;
+            .logo{
+                font-weight:bold;
+                font-size: 18px;
+                line-height: 40px;
+                &.blue{ color: blue;}
+            }
+        }
+        .scroll-line{
+            height: 2px;
+            margin-bottom: -2px;
+            background: blue;
+            width: 0%;
+        }
+    }
+    .content{
+        width: 80%;
+        padding: 100px 0;
+        margin: 0 auto;
+        p{
+            line-height: 30px;
+        }
+    }
+}

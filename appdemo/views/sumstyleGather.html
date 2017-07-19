@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>平常见的样式</title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+    <style type="text/css">
+        .box{
+            background-color: #ffd8bd;
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            position: relative;
+            z-index: 3;
+        }
+        .box:before{
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            border: 2px solid red;
+            margin: -20px;
+            z-index: -1;
+            -webkit-animation: lineA 8s linear infinite;
+            -o-animation: lineA 8s linear infinite;
+            animation: lineA 8s linear infinite;
+        }
+        .box:after{
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            border: 2px solid red;
+            margin: -20px;
+            z-index: -1;
+            -webkit-animation: lineB 8s linear infinite;
+            -o-animation: lineB 8s linear infinite;
+            animation: lineB 8s linear infinite;
+        }
+        @keyframes lineA{
+            0%,100%{clip:rect(0,240px,2px,0)}
+            25%{clip:rect(0,2px,240px,0)}
+            50%{clip:rect(238px,240px,240px,0)}
+            75%{clip:rect(0,240px,240px,238px)}
+        }
+        @keyframes lineB{
+            0%,100%{clip:rect(238px,240px,240px,0)}
+            25%{clip:rect(0,240px,240px,238px)}
+            50%{clip:rect(0,240px,2px,0)}
+            75%{clip:rect(0,2px,240px,0)}
+        }
+        body{
+            /*background: #eb2924;*/
+        }
+
+    </style>
+</head>
+<body>
+    <!--注意点:
+    1.使用display:inline-block的时候，发现两个div不能在同一行显示[解决:display:inline-block有个间距，在这里可在父级元素用font-size:0;去除间隙；同时在子元素上设置font-size即可]
+    2.margin-top/margin-bottom对内联元素没有多大实际效果,margin 属性可以应用于几乎所有的元素，除了表格显示类型（不包括 table-caption, table and inline-table）的元素
+    3.margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。
+    -->
+    <!--<div class="box"></div>-->
+    <!--磨砂效果-->
+    <div class="bobox-mosha"></div>
+    <div class="bobox-image">这修复了边缘处褪色模糊的问题，但是现在在我们的容器外边也有一些模糊，这使得它看起来像污迹而不像磨砂。</div>
+    <br/>
+    <!--文字的竖排版：-->
+    <div class="verticle-mode">
+        <h4>咏柳</h4>
+        <p>碧玉妆成一树高，<br>万条垂下绿丝绦。<br>不知细叶谁裁出，<br>二月春风似剪刀。</p>
+    </div>
+    <!--动态水平居中对齐-->
+    <div class="level-center">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Clients</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </div>
+    <div class="level-center2">
+        <div class="boxs box1">Box 1</div>
+        <div class="boxs box2">Box 2</div>
+        <div class="boxs box3">Box 3</div>
+    </div>
+    <style type="text/css">
+
+        /*body{
+            background:url("../img/01.jpg") fixed; !*在移动端项目使用过程中，这效果始终无法实现背景固定定位*!
+        }*/
+        /*背景固定定位*/
+       /* body:before {
+                content: ' ';
+                position: fixed;
+                z-index: -1;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background: url("../img/11.jpg") center 0 no-repeat;
+                background-size: cover;
+        }*/
+
+        .dddd{
+            display:-webkit-box;
+            display: -moz-box;
+            display: box;
+            -webkit-line-clamp: 2;
+            -moz-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical; /*火狐不支持 有可能导致成块状*/
+            -moz-box-orient: vertical;
+            box-orient: vertical;
+            word-break: break-all;
+            overflow: hidden;
+            height: 36px
+        }
+        .dddd i{
+            display: inline-block;
+            border: 1px solid #f00;
+            height: 22px;
+            line-height: 22px;
+            padding: 0 5px;
+        }
+        .imgbox{
+            margin: 10px auto 0;
+            text-align: center;
+
+        }
+        .imgbox img{
+            width: 100px;
+            height: 100px;
+        }
+        .imgbox img.pddd{
+            width: auto;
+            height: auto;
+            /*-moz-transform:scale(12);-webkit-transform:scale(12);-ms-transform:scale(12);transform:scale(12);*/
+        }
+        .atest{
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 10px auto 0;
+            background: paleturquoise;
+            border-radius: 50%;
+        }
+        .triangle-up{
+            position: absolute;
+            left: 70px;
+            top: 40px;
+
+        }
+        .round{
+            display: inline-block;
+            position: absolute;
+            left: 50px;
+            top: 30px;
+            width: 10px;
+            height: 10px;
+            background: mediumpurple;
+            border-radius: 50%;
+            /*transition: .7s ease-in-out .3s;*/
+
+        }
+        .atest:hover .round{
+            -moz-animation:shake 4s linear infinite;
+            -webkit-animation:shake 4s linear infinite;
+            animation:shake 4s linear infinite;
+        }
+        @-webkit-keyframes shake {
+            from, to {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+
+            10%, 30%, 50%, 70%, 90% {
+                -webkit-transform: translate3d(-10px, 0, 0);
+                transform: translate3d(-10px, 0, 0);
+            }
+
+            20%, 40%, 60%, 80% {
+                -webkit-transform: translate3d(10px, 0, 0);
+                transform: translate3d(10px, 0, 0);
+            }
+        }
+
+        @keyframes shake {
+            from, to {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+
+            10%, 30%, 50%, 70%, 90% {
+                -webkit-transform: translate3d(-10px, 0, 0);
+                transform: translate3d(-10px, 0, 0);
+            }
+
+            20%, 40%, 60%, 80% {
+                -webkit-transform: translate3d(10px, 0, 0);
+                transform: translate3d(10px, 0, 0);
+            }
+        }
+    </style>
+    <div class="dddd">
+        <p class="ppp">这修复了边缘处褪色模糊的问题，但是现在在我们的容器外边也<i>磨砂</i></p>
+    </div>
+   <div class="imgbox">
+       <img src="../img/01.jpg">
+   </div>
+   <div class="atest">
+       <span class="triangle-up "></span>
+       <span class="round"></span>
+   </div>
+</body>
+<script>
+
+
+    $(".imgbox").click(function(){
+        if($(this).find('img').hasClass('pddd')){
+            $(this).find('img').removeClass('pddd');
+        }else{
+            $(this).find('img').addClass('pddd');
+        }
+
+    });
+    $(".level-center li").click(function(index){
+        $(this).addClass(function(index){
+            return "item-" + index;
+        });
+    });
+</script>
+</html>

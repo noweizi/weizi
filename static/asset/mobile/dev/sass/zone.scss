@@ -1,0 +1,18 @@
+@charset "utf-8";
+/*
+Author: sly
+Date: 2017-02-15
+tip: 省市区三级联动样式
+*/
+//初始化
+@import "layout/initial.scss";
+@import "layout/function.scss";
+@import "layout/iconfont.scss";
+//公用样式
+@import "mod/public.scss";
+//弹窗样式
+@import "mod/dialog.scss";
+//tab/表单样式
+@import "mod/mod_form.scss";
+//省市区三级联动
+@import "mod/zone.scss";

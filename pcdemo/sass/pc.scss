@@ -1,0 +1,16 @@
+@charset "UTF-8";
+//初始化
+@import "lib/function.scss";
+@import "lib/initial.scss";
+@import "lib/layer.scss";
+//公共样式
+@import "mod/mod_public.scss";
+//首页
+@import "mod/mod_index.scss";
+//京东样式。
+@import "mod/jingd.scss";
+//列表
+//@import "mod/mod_list.scss";
+//图标集合
+//@import "mod/mod_icon.scss";
+

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="renderer" content="webkit">
+    <title>图形集合</title>
+    <link type="text/css" rel="stylesheet" href="../../static/asset/mobile/dest/css/usual.css">
+</head>
+<body>
+    <div class="mod_topbar">
+        <a class="back" href="javascript:;"  onclick="history.go(-1)"><i class="icon-arr-left"></i></a>
+        <div class="title">图形集合</div>
+        <a class="lik" href="javascript:;">明细<i class="icon-arr-right"></i></a>
+    </div>
+    <div class="arrbox">
+        <p class="title">0. 单/多行文本溢出显示省略号</p>
+        <div class="ellipsis">可以单独指定水平和垂直半径， 只要用一个斜杠</div>
+        <div class="ellipsis-mult">可以单独指定水平和垂直半径， 主要还是当年在蓝色理想上看到过这个解决方法，只是真心忘记了。但是通过努力回忆，找到思路，然后再实现出来。</div>
+        <div class="ellipsis-multiple">可以单独指定水平和垂直半径， 主要还是当年在蓝色理想上看到过这个解决方法，只是真心忘记了。但是通过努力回忆，找到思路，然后再实现出来。</div>
+        <p class="title">1. css对话框</p>
+        <div class="talkbubble top"></div>
+        <div class="talkbubble bottom"></div>
+        <div class="talkbubble left"></div>
+        <div class="talkbubble right"></div>
+        <p class="title">2. 三角形</p>
+        <div class="triangle top"></div>
+        <div class="triangle bottom"></div>
+        <div class="triangle left"></div>
+        <div class="triangle right"></div>
+        <div class="triangle topleft"></div>
+        <div class="triangle bottomright"></div>
+        <div class="triangle bottomleft"></div>
+        <div class="triangle topright"></div>
+        <p class="title">3. 自适应的椭圆</p>
+        <!--椭圆形  border-radius：可以单独指定水平和垂直半径， 只要用一个斜杠（ /） 分隔这两个值即可-->
+        <div class="oval tree"></div>
+        <div class="oval auto"></div>
+        <div class="oval half"></div>
+        <div class="oval half2"></div>
+        <div class="oval half3"></div>
+        <p class="title">4. 标签集合</p>
+        <div class="clearfix">
+            <div class="trans top">跟团游</div>
+            <div class="trans bottom">跟团游</div>
+            <div class="trans right"><em>跟团游</em></div>
+            <div class="trans left"><em>跟团游</em></div>
+            <div class="oblique">
+                <span class="txt">华为</span>
+                <span class="txt_obg"></span>
+            </div>
+            <div class="lefttype"><span class="text">5.00折</span></div>
+            <label class="switch_btn">
+                <input type="checkbox" value="1" name="important_flag" class="chk" />
+                <span class="switch"></span>
+            </label>
+            <label class="sim_radio">
+                <input type="checkbox" value="107" class="chk" name="group_ids[]" />
+                <span class="radio"></span>
+            </label>
+        </div>
+        <p class="title">5. 进度条</p>
+        <div class="progressbox">
+            <div class="progress-bar"></div>
+            <div class="process_line"><i style="width:57.8%"></i></div>
+            <div class="schedule">
+                <div class="progress_bar">
+                    <div class="lv_value" style="width:26.0525%"></div>
+                </div>
+                <ul class="lv_line clearfix">
+                    <li class="cur"><em class="lv_txt">Lv1</em></li>
+                    <li class="cur"><em class="lv_txt">Lv2</em></li>
+                    <li><em class="lv_txt">Lv3</em></li>
+                    <li><em class="lv_txt">Lv4</em></li>
+                    <li><em class="lv_txt">Lv5</em></li>
+                </ul>
+            </div>
+            <div class="process_bar">
+                <ul class="clearfix">
+                    <li>
+                        <i class="iconstep"></i>
+                        <p class="text">注册/登录</p>
+                    </li>
+                    <li class="cur">
+                        <i class="iconstep"></i>
+                        <p class="text">申请</p>
+                    </li>
+                    <li>
+                        <i class="iconstep"></i>
+                        <p class="text">审核</p>
+                    </li>
+                    <li>
+                        <i class="iconstep"></i>
+                        <p class="text">上线</p>
+                    </li>
+                </ul>
+                <div class="width"></div>
+            </div>
+            <div class="process_status">
+                <ul class="clearfix">
+                    <li class="cur_lv lv1">
+                        <span class="icon_lv"><i></i></span>
+                        <em class="txt">新晋顾问</em>
+                        <em class="num">0</em>
+                    </li>
+                    <li class="cur_lv2 lv2">
+                        <span class="icon_lv"><i></i></span>
+                        <em class="txt">中级</em>
+                        <em class="num">4万</em>
+                    </li>
+                    <li class="cur_lv lv3">
+                        <span class="icon_lv"><i></i></span>
+                        <em class="txt">高级顾问</em>
+                        <em class="num">30万</em>
+                    </li>
+                    <li class="cur_lv lv4">
+                        <span class="icon_lv"><i></i></span>
+                        <em class="txt">资深</em>
+                        <em class="num">90万</em>
+                    </li>
+                    <li class="cur_lv lv5">
+                        <span class="icon_lv"><i></i></span>
+                        <em class="txt">金牌</em>
+                        <em class="num">200万</em>
+                    </li>
+                </ul>
+                <div class="width">
+                    <div class="lv_value" style="width:30.010096153846% "></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+</script>
+</body>
+</html>

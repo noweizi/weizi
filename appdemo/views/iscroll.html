@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>滚动列表</title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <script type="text/javascript" src="../js/iscroll.js"></script>
+    <script src="../js/jquery-1.12.3.js"></script>
+    <style type="text/css">
+        .iscroll-box{
+            background: #ffd8bd;
+            height: 200px;
+        }
+        .iscroll-ul li{
+            height: 40px;
+            line-height: 40px;
+            background: #fff;
+            padding: 0 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="iscroll-box">
+    </div>
+    <div id="wrapper">
+        <div class="tabs-con-box" id="scroller">
+            <div id="pullDown">
+                <span class="pullDownLabel">松开即可加载新内容</span>
+            </div>
+            <div id="thelist">
+                <ul class="iscroll-ul">
+                    <li>Pretty row 1</li>
+                    <li>Pretty row 2</li>
+                    <li>Pretty row 3</li>
+                    <li>Pretty row 4</li>
+                    <li>Pretty row 5</li>
+                    <li>Pretty row 6</li>
+                    <li>Pretty row 7</li>
+                    <li>Pretty row 8</li>
+                    <li>Pretty row 9</li>
+                    <li>Pretty row 10</li>
+                    <li>Pretty row 11</li>
+                    <li>Pretty row 12</li>
+                    <li>Pretty row 13</li>
+                    <li>Pretty row 14</li>
+                    <li>Pretty row 15</li>
+                    <li>Pretty row 16</li>
+                    <li>Pretty row 17</li>
+                    <li>Pretty row 18</li>
+                    <li>Pretty row 19</li>
+                    <li>Pretty row 20</li>
+                    <li>Pretty row 21</li>
+                    <li>Pretty row 22</li>
+                    <li>Pretty row 23</li>
+                    <li>Pretty row 24</li>
+                    <li>Pretty row 25</li>
+                    <li>Pretty row 26</li>
+                    <li>Pretty row 27</li>
+                    <li>Pretty row 28</li>
+                    <li>Pretty row 29</li>
+                    <li>Pretty row 30</li>
+                    <li>Pretty row 31</li>
+                    <li>Pretty row 32</li>
+                </ul>
+            </div>
+            <div id="pullUp">
+                <span class="pullUpIcon"></span><span class="pullUpLabel">上拉即可加载更多</span>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var myScroll,
+                pullDownEl, pullDownOffset,
+                pullUpEl, pullUpOffset,
+                generatedCount = 0;
+        /**
+         * 滚动翻页 （自定义实现此方法）
+         * myScroll.refresh();      // 数据加载完成后，调用界面更新方法
+         */
+        function pullUpAction () {
+            setTimeout(function () {
+                var el, li, i;
+                el = document.getElementById('thelist').getElementsByTagName("ul");
+                for (i=0; i<20; i++) {
+                    li = document.createElement('li');
+                    li.innerText = 'Generated row ' + (++generatedCount);
+                    el[el.length-1].appendChild(li, el[el.length-1]);
+                }
+               /* el = document.getElementById('thelist');
+                for (i=0; i<3; i++) {
+                    li = document.createElement('li');
+                    li.innerText = 'Generated row ' + (++generatedCount);
+                    el.insertBefore(li, el.childNodes[0]);
+                }*/
+                myScroll.refresh();
+            }, 1000);
+        }
+        /**
+         * 初始化iScroll控件
+         */
+        function loaded() {
+            pullDownEl = document.getElementById('pullDown');
+            pullDownOffset = pullDownEl.offsetHeight;
+            pullUpEl = document.getElementById('pullUp');
+            pullUpOffset = pullUpEl.offsetHeight;
+            myScroll = new iScroll('wrapper', {
+                useTransition: false,
+                topOffset: pullDownOffset,
+                onRefresh: function () {
+                    if (pullUpEl.className.match('loading')) {
+                        pullUpEl.className = '';
+                        pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉即可加载更多';
+                    }
+                },
+                onScrollMove: function () {
+                    if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+                        pullUpEl.className = 'flip';
+                        pullUpEl.querySelector('.pullUpLabel').innerHTML = '松开即可加载新内容';
+                        this.maxScrollY = this.maxScrollY;
+                    } else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+                        pullUpEl.className = '';
+                        pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉即可加载更多';
+                        this.maxScrollY = pullUpOffset;
+                    }
+                },
+                onScrollEnd: function () {
+                    if (pullUpEl.className.match('flip')) {
+                        pullUpEl.className = 'loading';
+                        pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
+                        pullUpAction();
+                    }
+                }
+            });
+            setTimeout(function () { document.getElementById('wrapper').style.left = '0'; }, 800);
+        }
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+        document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+        $(document).ready(function(){
+            var Yheight=$(".iscroll-box-hd").height();
+            $("#wrapper").css("top",Yheight);
+        });
+    </script>
+</body>
+</html>

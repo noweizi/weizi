@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+</head>
+<body class="page-index">
+    <div class="mod_topbar">
+        <i class="back"  onclick="history.go(-1)" ></i>
+        <div class="hd">首页</div>
+    </div>
+    <div class="mod_switchtab" >
+        <div class="box">
+            <a href="javascript:;" data-input_name="type" data-val="0" class=" ">获取明细</a>
+            <a href="javascript:;" data-input_name="type" data-val="1" class="on">历史统计</a>
+        </div>
+    </div>
+    <div class="index_ct">
+        <ul class="mod_ulusual">
+            <li><a href="sumstyleGather.html;">常用的样式集合</a></li>
+            <li><a href="listGather.html">列表</a></li>
+            <li><a href="iconGather.html;">icon列表</a></li>
+            <li><a href="register.html;">注册/表单</a></li>
+            <li><a href="regularGather.html;">正则表达式</a></li>
+            <li><a href="jsGather.html;">js集合</a></li>
+            <li><a href="layerGather.html;">弹窗集合</a></li>
+            <li><a href="popupGather.html;">弹出层集合</a></li>
+            <li><a href="swiperGather.html;">轮播图集合</a></li>
+            <li><a href="iscroll.html;">iscroll-demo</a></li>
+            <li><a href="animate.html;">动画效果集合</a></li>
+            <li><a href="activity.html;">活动滑屏集合</a></li>
+
+            <div class="nodataarea">
+                <div class="hd nodata"></div>
+                <div class="bd">
+                    <p class="tit">暂无内容</p>
+                    <p class="txt">没有找到相关信息</p>
+                </div>
+            </div>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        $(".box a").click(function(){
+            $(this).addClass("on").siblings().removeClass("on")
+        });
+        $(".mod_slidetab a").click(function(){
+            $(this).addClass("on").siblings().removeClass("on")
+        });
+    </script>
+</body>
+</html>

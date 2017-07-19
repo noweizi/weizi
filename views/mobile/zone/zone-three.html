@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <title>省市区三级联动 -- 方法三</title>
+        <link type="text/css" rel="stylesheet" href="../../../static/asset/mobile/dest/css/zone.css">
+    </head>
+    <body>
+        <div class="mod-form">
+            <div class="mod-form-item">
+                <div class="item-unit">
+                    <div class="item-tit">所在城市</div>
+                    <div class="item-con tr">
+                        <input id="J_choose_city" type="text" readonly="" placeholder="请选择城市"  value="广东省,深圳市,南山区"/>
+                        <input id="zone_id" type="hidden" value="20,234,504"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../../../static/asset/mobile/dest/js/jquery-2.1.4.min.js"></script>
+        <script src="../../../static/asset/mobile/dest/js/zone/zone.js"></script>
+        <script src="../../../static/asset/mobile/dest/js/zone/LArea.js"></script>
+        <script>
+            /*参考网址:https://github.com/xfhxbb/LArea*/
+            var area1 = new LArea();
+            area1.init({
+                'trigger': '#J_choose_city', //触发选择控件的文本框，同时选择完毕后name属性输出到该位置
+                'valueTo': '#zone_id', //选择完毕后id属性输出到该位置
+                'keys': {
+                    id: 'id',
+                    name: 'name'
+                }, //绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
+                'type': 1, //数据源类型
+                'data': json //数据源
+            });
+            area1.value=[1,13,3];//控制初始位置，注意：该方法并不会影响到input的value
+        </script>
+    </body>
+</html>

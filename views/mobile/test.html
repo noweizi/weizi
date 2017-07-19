@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function Person(name,age){
+            this.name=name;
+            this.age=age;
+        }
+        var you = new Person('koko',23)
+
+        var a =['dog','pig','cat']
+        a.forEach(function(item,index,array){
+            console.log(array)
+            console.log(item,index)
+        })
+        a[100]='fox'
+
+        console.log(a.slice(0,3))
+        console.log(a)
+        console.log(a.length)
+
+        function  bs(first,last){
+              this.first=first,
+              this.last=last,
+              this.cs = function(){
+                    return this.first + ' ' +this.last
+              },
+              this.ds = function(){
+                    return this.last + ' , ' + this.first
+              }
+        }
+        var tt=new bs("as","zz")
+        //原型链
+        d.prototype.c = function(){
+            return this.first + ' ' +this.last
+        }
+        d.prototype.b = function(){
+            return this.last + ' , ' + this.first
+        }
+        function d(first,last){
+            this.first = first;
+            this.last = last;
+        }
+        var tt = new d("simi","willn");
+        d.prototype.e = function(){
+            return '<Person: ' + this.c() + '>'
+        }
+        tt.b();
+        console.log(tt.e())
+        //闭包：很容易发生无意识的内存泄露
+        function za(a){
+            return function (b){
+                return a + b
+            }
+        }
+        var x = za(5);
+        x(6);
+        console.log(x(6))
+    </script>
+</body>
+</html>

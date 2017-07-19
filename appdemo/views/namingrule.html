@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>css命名规则</title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+</head>
+<body class="page-sample">
+  <!--保险信息-->
+  <div class="insurance_info">
+      <!--标题-->
+      <h2 class="title"><span class="msg">提示信息</span></h2>
+      <!--栅格系统-->
+      <div class="row">
+          <div class="col-sm-8">.col-sm-8</div>
+          <div class="col-xs-8">.col-xs-8</div>
+          <div class="col-md-8">.col-md-8</div>
+          <p class="lead"></p>  <!--lead:让段落突出显示-->
+      </div>
+      <!--表格-->
+      <table class="table"></table> <!--基础款-->
+      <table class="table table_striped"></table> <!--条纹状表格[无左右边框]-->
+      <table class="table table_bordered"></table> <!--带边框的表格-->
+      <!--游客列表-->
+      <div class="customer_list">
+          <div class="hd"></div>
+          <div class="bd"></div>
+      </div>
+      <!--尾部明细-->
+      <div class="settle"></div>
+      <div class="footer"></div>
+      <!--按钮-->
+      <a href="javascript:;" class="btn"></a> <!--基础款-->
+      <a href="javascript:;" class="btn btn-default"></a> <!--基础款 默认尺寸-->
+      <a href="javascript:;" class="btn btn_sm"></a> <!--小按钮-->
+      <a href="javascript:;" class="btn btn_lg"></a> <!--大按钮-->
+      <a href="javascript:;" class="btn btn_block"></a> <!--块按钮-->
+      <a href="javascript:;" class="btn btn_full"></a> <!--全宽块按钮-->
+  </div>
+(1)页面结构
+- 容器: container
+- 页头：header
+- 内容：content/container
+- 页面主体：main
+- 页尾：footer
+- 导航：nav
+- 侧栏：sidebar
+- 栏目：column  col_cont
+- 页面外围控制整体布局宽度：wrapper
+- 左右中：left right center
+
+(2)导航
+- 导航：nav
+- 主导航：mainbav
+- 子导航：subnav
+- 顶导航：topnav
+- 边导航：sidebar
+- 左导航：leftsidebar
+- 右导航：rightsidebar
+- 菜单：menu
+- 子菜单：submenu
+- 标题: title
+- 摘要: summary
+
+(3)功能
+- 信息: info  - 详情: details - 表头:hd - 表尾:bd - 被选中: cur/on - 文本:text
+- 更多: more
+- 公告: notice
+- 标志：logo
+- 广告：banner
+- 登陆：login
+- 登录条：loginbar
+- 注册：regsiter
+- 搜索：search
+- 功能区：shop
+- 标题：title
+- 加入：joinus
+- 状态：status
+- 按钮：btn
+- 滚动：scroll
+- 标签页：tab
+- 文章列表：list
+- 提示信息：msg
+- 当前的: current
+- 小技巧：tips
+- 图标: icon
+- 注释：note
+- 指南：guild
+- 服务：service
+- 热点：hot
+- 新闻：news
+- 下载：download
+- 投票：vote
+- 合作伙伴：partner
+- 友情链接：link
+- 版权：copyright
+
+四、书写规范
+1、排版规范
+(1)使用4个空格，而不使用tab或者混用空格+tab作为缩进；
+(2)规则可以写成单行，或者多行，但是整个文件内的规则排版必须统一；
+单行形式书写风格的排版约束
+2、属性编写顺序
+- 显示属性：display/list-style/position/float/clear …
+- 自身属性（盒模型）：width/height/margin/padding/border
+- 背景：background
+- 行高：line-height
+--文本属性：color/font/text-decoration/text-align/text-indent/vertical-align/white-space/content…
+- 其他：cursor/z-index/zoom/overflow
+- CSS3属性：transform/transition/animation/box-shadow/border-radius
+- 如果使用CSS3的属性，如果有必要加入浏览器前缀，则按照 -webkit- / -moz- / -ms- / -o- /
+std的顺序进行添加，标准属性写在最后。
+- 链接的样式请严格按照如下顺序添加： a:link -> a:visited -> a:hover -> a:active
+注意点
+1.尽量不要在CSS中使用!important
+2.背景图片请尽可能使用sprite技术, 减小http请求, 考虑到多人协作开发,
+sprite按照模块、业务、页面来划分均可。
+3.每个声明结束都应该带一个分号，不管是不是最后一个声明;
+4.- 合并margin、padding、border的-left/-top/-right/-bottom的设置，
+尽量使用短名称。
+5.在保持代码解耦的前提下，尽量合并重复的样式。
+6.如果没有边框时，不要写成border:0，应该写成border:none，
+0后面不需要单位，比如0px可以省略成0，0.8px可以省略成.8px。
+7.字体粗细采用具体数值，粗体bold写为700，正常normal写为400
+</body>
+</html>

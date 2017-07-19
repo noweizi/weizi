@@ -1,0 +1,119 @@
+@charset "UTF-8";
+body,h1,h2,h3,h4,h5,h6,p,form,ul,ol,li,dt,dl,dd,th,td,label,bottom,input,textarea{ margin:0;padding:0;}
+body{font-family:"Microsoft Yahei", Tahoma;font-size:.75rem;line-height:1.5;background:#f1f1f1;color:#333;-webkit-text-size-adjust:none;}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea{ font-size:100%;font-family:"Microsoft Yahei", Tahoma;}
+b,strong{ font-weight:bold;}
+input{border:none;outline:none;}
+fieldset,img{border:0;}
+img{vertical-align: top;}
+ul{margin:0;padding:0;list-style:none;}
+table{ border-collapse:collapse; border-spacing:0;table-layout: fixed;}
+em,i{ font-style:normal;}
+sup{ vertical-align:text-top;}
+sub{ vertical-align:text-bottom;}
+a{ color:#555; text-decoration:none;}
+//变量
+//主色调
+$themeBlue: #0390f4;
+$themeBlue_thin: #1e9ef8;
+$themeBlue_deep: #0f75d4;
+
+$themeOrange: #f77304;
+$themeOrange_thin: #f8c782;
+//辅色调
+$auxiGreen:#00bf4b;
+$auxiRed:#ee4c63;
+//字体提示
+$colTit: #333;
+//字体边框
+$colBorder: #ccc;
+$colBorderOut: #dedede;
+$colBorderIn: #e6e6e6;
+.show{ display: block};
+.hide{ display: none};
+.h_auto{ height: auto!important;}
+.w_auto{ width: auto!important;}
+//定位
+.por{ position: relative};
+.poa{ position: absolute};
+//粗细命名
+.fnormal{ font-weight: 400!important;}
+.fbold{ font-weight: 700!important;}
+//对齐命名
+.tl{ text-align: left!important;}
+.tc{ text-align: center!important;}
+.tr{ text-align: right!important;}
+//浮动命名
+.fl{ float: left!important;}
+.fr{ float: right!important;}
+//字体大小
+.fs12{ font-size: .75rem;}
+.fs14{ font-size: .875rem;}
+.fs16{ font-size: 1rem;}
+//颜色命名
+.cl3{ color: #333!important;}
+.cl6{ color: #666!important;}
+.cl9{ color: #999!important;}
+.clblue{ color: #10a6e2;}
+.clorange{ color: #f77304;}
+//背景颜色命名
+.bgwhite{ background-color: #fff;}
+.bgwhite_thin{ background-color: #fafafa;} //浅白色
+.bggray_thin{ background-color: #f1f1f1;} //浅灰色
+.bgorange_thin{ background-color: #fff6d4;} //浅橙色
+//padding命名
+.p0{ padding: 0!important;} //p15,p30
+.pt0{ padding-top: 0!important;} //pr0,pb0,pl0  ;pr15,pb15,pl15
+//margin命名
+.m0{ margin: 0!important;}
+.mt0{ margin-top: 0!important;} //mr0,mb0,ml0
+//边框命名
+.b0{ border: none!important;}
+.bt0{ border-top: none!important;} //bt0,bb0,bl0
+/*清除浮动*/
+%clearfix,.clearfix{
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+.clearfix{ zoom: 1;}
+//下面的样式会在可视区域的宽度大于 360px 的时候被应用。
+@media screen and (min-width:360px){
+}
+//下面的样式会在可视区域的宽度小于 600px 的时候被应用。
+@media screen and (max-width:600px){
+}
+//下面的样式会在可视区域的宽度在 360px 和 375px 之间的时候被应用。
+@media screen and (min-width:360px) and (max-width:375px) {
+    .s0 .summary{ margin-top: 2%;}
+    .galaxy .r4{
+        left:60%;
+    }
+}
+/*iphone6,6s,6plus大屏幕*/
+//下面的样式会在可视区域的宽度在 375px 和 479px 之间的时候被应用。
+@media screen and (min-width:375px) and (max-width:479px) {
+    .s0 .summary{
+        font-size: 14px;
+        margin-top: 4%;
+    }
+    .galaxy .r4{ left:60%;}
+    .galaxy .r5{ bottom: 60%;}
+    .galaxy .r6{ bottom:53%;}
+    .galaxy .r8{ bottom:15%;}
+}
+/*ipad*/
+@media screen and (min-width:480px) and (max-width:768px) {
+    .s0 .summary{
+        font-size: 20px;
+        margin-top: 10%;
+    }
+    .s0 .bm{
+        bottom: 10%;
+    }
+}
+

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>正则表达式</title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+    <style type="text/css">
+        .icon_error{
+            display: none;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+            right: 10px;
+        }
+        #canvas{border:1px solid #bbb;}
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="200" height="200"> A drawing of some thing</canvas>
+    <div class="reg_box">
+        <div class="unit">
+            <div class="caption">手机号码</div>
+            <div class="detail">
+                <input type="tel" placeholder="请输入手机号码" name="phone" maxlength="11" class="J_InputClear"/>
+                <!--<i class="J_Clear icon_clear">×</i>-->
+                <i class="J_error icon_error">×</i>
+            </div>
+        </div>
+        <div class="unit">
+            <div class="caption">短信验证码</div>
+            <div class="detail">
+                <input type="tel" placeholder="请输入4位验证码" name="verify" maxlength="4" class="J_InputClear"/>
+                <i class="J_Clear icon_clear">×</i>
+                <a href="javascript:;" class="fic_btn" id="J_send_verify" >发送验证码</a>
+                <input type="hidden" id="J_endtime" value="06/12/2016 13:50:00">
+            </div>
+        </div>
+    </div>
+    <script>
+        var  canvas=document.getElementById('canvas');
+        $("#canvas").hide();
+        var ctx=canvas.getContext('2d');
+        //矩形
+       /* ctx.fillStyle='#FF0000';
+        ctx.fillRect(0,0,80,100);*/
+        //圆形
+       /* ctx.fillStyle="#FF0000";
+        ctx.beginPath();
+        ctx.arc(70,18,15,0,Math.PI*2,true);
+        ctx.closePath();
+        ctx.fill();*/
+        //实例 - 线条
+        /*ctx.moveTo(10,10);
+        ctx.lineTo(150,50);
+        ctx.lineTo(10,50);
+        ctx.stroke();*/
+        //渐变
+      /*  var grd=ctx.createLinearGradient(0,0,175,50);
+        grd.addColorStop(0,"#FF0000");
+        grd.addColorStop(1,"#00FF00");
+        ctx.fillStyle=grd;
+        ctx.fillRect(0,0,175,50);*/
+
+
+        //输入的时候就判断是否格式正确。
+        $('.J_InputClear').keyup(function() {
+            var $this = $(this);
+            var phone = this.value;
+            phone = phone.replace(/\D/g, '');
+            if (phone.length > 11) {
+                phone = phone.substr(0, 11);
+            }
+            $this.val(phone);
+            var isPhone = /^1[3-9]\d{9}$/g; //判断手机号码格式是否正确
+            if(isPhone.test($this.val())){
+                $(this).next(".J_error").html("Y").show();
+            }else{
+                $(this).next(".J_error").html("x").show();
+            }
+        });
+
+        //输入框里加清除
+        $(".J_InputClear").on('focus', function() {
+             var $ClearCont = $(this).next(".J_Clear");
+             $(".J_Clear").hide();
+             $ClearCont.show();
+        })
+        $('.J_Clear').on('click', function(){
+             $(this).hide().prev().val('').focus();
+        });
+        //正则表达式
+        //只能输入数字只能有一个小数点，小数点不能在开头，不能在结尾,且在小数点后面只能输入两个数字
+        function getpoint(str){
+             //先把非数字的都替换掉，除了数字和.
+             str = str.replace(/[^\d.]/g,"");
+             //必须保证第一个为数字而不是.
+             str = str.replace(/^\./g,"");
+             //不能以00开头的。
+             str =str.replace(/^0\d/," ");
+             //保证只有出现一个.而没有多个.
+             str = str.replace(/\.{2,}/g,".");
+             //保证.只出现一次，而不能出现两次以上
+             str= str.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+             //保证只能在小数点后输入两个
+             str= str.replace(/^(.*\..{2}).*$/,"$1");
+             return str;
+        }
+        console.log(getpoint('2..23.22888'))
+        //只能输入0 或者以1开头的正整数
+        var vals='1.23'
+        var r = /^(0|[1-9][0-9]*)$/
+        if(r.test(vals.toString())){
+            console.log("vals"+vals)
+        }else{
+            console.log("@-"+vals)
+        }
+        //手机格式
+        var mobile='18750903322';
+        var isPhone = /^1[3-9]\d{9}$/g; //判断手机号码格式是否正确
+        if(mobile==''||isPhone.test(mobile)==false){
+            alert("手机号格式错误");
+        }
+        /**
+         * 检查输入的身份证号是否正确
+         * 输入:str  字符串
+         *  返回:true 或 flase; true表示格式正确
+         */
+        function checkCard(str) {
+            //15位数身份证正则表达式
+            var arg1 = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/;
+            //18位数身份证正则表达式
+            var arg2 = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[A-Z])$/;
+            if (str.match(arg1) == null && str.match(arg2) == null) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        var reg_name=/[^a-zA-Z-\u4E00-\u9FA5\uf900-\ufa2d]/; //不能是数字和标点符号
+        var reg_mobile=/^1[3|4|5|7|8][0-9]\d{8}$/; //验证是否为标准的手机号码合法
+        var reg_tel=/^0[\d]{2,3}-[\d]{5,9}$/; //验证是否为标准的电话号码合法
+        var reg_qq=/\D/g;  //只是数字
+        var reg_email = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;  //验证是否合法的电子邮箱地址合法
+        var reg_fax=/^(\d{3,4}-)?\d{7,8}$/; //传真
+        var reg_code=/[0-9]{17}([0-9]|X)/;//身份证件号
+        $(".J_next").click(function(){
+            if(reg_name.test($("input[name='contact_name']").val())){
+                layer.open({
+                    content: '姓名不正确，请重新输入！',
+                    time: 2
+                });
+                return false;
+            }else if(!reg_mobile.test($("input[name='mobile']").val())){
+                layer.open({
+                    content: '手机号码不正确，请重新输入',
+                    time: 2
+                });
+                return false;
+            }else if(($("input[name='qq']").val()).replace(reg_qq,'')==''){
+                layer.open({
+                    content: 'QQ号码不正确，请重新输入',
+                    time: 2
+                });
+                return false;
+            }else if(!reg_email.test($("input[name='email']").val())){
+                layer.open({
+                    content: '邮箱不正确，请重新输入',
+                    time: 2
+                });
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>

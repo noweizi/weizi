@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../css/pc.css">
+    <link type="text/css" rel="stylesheet" href="../css/responsiveslides.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+    <script src="../js/responsiveslides.min.js"></script>
+    <script src="../js/layer.js"></script>
+</head>
+<body>
+    <!--ResponsiveSlides.js是一个展示同一容器内图片的轻量级响应式jQuery幻灯片插件(tiny responsive slideshow jQuery plugin)。
+    它支持包括IE6在内的几乎所有的浏览器，在IE6中还支持最大宽度属性，但在其它浏览器中并不原生支持。你需要做的只是链接jquery并且把图片裁剪为相同大小。-->
+    <div style="margin: 10px auto;width: 1000px;">
+        <a class="swiper_btn btn">查看教程</a>
+        <!-- Slideshow 1 无页码 无左右导航箭头-->
+        <ul class="rslides" id="slider1">
+            <li><img src="../img/1.jpg" alt=""></li>
+            <li><img src="../img/2.jpg" alt=""></li>
+            <li><img src="../img/3.jpg" alt=""></li>
+        </ul>
+
+        <br/>
+        <!-- Slideshow 2 有数字页码 无左右导航箭头-->
+        <ul class="rslides" id="slider2">
+            <li><a href="#"><img src="../img/1.jpg" alt=""></a></li>
+            <li><a href="#"><img src="../img/2.jpg" alt=""></a></li>
+            <li><a href="#"><img src="../img/3.jpg" alt=""></a></li>
+        </ul>
+        <!-- Slideshow 3 有相册页码-->
+        <ul class="rslides" id="slider3">
+            <li><img src="../img/1.jpg" alt=""></li>
+            <li><img src="../img/2.jpg" alt=""></li>
+            <li><img src="../img/3.jpg" alt=""></li>
+        </ul>
+        <!-- Slideshow 3 Pager -->
+        <ul id="slider3-pager">
+            <li><a href="#"><img src="../img/1_thumb.jpg" alt=""></a></li>
+            <li><a href="#"><img src="../img/2_thumb.jpg" alt=""></a></li>
+            <li><a href="#"><img src="../img/3_thumb.jpg" alt=""></a></li>
+        </ul>
+        <!-- Slideshow 4 有页码 有左右导航箭头【图片里面】 有悬浮条-->
+        <div class="callbacks_container">
+            <ul class="rslides" id="slider4">
+                <li>
+                    <img src="../img/1.jpg" alt="">
+                    <p class="caption">This is a caption</p>
+                </li>
+                <li>
+                    <img src="../img/2.jpg" alt="">
+                    <p class="caption">This is another caption</p>
+                </li>
+                <li>
+                    <img src="../img/3.jpg" alt="">
+                    <p class="caption">The third caption</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="wrapper">
+        <!-- Slideshow 1-1 有圆点页码 有左右导航箭头 小的 【图片外面】-->
+        <div class="rslides_container" >
+            <ul class="rslides" id="slider1-1" style="margin: 0 auto;">
+                <li><img src="../img/1.jpg" alt=""></li>
+                <li><img src="../img/2.jpg" alt=""></li>
+                <li><img src="../img/3.jpg" alt=""></li>
+            </ul>
+        </div>
+        <!-- Slideshow 2 有圆点页码 没有箭头 但点击旁边的空白处就可以进行切换-->
+        <div class="rslides_container">
+            <ul class="rslides" id="slider2-1" style="margin: 0 auto;">
+                <li><img src="../img/1.jpg" alt=""></li>
+                <li><img src="../img/2.jpg" alt=""></li>
+                <li><img src="../img/3.jpg" alt=""></li>
+            </ul>
+        </div>
+        <!-- Slideshow 3 无圆点页码 有左右导航箭头块 大的 【图片外面】-->
+        <div class="rslides_container">
+            <ul class="rslides" id="slider3-1" style="margin: 0 auto;">
+                <li><img src="../img/1.jpg" alt=""></li>
+                <li><img src="../img/2.jpg" alt=""></li>
+                <li><img src="../img/3.jpg" alt=""></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        // Slideshow 1
+        $("#slider1").responsiveSlides({
+            maxwidth: 540,
+            speed: 800
+        });
+        // Slideshow 2
+        $("#slider2").responsiveSlides({
+            auto: false,
+            pager: true, // Boolean: 是否显示页码, true or false
+            speed: 300,   // Integer: 动画持续时间，单位毫秒
+            maxwidth: 540 // Integer: 幻灯的最大宽度
+        });
+        // Slideshow 3
+        $("#slider3").responsiveSlides({
+            manualControls: '#slider3-pager',// Selector: 声明自定义分页导航
+            maxwidth: 540
+        });
+        // Slideshow 4
+        $("#slider4").responsiveSlides({
+            pager: false,
+            nav: true,// Boolean: 是否显示左右导航箭头（即上翻下翻）, true or false
+            speed: 500,
+            namespace: "callbacks",// String: 修改默认的容器名称
+            before: function () {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function () {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+        // Slideshow 1-1
+        $("#slider1-1").responsiveSlides({
+            auto: false,
+            pager: true,
+            nav: true,
+            speed: 500,
+            maxwidth: 800,
+            namespace: "centered-btns"
+        });
+        // Slideshow 2-1
+        $("#slider2-1").responsiveSlides({
+            auto: false,
+            pager: true,
+            nav: true,
+            speed: 500,
+            maxwidth: 800,
+            namespace: "transparent-btns"
+        });
+        // Slideshow 3-1
+        $("#slider3-1").responsiveSlides({
+            auto: false,
+            pager: false,
+            nav: true,
+            speed: 500,
+            maxwidth: 800,
+            namespace: "large-btns"
+        });
+        //查看教程 swiper_btn
+        $(".swiper_btn").on('click',function(){
+            var taskId=1;
+            $.post('/stylelib/pcdemo/views/popup.html',{taskId:taskId},function(data){
+                if(data.status == 0){
+                     data.area = ['780px','436px'];
+                     data.btn = ['我知道了'];
+                    data.maxwidth = 500;
+                    data.skin = 'skin2';
+                }
+                console.log("dddddddddddd");
+                var _maxW = {
+                    skin: data.skin,
+                    type: 1,
+                    title: data.title,
+                    area: data.area,
+                    content: '<span id="J_pop_cons" class="layer-setwin layui-layer-loading2"></span>',
+                    btn: data.btn,
+                    success: function(){
+                        if($(data.html).find('img').length==0){
+                            parent.$('#J_pop_cons').parent().html(data.html);
+                            return ;
+                        }
+                        $(data.html).find('img').load(function(){
+                            parent.$('#J_pop_cons').parent().html(data.html);
+                        });
+
+                    }
+                }
+                parent.layer.open(_maxW);
+            });
+        });
+    </script>
+</body>
+</html>

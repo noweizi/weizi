@@ -1,0 +1,269 @@
+@charset "UTF-8";
+/*
+Date: 2016-09-09
+tips:水果机
+*/
+body {
+  -webkit-overflow-scrolling: touch; }
+
+.fruit_wrap {
+  background: #1b3f93; }
+  .fruit_wrap .prize_lists dl {
+    border: none; }
+
+.webapp-views-fruit-activity-index {
+  max-width: 414px;
+  margin: 0 auto;
+  background: url(../img/fruit_machine/bg.png) no-repeat #1b3f93 center top;
+  background-size: 100% auto; }
+
+.fruit_main {
+  padding: 0 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative; }
+
+.btn_prize {
+  position: absolute;
+  top: 8px;
+  right: 15px; }
+
+.radius30, .btn_common {
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  border-radius: 30px;
+  border-top-left-radius: 30px 30px;
+  border-top-right-radius: 30px 30px;
+  border-bottom-right-radius: 30px 30px;
+  border-bottom-left-radius: 30px 30px; }
+
+.btn_common {
+  border: 0 none;
+  background: none;
+  background: #fedc3d;
+  border-bottom: 2px solid #ffb80c;
+  color: #fb3345;
+  font-size: 16px;
+  width: 85px;
+  line-height: 30px;
+  display: inline-block;
+  text-align: center; }
+  .btn_common:active {
+    background: #ffb80c; }
+
+/*水果机*/
+.fruit_machine {
+  background: url(../img/fruit_machine/bg_fruit_machine.png) no-repeat center center;
+  background-size: contain;
+  margin: 154px auto 5px;
+  max-width: 348px;
+  height: 216px;
+  padding-top: 39px;
+  position: relative; }
+  .fruit_machine p {
+    margin-top: 5px;
+    color: #fff;
+    font-size: 17px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center; }
+    .fruit_machine p span {
+      margin: 0 10px;
+      color: #ffda2f; }
+
+.fruit_scroll {
+  overflow: hidden;
+  width: 310px;
+  margin: 0 auto;
+  height: 99px;
+  padding: 0 16px; }
+  .fruit_scroll .column {
+    float: left;
+    width: 99px;
+    height: 99px;
+    margin: 2px;
+    -webkit-animation-fill-mode: forwards; }
+    .fruit_scroll .column li {
+      padding: 20px 0 19px; }
+    .fruit_scroll .column img {
+      display: block;
+      width: 60px;
+      height: 60px;
+      margin: 0 auto; }
+  .fruit_scroll .scroll_third {
+    -webkit-animation: scrolls_third 1.0s infinite linear; }
+  .fruit_scroll .scroll_four {
+    -webkit-animation: scrolls_four 1.0s infinite linear; }
+  .fruit_scroll .scroll_five {
+    -webkit-animation: scrolls_five 1.0s infinite linear; }
+  .fruit_scroll .scroll_six {
+    -webkit-animation: scrolls_six 1.0s infinite linear; }
+  .fruit_scroll .scroll_seven {
+    -webkit-animation: scrolls_seven 1.0s infinite linear; }
+
+@-webkit-keyframes scrolls_third {
+  0% {
+    -webkit-transform: translateY(0px); }
+  100% {
+    -webkit-transform: translateY(-198px); } }
+@-webkit-keyframes scrolls_four {
+  0% {
+    -webkit-transform: translateY(0px); }
+  100% {
+    -webkit-transform: translateY(-297px); } }
+@-webkit-keyframes scrolls_five {
+  0% {
+    -webkit-transform: translateY(0px); }
+  100% {
+    -webkit-transform: translateY(-396px); } }
+@-webkit-keyframes scrolls_six {
+  0% {
+    -webkit-transform: translateY(0px); }
+  100% {
+    -webkit-transform: translateY(-495px); } }
+@-webkit-keyframes scrolls_seven {
+  0% {
+    -webkit-transform: translateY(0px); }
+  100% {
+    -webkit-transform: translateY(-594px); } }
+.stop_area_1 {
+  -webkit-animation: stop_y_first 2s 0s ease-out; }
+
+.stop_area_2 {
+  -webkit-animation: stop_y_second 2s 0s ease-out; }
+
+.stop_area_3 {
+  -webkit-animation: stop_y_third 2s 0s ease-out; }
+
+.stop_area_4 {
+  -webkit-animation: stop_y_four 2s 0s ease-out; }
+
+.stop_area_5 {
+  -webkit-animation: stop_y_five 2s 0s ease-out; }
+
+.stop_area_6 {
+  -webkit-animation: stop_y_six 2s 0s ease-out; }
+
+.stop_area_7 {
+  -webkit-animation: stop_y_seven 2s 0s ease-out; }
+
+@-webkit-keyframes stop_y_first {
+  100% {
+    -webkit-transform: translateY(0px); } }
+@-webkit-keyframes stop_y_second {
+  100% {
+    -webkit-transform: translateY(-101px); } }
+@-webkit-keyframes stop_y_third {
+  100% {
+    -webkit-transform: translateY(-200px); } }
+@-webkit-keyframes stop_y_four {
+  100% {
+    -webkit-transform: translateY(-299px); } }
+@-webkit-keyframes stop_y_five {
+  100% {
+    -webkit-transform: translateY(-398px); } }
+@-webkit-keyframes stop_y_six {
+  100% {
+    -webkit-transform: translateY(-497px); } }
+@-webkit-keyframes stop_y_seven {
+  100% {
+    -webkit-transform: translateY(-596px); } }
+.start_btn {
+  display: block;
+  width: 280px;
+  margin: 0 auto;
+  border-top: 2px solid #ffed97;
+  border-bottom: 2px solid #6b0f0f;
+  background: #ffda2f;
+  color: #333;
+  font-size: 18px;
+  line-height: 38px;
+  border-radius: 4px; }
+
+.prize .prize_list {
+  background: #ffdf4b; }
+  .prize .prize_list li {
+    border-bottom: 1px dashed #ebbe44; }
+
+/*奖品列表*/
+.webapp-views-scratch-activity-scratch {
+  background: #fb3345; }
+
+.complete_data {
+  text-align: center; }
+  .complete_data .btn_common {
+    color: #a70e03;
+    font-size: 16px;
+    line-height: 30px;
+    width: 119px; }
+
+.prize_lists dd h2 {
+  color: #7c011b; }
+
+/*小屏幕*/
+@media screen and (max-width: 370px) {
+  .fruit_machine {
+    margin: 114px auto 5px; }
+
+  .fruit_scroll {
+    margin-top: 15px;
+    width: 256px;
+    height: 83px; }
+    .fruit_scroll .column {
+      width: 81px;
+      height: 81px; }
+      .fruit_scroll .column li {
+        padding: 10px 0 10px; }
+
+  .start_btn {
+    width: 230px;
+    line-height: 24px; }
+
+  @-webkit-keyframes scrolls_third {
+    0% {
+      -webkit-transform: translateY(0px); }
+    100% {
+      -webkit-transform: translateY(-80px); } }
+  @-webkit-keyframes scrolls_four {
+    0% {
+      -webkit-transform: translateY(0px); }
+    100% {
+      -webkit-transform: translateY(-160px); } }
+  @-webkit-keyframes scrolls_five {
+    0% {
+      -webkit-transform: translateY(0px); }
+    100% {
+      -webkit-transform: translateY(-240px); } }
+  @-webkit-keyframes scrolls_six {
+    0% {
+      -webkit-transform: translateY(0px); }
+    100% {
+      -webkit-transform: translateY(-320px); } }
+  @-webkit-keyframes scrolls_seven {
+    0% {
+      -webkit-transform: translateY(0px); }
+    100% {
+      -webkit-transform: translateY(-400px); } }
+  @-webkit-keyframes stop_y_first {
+    100% {
+      -webkit-transform: translateY(0px); } }
+  @-webkit-keyframes stop_y_second {
+    100% {
+      -webkit-transform: translateY(-82px); } }
+  @-webkit-keyframes stop_y_third {
+    100% {
+      -webkit-transform: translateY(-162px); } }
+  @-webkit-keyframes stop_y_four {
+    100% {
+      -webkit-transform: translateY(-242px); } }
+  @-webkit-keyframes stop_y_five {
+    100% {
+      -webkit-transform: translateY(-322px); } }
+  @-webkit-keyframes stop_y_six {
+    100% {
+      -webkit-transform: translateY(-402px); } }
+  @-webkit-keyframes stop_y_seven {
+    100% {
+      -webkit-transform: translateY(-482px); } } }
+
+/*# sourceMappingURL=fruit_machine.css.map */

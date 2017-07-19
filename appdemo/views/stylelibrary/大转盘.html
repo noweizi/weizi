@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>大转盘抽奖</title>
+    <link type="text/css" rel="stylesheet" href="../../css/mobile.css">
+    <script src="../../js/jquery-1.12.3.js"></script>
+    <style type="text/css">
+        .big_wheel {
+            background: #c71b2a;
+        }
+    </style>
+</head>
+<body class="big_wheel">
+    <div class="turntable">
+    <!-- 转盘区域 -->
+    <div class="play_cont">
+        <img class="bg" src="../../img/bigwheel/tb_bg.jpg" alt="" title="">
+        <div class="rotate_area">
+            <!-- 指针 -->
+            <div class="pointer switch"></div>
+            <!-- 指针上的文字 -->
+            <div class="pointer_txt switch"></div>
+            <!-- 我的奖品 -->
+            <a class="my_prizes" href="javascript:;"
+               title="">我的奖品</a>
+            <!-- 转盘 -->
+            <div class="prize_cont">
+                <!-- 奖项 -->
+                <ul class="several_prize">
+                    <li data-index="0" id="fail_1">再接再厉</li>
+                    <li data-index="1" class="color_pink" id="320_1">21</li>
+                    <li data-index="2" id="fail_1">感谢参与</li>
+                    <li data-index="3" class="color_pink" id="320_1">21</li>
+                    <li data-index="4" id="fail_1">再接再厉</li>
+                    <li data-index="5" class="color_pink" id="320">21</li>
+                    <li data-index="6" id="fail">再接再厉</li>
+                    <li data-index="7" class="color_pink" id="320_1">21</li>
+                </ul>
+                <!-- 奖品图片 -->
+                <ul class="prize_pic">
+                    <li style="background: url('') no-repeat center center; background-size: contain; "></li>
+                    <li style="background: url(../../img/bigwheel/gift.png) no-repeat center center; background-size: contain; "></li>
+                    <li style="background: url('') no-repeat center center; background-size: contain; "></li>
+                    <li style="background: url(../../img/bigwheel/gift.png) no-repeat center center; background-size: contain; "></li>
+                    <li style="background: url('') no-repeat center center; background-size: contain; "></li>
+                    <li style="background: url(../../img/bigwheel/gift.png) no-repeat center center; background-size: contain; "></li>
+                    <li style="background: url('') no-repeat center center; background-size: contain; "></li>
+                    <li style="background: url(../../img/bigwheel/gift.png) no-repeat center center; background-size: contain; "></li>
+                </ul>
+            </div>
+        </div>
+        <!-- 其他信息 -->
+        <div class="other_inf">
+            <div class="times">您还有<em id="lastTimes">5</em>次抽奖机会，加油！</div>
+        </div>
+    </div>
+
+    <!-- 游戏结束 -->
+    <div class="game_over">
+        <div class="cont">
+            <h2>游戏已经结束</h2>
+            <dl>
+                <dd>
+                    <p class="latter">哎呀，来晚一步~</p>
+                    <p class="explain">扫码关注后续更精彩的活动</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- 次数用完 -->
+    <div class="times_out hasShare">
+        <div class="cont">
+            <h2>很抱歉</h2>
+            <dl>
+                <dd>
+                    <span class="close"></span>
+                    您今天的次数已用完，请明天再来吧~
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <!-- 总次数用完 -->
+    <div class="all_times_out hasShare">
+        <div class="cont">
+            <h2>很抱歉</h2>
+            <dl>
+                <dd>
+                    <span class="close"></span>
+                    您的抽奖总次数已用完
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- 未中奖 -->
+    <div class="no_winning hasShare">
+        <div class="cont">
+            <h2>很抱歉 没抽中</h2>
+            <dl>
+                <dd>
+                    <span class="close"></span>
+                    <p class="little">哎哟，真倒霉，就差一点</p>
+                    <p class="share_exp">据说把霉运转移，好运就会回来！</p>
+                    <p class="help_num" style="display: none"></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <!-- 中奖啦 -->
+    <div class="winning hasShare">
+        <div class="cont">
+            <h2>恭喜您 中奖啦！</h2>
+            <dl>
+                <dd>
+                    <span class="close"></span>
+                    <p class="ranking">XXXX</p>
+                    <p class="prize">XXXX</p>
+                    <p class="help_num" style="display: none"></p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <!--<audio preload="auto" autoplay="autoplay" loop="loop" src="../../img/bigwheel/default.mp3"></audio>-->
+</body>
+<script>
+    // 暂停旋转的位置
+    var classArr = ['pointer_rotate_first', 'pointer_rotate_second', 'pointer_rotate_third', 'pointer_rotate_four', 'pointer_rotate_five', 'pointer_rotate_six', 'pointer_rotate_seven', 'pointer_rotate_eight'];
+
+    //点击抽奖
+    $('.switch').click(function (e) {
+        // 防止重复点击
+        if ($('body').hasClass('ajaxing')) {
+            return false;
+        }
+        $('body').addClass('ajaxing');
+
+        var lastTimes = Number($('#lastTimes').text());
+        console.log("xxxxx"+lastTimes)
+        // 次数用完
+        if (lastTimes <= 0) {
+            $('.times_out').show();
+            $('body').removeClass('ajaxing');
+            return false;
+        }
+
+        // 次数减少1
+        $('#lastTimes').text(lastTimes - 1);
+
+        // 开始转动
+        var help_add_num = 0;
+        $('.pointer').addClass('pointer_rotate');
+        setTimeout(function () {
+            $('.pointer').attr('class', 'pointer switch pointer_rotate_uniform');
+            var index = 0;
+            var id="fail_1";
+            console.log("xxxxx")
+            $('.several_prize li').each(function () {
+                if ($(this).attr('id') == id) {
+                    console.log("dddd")
+                    index = $(this).attr('data-index');
+                }
+            })
+            $('.pointer').attr('class', 'pointer switch ' + classArr[index] + '');
+            var isWin = false;
+            setTimeout(function () {
+                // 中奖
+                if (isWin) {
+                    console.log("11")
+                    $('body').removeClass('ajaxing'); // 多次点击
+                    var ele = $('.winning');
+                    ele.find('.ranking').html("蜗牛泡泡");
+                    ele.find('.prize').html("10.00");
+                    ele.show();
+                } else { // 未中奖
+                    console.log("222")
+                    $('body').removeClass('ajaxing'); // 多次点击
+                    $('.no_winning').show();
+                }
+            }, 3000);
+        }, 1000);
+    });
+
+    // 关闭次数用完提示
+    $('.times_out .close,.all_times_out .close').click(function () {
+        $('.times_out, .all_times_out').hide();
+    })
+
+    // 关闭活动结束提示
+    $('.game_over .close, .no_start .close').click(function () {
+        $('.game_over, .no_start').hide();
+    })
+
+    // 未中奖，再来一次
+    $('.no_winning .close').click(function () {
+        $('.pointer').attr('class', 'pointer switch'); //指针还原到初始位置
+        $('.no_winning').hide();
+    });
+    // 中奖，再来一次
+    $('.winning .close').click(function () {
+        $('.pointer').attr('class', 'pointer switch'); //指针还原到初始位置
+        $('.winning').hide();
+    });
+</script>
+</html>

@@ -1,0 +1,123 @@
+@charset "UTF-8";
+//已确认颜色
+$themeGreen: #1bc261;
+$themeWhite:#fff;
+//$themeBlue_thin: #1e9ef8;
+//$themeBlue_deep: #0f75d4;
+$col:#aaa;
+$colTit: #666;
+$colDeep:#333;
+$colBorder:#e8e8e8;
+//字体
+$fSize14:14px;
+//mobile img sprite 必须配置项
+@mixin sprite($sprite) {
+	@include sprite-image($sprite);
+	@include sprite-position($sprite);
+	@include sprite-width($sprite);
+	@include sprite-height($sprite);
+}
+/*
+调用方法示例
+.xx{
+    @include sprite($imgname);
+}
+*/
+//hover效果
+@mixin hover{
+	color: $themereen;
+}
+//定义border-radius圆角
+@mixin border-radius($radius){
+	border-radius:$radius;
+}
+//定义border-radius圆角4个角任意数字
+@mixin border-4radius($radiusTop,$radiusRight,$radiusBottom,$radiusLeft){
+	border-radius:$radiusTop $radiusRight $radiusBottom $radiusLeft;
+}
+// 按钮组
+@mixin btn($ft: 18px, $h: 45px, $pd: 30px,$bg:#e43b3e,$cl:#fff,$bog:#e43b3e,$radius:2px){
+    display: inline-block;
+    font-size: $ft;
+    color: $cl;
+    height: $h;
+    line-height: $h;
+    background: $bg;
+    border: 1px solid $bog;
+    padding-left: $pd;
+    padding-right: $pd;
+    border-radius:$radius;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+}
+//文字超出省略号效果
+@mixin ellipsis{
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+//定义border
+@mixin border-default($width,$style,$color){
+	border-width:$width;
+	border-style:$style;
+	border-color:$color;
+}
+// 动画组
+@mixin ani($val:all,$t: .4s, $d: 0s, $m: ease-in){
+	-webkit-transition: $val $t $m $d;
+	-moz-transition: $val $t $m $d;
+	transition: $val $t $m $d;
+}
+@mixin border($arg,$width,$style,$color){
+	@if $arg==top{
+		border-top-width:$width;
+		border-top-style:$style;
+		border-top-color:$color;
+	}
+	@else if $arg==right {
+		border-right-width:$width;
+		border-right-style:$style;
+		border-right-color:$color;
+	}
+	@else if $arg==bottom {
+		border-bottom-width:$width;
+		border-bottom-style:$style;
+		border-bottom-color:$color;
+	}
+	@else if $arg==left {
+		border-left-width:$width;
+		border-left-style:$style;
+		border-left-color:$color;
+	}
+}
+
+
+//间距
+@mixin mt($val: 0){
+	margin-top: $val!important;
+}
+@mixin mb($val: 0){
+	margin-bottom: $val!important;
+}
+@mixin ml($val: 0){
+	margin-left: $val!important;
+}
+@mixin mr($val: 0){
+	margin-right: $val!important;
+}
+@mixin pt($val: 0){
+	padding-top: $val!important;
+}
+@mixin pb($val: 0){
+	padding-bottom: $val!important;
+}
+@mixin pl($val: 0){
+	padding-left: $val!important;
+}
+@mixin pr($val: 0){
+	padding-right: $val!important;
+}
+
+

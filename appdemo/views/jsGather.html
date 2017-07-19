@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <link type="text/css" rel="stylesheet" href="../js/layer/need/layer.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+    <script src="../js/layer/layer.js"></script>
+</head>
+<body>
+    <div class="mod_topbar">
+        <i class="back"  onclick="history.go(-1)" ></i>
+        <div class="hd">js集合</div>
+    </div>
+    <div>
+        <div class="dislogin">
+            供应商不能参与此活动，您仍可以邀请分销商注册
+        </div>
+        <ul class="list_f J_list">
+            <div class="hd">第一种情况</div>
+            <div class="bd">
+                <input type="hidden" name="total_page" value="1" id="J_total_page">  <!--总页面-->
+                <input type="hidden" value="2" id="J_page_num"/> <!--当前页面-->
+                <input type="hidden" name="total" value="1" id="J_total"> <!--总条数-->
+                <div class="unit" data-val="0">
+                    <div class="caption">层级[继承问题]</div>
+                    <div class="detail">
+                        <i>210</i><i></i>
+                    </div>
+                </div>
+            </div>
+            <div class="hd">第二种情况</div>
+            <div class="bd">
+                <div class="unit" data-val="1">
+                    <div class="caption">分页</div>
+                    <div class="detail">
+                        <i>210</i><i></i>
+                    </div>
+                </div>
+            </div>
+            <div class="hd">第三种情况</div>
+            <div class="bd">
+                <div class="unit" data-val="1">
+                    <div class="caption">分页</div>
+                    <div class="detail">
+                        <i>210</i><i></i>
+                    </div>
+                </div>
+            </div>
+        </ul>
+        <div class="list_h1">第四种情况</div>
+        <style>
+            .input input {
+            display: inline-block;}
+            .input{height:41px;line-height:41px;margin-right:20px;}
+            .input input {
+                border:1px solid #ccc;
+                width: 50px;
+                height: 40px;
+                outline:none;
+                font-size: 14px;
+                font-weight: inherit;
+                text-align: center;
+                line-height: 40px;
+                background:#fff;
+                margin-right:10px;
+                margin-left:10px;
+            }
+            .input:first-child {
+                margin-left:0;
+            }
+            .countdown{
+                margin-left: 10px;
+                margin-bottom: 10px;
+            }
+            .countdown span{
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+                background: #F0A6C7;
+                line-height: 30px;
+                color: #fff;
+                text-align: center;
+                border-radius: 2px;
+            }
+        </style>
+        <div class="input" id="coupon">
+            <input type="tel" placeholder="红" name="sn1" maxlength="3" id="sn1">
+            <input type="tel" placeholder="包" name="sn2" maxlength="3" id="sn2">
+            <input type="tel" placeholder="密" name="sn3" maxlength="3" id="sn3">
+            <input type="tel" placeholder="钥" name="sn4" maxlength="3" id="sn4">
+        </div>
+        <div class="list_h1">第五种情况</div>
+        <p class="countdown"><span class="J_day">00</span><span class="J_hours">00</span><span class="J_minutes">00</span><span class="J_seconds">00</span></p>
+    </div>
+    <script>
+        layer.open({
+            content: '这是提示框'
+            ,skin: 'msg'
+//                ,time: 3
+        });
+        $("#sn1").focus();
+        //自动跳到下一个输入框
+        $("input[name^='sn']").each(function() {
+            var that = $(this);
+            that.keyup(function() {
+                if(that.val().length === 3){
+                    if (that.val().trim().length < 3) {
+                        var TheVal = that.val().trim();
+                        that.val(TheVal)
+                    } else {
+                        that.next().focus();
+                    }
+                }
+
+            })
+        });
+        // 层级问题
+        $(".unit").on('click',function(){
+            var _this=$(this);  //这边要定义一下 默认是当前点击的div
+            var  type=_this.attr("data-val");
+            if( type == 0){
+               var txt="hello world!";
+            }else{
+               var txt="天气不错哦哦";
+            }
+            layer.open({
+                title:'&nbsp;',
+                content:txt,
+                btn:['取消'],
+                yes:function(){
+                    layer.closeAll();
+                    _this.css("background","#f00");  //没默认的话 这边的话继承的是layer  不能用类名 因为类名多个地方用到 那样就全部都变了
+                },
+                no:function(){}
+            })
+        });
+        //滚动悬停
+        $(window).scroll(function() {
+            var scrollTop = $(this).scrollTop();
+            if (scrollTop > 45) {
+                $('.dislogin').addClass('fixed');
+            } else {
+                $('.dislogin').removeClass('fixed');
+            }
+        });
+        //滚动条到底部时候触发的事件  jQuery(window).height()代表了当前可见区域的大小，而jQuery(document).height()则代表了整个文档的高度，可视具体情况使用.
+        $(window).scroll(function () {
+            var scrollTop = $(this).scrollTop(),
+                    windowHeight = $(this).height(), //是获取当前 也就是你浏览器所能看到的页面的那部分的高度  这个大小在你缩放浏览器窗口大小时 会改变
+                    scrollHeight = $(document).height(); //是获取整个页面的高度
+            if (scrollTop + windowHeight == scrollHeight) { //底端
+                var page = parseInt($('#J_page_num').val());  //当前页面
+                var total_page = $('#J_total_page').val();    //总页面
+                if(page > total_page){
+                    layer.open({content: '已显示全部'+$("#J_total").val()+'条记录', time: 1});
+                    return false;
+                }
+                var url = '/gongying/order/index';
+                var data = {
+                    page : page
+                };
+                $.ajax({
+                    type: 'get',
+                    url: url,
+                    data: data,
+                    beforeSend:function(){
+                        layer.open({type:2});  //加遮罩层 在success,complete前执行
+                    },
+                    complete:function(){
+                        layer.closeAll();  //关闭遮罩层 在success后执行
+                    },
+                    success: function(retdat) {
+                        $('.J_list').append(retdat);
+                        if (page <= total_page) {
+                            page += 1;
+                            $('#J_page_num').val(page);
+                        }
+                    }
+                });
+
+            }
+        });
+        //倒计时
+        var TimeD = 0;
+        var now2=parseInt('1478142264', 10);  //时间戳
+        function GetRTime(){
+           /* var EndTime= new Date('2016/12/19 16:46:00'),
+                NowTime = new Date(),
+                t =EndTime.getTime() - NowTime.getTime(),
+                d=Math.floor(t/1000/60/60/24),
+                h=Math.floor(t/1000/60/60%24),
+                m=Math.floor(t/1000/60%60),
+                s=Math.floor(t/1000%60);
+                ms=Math.floor(t/1000*999%999);*/
+
+            var     EndTime= new Date('2016/12/19 16:46:00'),
+                    t =(EndTime.getTime() / 1000) - now2,
+                    d=Math.floor(t/60/60/24),
+                    h=Math.floor(t/60/60%24),
+                    m=Math.floor(t/60%60),
+                    s=Math.floor(t%60);
+            if(t>0){
+                d=d>9?d:'0'+d;
+                h=h>9?h:'0'+h;
+                m=m>9?m:'0'+m;
+                s=s>9?s:'0'+s;
+                if (parseInt(d) != 0) {
+                    $('.J_day').html(d);
+                } else {
+                    $('.J_day').hide();
+                }
+                $(".J_hours").html(h);
+                $(".J_minutes").html(m);
+                $(".J_seconds").html(s);
+            }else{
+                $(".showTime").addClass("out");
+                $(".showTime .ln").html("<p class='tc'>已售罄</p>");
+                clearInterval(TimeD);
+            }
+            now2++;
+        }
+        GetRTime();
+        TimeD = setInterval(GetRTime,1000);
+    </script>
+</body>
+</html>

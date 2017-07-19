@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk">
+    <title>布局-全屏</title>
+    <link rel="stylesheet" href="../../../static/asset/desktop/dest/css/usual.css">
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper" id="wrapper">
+            <div class="item item-top" data-item="1">
+                <div class="hd">时光不老</div>
+                <div class="bd">
+                    <div class="content">我们不散</div>
+                </div>
+                <a class="arrow" data-item="2" title=""></a>
+            </div>
+            <div class="item" data-item="2">从这里开始<a class="arrow dark" data-item="3" title=""></a></div>
+            <div class="item" data-item="3">从这里开始<a class="arrow top" data-item="1" title=""></a></div>
+        </div>
+
+    </div>
+    <script src="../../../static/asset/desktop/dest/js/lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+        var easeInOutQuint =function(x, t, b, c, d) {
+            if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+            return c/2*((t-=2)*t*t*t*t + 2) + b;
+        }
+        var button = $('.arrow');
+        mywindow = $(window);
+        htmlbody = $('html,body');
+        function goToByScroll(dataslide) {
+            htmlbody.animate({
+                scrollTop: $('.item[data-item="' + dataslide + '"]').offset().top
+            }, 2000, easeInOutQuint);
+        }
+        button.click(function (e) {
+            e.preventDefault();
+            dataslide = $(this).attr('data-item');
+            console.log(dataslide)
+            goToByScroll(dataslide);
+
+        });
+    </script>
+</body>
+</html>

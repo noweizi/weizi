@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+body,h1,h2,h3,h4,h5,h6,p,form,ul,ol,li,dt,dl,dd,th,td,label,button,input,textarea{ margin:0;padding:0;}
+body{ font-family: "Microsoft Yahei", Helvetica;line-height:1.5;background:#f2f2f2;color:#000;-webkit-text-size-adjust:none;}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea{ font-family: "Microsoft Yahei", Helvetica;}
+input{ border:none; outline:none; -webkit-appearance: none;}
+fieldset,img{ border:0;}
+img{ vertical-align: top;}
+ul{ list-style:none;}
+table{ border-collapse:collapse; border-spacing:0; width:100%;}
+em,i{ font-style:normal;}
+textarea{outline:none;-webkit-appearance: none;}
+article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}
+audio,canvas,progress,video{display:inline-block;vertical-align:baseline}
+::-webkit-input-placeholder{ color: #999;}
+*{-webkit-tap-highlight-color:transparent}
+.clear:after,.clear:before {display: block;clear: both;font-size: 0;height: 0;content: "";}
+.clear{zoom: 1;}
+a{text-decoration:none; color:#333;}
+a:active, a:focus { outline:none;}
+.tl{ text-align: left!important;}
+.tr{ text-align: right!important;}
+.tc{ text-align: center!important;}
+.bn{ border: none!important;}
+.wauto{ width: auto!important;}

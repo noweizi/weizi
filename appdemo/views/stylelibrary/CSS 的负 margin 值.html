@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>CSS 的负 margin 值</title>
+    <link type="text/css" rel="stylesheet" href="../../css/mobile.css">
+    <script src="../../js/jquery-1.12.3.js"></script>
+    <style type="text/css">
+        /*第一种情况：元素没有设置浮动且没有设置定位或者 position 为 static*/
+        .mbox1_1 , .mbox1_2 , .mbox2_1 , .mbox2_2{
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: pink;
+        }
+        .mbox2_1{
+            position: relative;
+        }
+        .mbox1_1 , .mbox2_1{
+            background-color: #105b63;
+            margin-right: -25px;
+        }
+        /*第四种情况：元素设置了浮动*/
+        .mbox4{
+            background-color: #105b63;
+            padding-left: 100px;
+        }
+        .mbox4_1{
+            width: 100px;
+            float: left;
+            margin-left: -100px;
+            background-color: pink;
+        }
+        .mbox4_2{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!--第一种情况：元素没有设置浮动且没有设置定位或者 position 为 static
+        结论：设置的 margin 的方向为 top 或者 left -> 元素会按照设置的方向移动相应的距离。
+             设置的 margin 的方向为 bottom 或者 right -> 元素本身并不会移动，元素后面的其他元素会往该元素的方向移动相应的距离，并且覆盖在该元素上面。
+    -->
+    <div class="mbox1_1">元素1</div><div class="mbox1_2">元素2</div>
+    <!--第二种情况：元素没有设置浮动且 position 为 relative
+        结论：设置的 margin 的方向为 top 或者 left -> 元素会按照设置的方向移动相应的距离。
+             设置的 margin 的方向为 bottom 或者 right -> 元素本身也不会移动，元素后面的其他元素也会往该元素的方向移动相应的距离，但是，该元素会覆盖在
+             后面的元素上面 (当然，此处说的情况肯定是后面的元素没有设置定位以及 z-index 的情况)。
+    -->
+    <!--ps:第一种跟第二种的区别 就是谁覆盖上面。-->
+    <div class="mbox2_1">元素1</div><div class="mbox2_2">元素2</div>
+    <!--第三种情况：元素没有设置浮动且 position 为 absolute
+        结论：设置的 margin 的方向为 top 或者 left -> 元素会按照设置的方向移动相应的距离。
+             设置的 margin 的方向为 bottom 或者 right -> 由于设置绝对定位的元素已经脱离了标准文档流，所以，设置 margin-right/bottom 对后面的元素并没有影响。
+    -->
+    <!--第四种情况：元素设置了浮动
+        结论：如果设置的 margin 的方向与浮动的方向相同，那么，元素会往对应的方向移动对应的距离。
+             如果设置 margin 的方向与浮动的方向相反，则元素本身不动，元素之前或者之后的元素会向钙元素的方向移动相应的距离。
+    -->
+    <div class="mbox4">
+        <div class="mbox4_1">元素1</div>
+        <div class="mbox4_2">元素2</div>
+    </div>
+</body>
+</html>

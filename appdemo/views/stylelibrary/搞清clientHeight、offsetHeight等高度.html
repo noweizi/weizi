@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <title>搞清clientHeight、offsetHeight、scrollHeight、offsetTop、scrollTop</title>
+    <link type="text/css" rel="stylesheet" href="../../css/mobile.css">
+    <script src="../../js/jquery-1.12.3.js"></script>
+    <style type="text/css">
+        .clientbox{
+            padding: 5px;
+            border: 2px solid #f00;
+        }
+
+    </style>
+</head>
+<body>
+    clientHeight和offsetHeight属性和元素的滚动、位置没有关系它代表元素的高度。对于inline的元素这个属性一直是0。
+    <div class="clientbox">
+        clientHeight:包括padding但不包括border、水平滚动条、margin的元素的高度。内容可视区域的高度，也就是说页面浏览器中可以看到内容的这个区域的高度，一般是最后一个工具条以下到状态栏以上的这个区域，与页面内容无关。
+        offsetHeight:包括padding、border、水平滚动条，但不包括margin的元素的高度。
+    </div>
+    scrollHeight: 因为子元素比父元素高，父元素不想被子元素撑的一样高就显示出了滚动条，在滚动的过程中本元素有部分被隐藏了，scrollHeight代表包括当前不可见部分的元素的高度。而可见部分的高度其实就是clientHeight，也就是scrollHeight>=clientHeight恒成立。在有滚动条时讨论scrollHeight才有意义，在没有滚动条时scrollHeight==clientHeight恒成立。
+    scrollTop: 代表在有滚动条时，滚动条向下滚动的距离也就是元素顶部被遮住部分的高度。
+    offsetTop: 当前元素顶部距离最近父元素顶部的距离,和有没有滚动条没有关系。
+    <script>
+        console.log($('.clientbox').height())  //浏览器当前窗口'.clientbox'的高度
+        console.log($(window).height())    //浏览器当前窗口可视区域高度
+        console.log($(document).height())  //浏览器当前窗口文档的高度
+
+    </script>
+</body>
+</html>

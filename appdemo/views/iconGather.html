@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+    <style type="text/css">
+        #progressBar{
+            width: 80%;
+            height: 50px;
+            position: relative;
+            margin: auto;
+            margin-top: 30px;
+        }
+        #progressBar div{
+            width: 100%;
+            height: 10px;
+            position: absolute;
+            top:50%;
+            left: 0;
+            margin-top:-20px;
+            background: #ccc;
+        }
+        #progressBar div span{
+            position: absolute;
+            display: inline-block;
+            background: green;
+            height: 10px;
+            width: 100%;
+            -webkit-animation:bgLoad 5.5s linear;
+        }
+        @-webkit-keyframes bgLoad{
+            0%{
+                width: 0%;
+            }
+            18.18%,27.27%{
+                width:25%;
+            }
+            45.45%,54.54%{
+                width: 50%;
+            }
+            72.72%,81.81%{
+                width: 75%;
+            }
+            100%{
+                width:100%;
+            }
+        }
+        #progressBar>span{
+            position: absolute;
+            top:0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ccc;
+            margin-left: -10px;
+            color:#fff;
+        }
+        @-webkit-keyframes circleLoad_1{
+            0%,66.66%{
+                background: #ccc;
+            }
+            100%{
+                background:green;
+            }
+        }
+        @-webkit-keyframes circleLoad_2{
+            0%,83.34%{
+                background: #ccc;
+            }
+            100%{
+                background:green;
+            }
+        }
+        @-webkit-keyframes circleLoad_3{
+            0%,88.88%{
+                background: #ccc;
+            }
+            100%{
+                background:green;
+            }
+        }
+        @-webkit-keyframes circleLoad_4{
+            0%,91.67%{
+                background: #ccc;
+            }
+            100%{
+                background:green;
+            }
+        }
+        #progressBar span:nth-child(2){
+            left: 0%;background:green;
+        }
+        #progressBar span:nth-child(3){
+            left: 25%;background:green;
+            -webkit-animation:circleLoad_1 1.5s ease-in;
+        }
+        #progressBar span:nth-child(4){
+            left: 50%;background:green;
+            -webkit-animation:circleLoad_2 3s ease-in;
+        }
+        #progressBar span:nth-child(5){
+            left: 75%;background:green;
+            -webkit-animation:circleLoad_3 4.5s ease-in;
+        }
+        #progressBar span:nth-child(6){
+            left: 100%;background:green;
+            -webkit-animation:circleLoad_4 6s ease-in;
+        }
+        .top-wrap{
+            display: inline-block;
+            margin-left: 10px;
+            margin-bottom: 10px;
+        }
+        .icons-default {
+            background: #50b400;
+            border-bottom: 1px solid #eee;
+            padding: 0 16px;
+            height: 18px;
+            line-height: 18px;
+            position: relative;
+            display: inline-block;
+        }
+        .icons-default:before , .icons-default:after{
+            content: '';
+            position: absolute;
+        }
+        .icons-default:before {
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 0;
+            opacity: .3;
+            z-index: 10;
+            border: 6px solid transparent;
+            border-left: 0;
+            border-right: 6px solid #000;
+            border-top: 0;
+        }
+        .icons-default:after {
+            display: block;
+            border: 9px solid transparent;
+            right: 0;
+            top: 0;
+            border-right: 7px solid #f5f5f5;
+            border-left-width: 0;
+        }
+        .icons-default em {
+            display: inline-block;
+            white-space: nowrap;
+            max-width: 20em;
+            color: #fff;
+            overflow: hidden;
+        }
+        .icons-default-patch {
+            background-image: none;
+            position: absolute;
+            width: 0;
+            height: 0;
+            bottom: -6px;
+            left: 0;
+            border: 6px solid transparent;
+            border-left: 0;
+            border-right: 6px solid #50b400;
+            border-top: 0;
+            margin: 0;
+        }
+        .fold{
+            position: relative;
+            display: inline-block;
+            background: #e77005;
+            width: 30px;
+            height: 30px;
+        }
+        .fold .arrow{
+            position: absolute;
+            left: 0;
+            top:0;
+            width: 0;
+            height: 0;
+            border-top:16px solid #fff;
+            border-right: 16px solid transparent;
+        }
+        .fold .dec{
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            width: 0;
+            height: 0;
+            border-top: 14px solid #c9540d;
+            border-right: 14px solid transparent;
+        }
+        .oblique{
+            display: inline-block;
+            position: relative;
+            width: 100px;
+            height: 30px;
+            margin-left: 10px;
+            text-align: left;
+            background: #fcdc1c;
+            overflow: hidden;
+        }
+        .txt_obg{
+            position: absolute;
+            width: 30px;
+            height: 100%;
+            display: block;
+            top: 0;
+            right: 0;
+            background: #d91222;
+        }
+        .txt_obg i{
+            position: absolute;
+            left: -70px;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-bottom: 85px solid #d91222;
+            border-left: 70px solid transparent;
+        }
+    </style>
+</head>
+<body style="background-color: #fff">
+    <div class="mod_topbar">
+        <i class="back"  onclick="history.go(-1)" ></i>
+        <div class="hd">图标集合</div>
+    </div>
+    <h1 class="list_h1">第零种情况:</h1>
+    <div class="icon_z inline">
+        <!--css对话框-->
+        <div class="talkbubble-up"></div>
+        <div class="talkbubble-down"></div>
+        <div class="talkbubble-left"></div>
+        <div class="talkbubble-right"></div>
+        <!--三角形-->
+        <div class="triangle-up"></div>
+        <div class="triangle-down"></div>
+        <div class="triangle-left"></div>
+        <div class="triangle-right"></div>
+        <div class="triangle-topleft"></div>
+        <div class="triangle-topright"></div>
+        <div class="triangle-bottomleft"></div>
+        <div class="triangle-bottomright"></div>
+        <!--椭圆形  border-radius：可以单独指定水平和垂直半径， 只要用一个斜杠（ /） 分隔这两个值即可-->
+        <div class="oval"></div>
+        <!--自适应的椭圆-->
+        <div class="oval-auto"></div>
+        <div class="oval-half"></div>
+        <div class="oval-half2"></div>
+        <div class="oval-half3"></div>
+        <div class="oval-half4"></div>
+    </div>
+    <h1 class="list_h1">第一种情况:</h1>
+    <div class="icon_o inline">
+        <label class="slide_btn">
+            <input type="checkbox" value="1" name="important_flag" class="chk" >
+            <span class="switch"></span>
+        </label>
+    </div>
+    <!--环形-->
+    <div class="ring inline">
+        <span>2</span>
+        <i class="transb_i"></i>
+    </div>
+    <!--左三角形促销信息-->
+    <span class="lefttype">
+        <i class="triangleRight"></i><span>5.00折</span>
+    </span>
+    <h1 class="list_h1">第二种情况:</h1>
+    <div class="top-wrap">
+        <span class="icons-default">
+            <em>银行优惠</em>
+            <i class="icons-default-patch"></i>
+        </span>
+    </div>
+    <div class="fold">
+        <i class="arrow"></i>
+        <i class="dec"></i>
+    </div>
+    <div class="oblique">
+        <span class="txt">华为荣耀</span>
+        <span class="txt_obg"><i></i></span>
+    </div>
+    <div class="icon_t">
+        <div class="trans transrl">
+            跟团游 <i></i>
+        </div>
+        <div class="trans transr">
+            <i></i> 跟团游
+        </div>
+        <div class="trans transb">
+            <i></i> 跟团游
+        </div>
+        <div class="trans transt">
+            <i></i> 跟团游
+        </div>
+    </div>
+    <h1 class="list_h1">第三种</h1>
+    <div class="icon_th">
+        <span class="progressbar"><i style="width:57.8%"></i></span>
+    </div>
+    <div class="schedule_con">
+        <div class="progress_bar">
+            <div class="lv_value" style="width:26.0525%"></div>
+        </div>
+        <ul class="lv_line clearfix">
+            <li class="cur"><em class="lv_txt">Lv1</em></li>
+            <li class="cur"><em class="lv_txt">Lv2</em></li>
+            <li><em class="lv_txt">Lv3</em></li>
+            <li><em class="lv_txt">Lv4</em></li>
+            <li><em class="lv_txt">Lv5</em></li>
+        </ul>
+    </div>
+    <br/>
+    <div class="process_bar">
+        <ul>
+            <li>
+                <i class="iconstep"></i>
+                <p class="text">注册/登录</p>
+            </li>
+            <li class="cur">
+                <i class="iconstep"></i>
+                <p class="text">申请</p>
+            </li>
+            <li>
+                <i class="iconstep"></i>
+                <p class="text">审核</p>
+            </li>
+            <li>
+                <i class="iconstep"></i>
+                <p class="text">上线</p>
+            </li>
+        </ul>
+    </div>
+    <div class="process_bar two">
+        <ul>
+            <li style="width: 25%;">
+                <i class="iconstep"></i>
+                <p class="text">注册/登录</p>
+            </li>
+            <li class="cur">
+                <i class="iconstep"></i>
+                <p class="text">申请2</p>
+            </li>
+            <li>
+                <i class="iconstep"></i>
+                <p class="text">审核</p>
+            </li>
+        </ul>
+    </div>
+    <div class="process_status">
+        <ul class="clearfix">
+            <li class="cur_lv lv1" >
+                <span class="icon_lv"><i></i></span>
+                <em class="txt">新晋顾问</em>
+                <em class="num">0</em>
+            </li>
+            <li class="cur_lv2 lv2">
+                <span class="icon_lv"><i></i></span>
+                <em class="txt">中级</em>
+                <em class="num">4万</em>
+            </li>
+            <li class="cur_lv lv3">
+                <span class="icon_lv"><i></i></span>
+                <em class="txt">高级顾问</em>
+                <em class="num">30万</em>
+            </li>
+            <li class="cur_lv lv4">
+                <span class="icon_lv"><i></i></span>
+                <em class="txt">资深</em>
+                <em class="num">90万</em>
+            </li>
+            <li class="cur_lv lv5">
+                <span class="icon_lv"><i></i></span>
+                <em class="txt">金牌</em>
+                <em class="num">200万</em>
+            </li>
+        </ul>
+        <div class="width">
+            <div class="lv_value" style="width:30.010096153846% "></div>
+            <i class="lv_icon"></i>
+        </div>
+    </div>
+    <div id="progressBar">
+        <!-- 进度条 -->
+        <div>
+            <span></span>
+        </div>
+        <!-- 五个圆 -->
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="process_bar three">
+        <ul>
+            <li>
+                <i class="iconstep">抢购</i>
+                <p class="text">08-23</p>
+            </li>
+          <!--  <li style="width: 0%;">
+                <i class="iconstep"></i>
+                <p class="text">08-24</p>
+            </li>-->
+            <li style="">
+                <i class="iconstep">截止下单</i>
+                <p class="text">08-26</p>
+            </li>
+            <li>
+                <i class="iconstep">团期</i>
+                <p class="text">08-27</p>
+            </li>
+        </ul>
+        <div class="cur">
+            <i class="iconstep"></i>
+            <p class="text">08-23</p>
+        </div>
+    </div>
+    <div class="timeline">
+        <div class="progress_bar"></div>
+        <!--情况一:当前时间等于抢购 隐藏这块 6/8*0.5*100 百分比最多不能超过50%-->
+        <div class="shixian" style="width: 50%;"></div>
+        <div class="cur_ring" style="left: 50%;">
+            <span class="ring"></span><br>
+            <p class="txt">08-25</p>
+        </div>
+        <!--情况一:当前时间等于抢购 在qgbox 后面加 cur-->
+        <div class="qgbox">
+            <span class="roundbtn">抢购</span><br>
+            <p class="txt">08-23</p>
+        </div>
+        <div class="jzbox">
+            <span class="roundbtn">截止下单</span><br>
+            <p class="txt">08-26<br>02:00</p>
+        </div>
+        <div class="tqbox">
+            <span class="roundbtn">团期</span><br>
+            <p class="txt">08-27</p>
+        </div>
+    </div>
+    <br/>
+    <h1 class="list_h1">第四种</h1>
+    <div class="icon_f" style="display: inline-block;">
+        <div class="chatbox">
+            <span class="triangle right"></span>
+            <ul>
+                <li>关于社区</li>
+                <li>社区宫傲</li>
+                <li>社区宫傲</li>
+            </ul>
+        </div>
+    </div>
+    <style type="text/css">
+        .qrcodes{
+            display: inline-block;
+            position: relative;
+            margin-left: 50px;
+        }
+        .qrcodes img{
+            display: block;
+            border: 1px solid #cbcbcb;
+        }
+        .qrcodes .masks{
+            display: none;
+            position: absolute;
+            left: -7px;
+            top: -7px;
+            width: 140px;
+            height: 140px;
+            background: #333;
+            background: rgba(0,0,0,0.8);
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 124px;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+        }
+        .qrcodes:hover .masks{ display: block;}
+    </style>
+    <div class="qrcodes qrcode-center">
+        <img src="../img/cert_qrcode.png" width="122" height="122" alt="" />
+        <span class="masks">敬请期待</span>
+    </div>
+</body>
+<script>
+    var arr2=["red","blue","black","pink","yellow"];
+    var arrSplice2=arr2.splice(1,0,"blue","black");
+   /* document.write("splice()函数的返回值:"+arrSplice2+"<br/>");
+    document.write("使用splice()函数后的arr2数组："+arr2+"<br/>");*/
+</script>
+</html>

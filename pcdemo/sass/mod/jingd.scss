@@ -1,0 +1,37 @@
+.head_banner{
+    background: #ff0023;
+    .ac_banner{
+        width: 1190px;
+        margin: 0 auto;
+    }
+}
+.head_top_area{
+    height: 31px;
+    line-height: 31px;
+    background: #e3e4e5;
+    .head_top{
+        width: 1190px;
+        margin: 0 auto;
+        .top_l{
+            float: left;
+        }
+        .top_r{
+            float: right;
+            .nav_group{
+                .register{
+                    color: #f10215;
+                    margin-left: 5px;
+                }
+                li{
+                    float: left;
+                    margin-right: 10px;
+                    &:after{
+                        content: '|';
+                        margin-left: 10px;
+                        color: #ccc;
+                    }
+                }
+            }
+        }
+    }
+}

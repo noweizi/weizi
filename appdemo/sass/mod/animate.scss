@@ -1,0 +1,189 @@
+@charset "UTF-8";
+//Mozilla内核浏览器：firefox3.5+ : -moz-transform;
+//Webkit内核浏览器：Safari and Chrome :-webkit-transform
+//Opera -o-transform
+//IE9 -ms-transform
+//W3C标准 transform
+.normal{
+    display: inline-block;
+    border: 1px solid #f00;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+//2D旋转rotate
+.rotate_box{
+    margin: 10px 0;
+    //顺时针旋转90度
+   .shun{ transform: rotate(30deg);}
+    //逆时针旋转180度
+   .ni{ transform: rotate(-30deg);}
+}
+//移动translate
+.translate_box{
+    margin: 10px 0;
+    .x{ transform: translateX(20px);}
+    .y{ transform: translateY(-10px);}
+    .xy{ transform: translate(20px, 10px);}
+}
+//缩放scale
+.scale_box{
+    margin-top: 40px;
+    .x{ transform: scaleX(2);}
+    .y{ transform: scaleY(2);}
+    .xy{ transform: scale(0.5,0.5);}
+}
+//扭曲skew
+.skew_box{
+    margin-top: 10px;
+    .x{ transform: skewX(30deg);}
+    .y{ transform: skewY(30deg);}
+    .xy{ transform: skew(30deg,10deg);}
+}
+//transition:转换
+.transition_box{
+    margin-top: 20px;
+    .timings,#btn{
+        border: 1px solid #ccc;
+        margin: 0 10px;
+        padding: 10px;
+    }
+    #btn{
+        display: block;
+        width: 100px;
+        height: 30px;
+        background: #f00;
+        color: #fff;
+        font-size: 16px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .demo-box{
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        text-align: center;
+        color: #fff;
+        background: #96c;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -moz-box-shadow: inset 0 0 5px rgba(102, 153, 0,0.5);
+        -webkit-box-shadow: inset 0 0 5px rgba(102, 153, 0,0.5);
+        box-shadow: inset 0 0 5px rgba(102, 153, 0,0.5);
+        margin-bottom: 10px;
+    }
+    //ease(逐渐变慢)效果：
+    .ease {
+        -moz-transition: all 5s ease 0.3s;
+        -webkit-transition: all 5s ease 0.3s;
+        -o-transition: all 5s ease 0.3s;
+        transition: all 5s ease 0.3s;
+        background: #f36;
+    }
+    //ease-in(加速)效果：
+    .ease-in {
+        -moz-transition: all 3s ease-in 0.5s;
+        -webkit-transition: all 3s ease-in 0.5s;
+        -o-transition: all 3s ease-in 0.5s;
+        transition: all 3s ease-in 0.5s;
+        background: #369;
+    }
+    //ease-out(减速)效果：
+    .ease-out {
+        -moz-transition: all 5s ease-out 0s;
+        -webkit-transition: all 5s ease-out 0s;
+        -o-transition: all 5s ease-out 0s;
+        transition: all 5s ease-out 0s;
+        background: #636;
+    }
+    //ease-in-out(加速然后减速)效果：
+    .ease-in-out {
+        -moz-transition: all 1s ease-in-out 2s;
+        -webkit-transition: all 1s ease-in-out 2s;
+        -o-transition: all 1s ease-in-out 2s;
+        transition: all 1s ease-in-out 2s;
+        background: #3e6;
+    }
+    //linear(匀速)效果：
+    .linear {
+        -moz-transition: all 6s linear 0s;
+        -webkit-transition: all 6s linear 0s;
+        -o-transition: all 6s linear 0s;
+        transition: all 6s linear 0s;
+        background: #999;
+    }
+    //hover状态下或单击click按钮后demo-box产生属性变化
+    .timings.timings-hover .demo-box,
+    .timings:hover .demo-box {
+        -moz-transform: rotate(360deg) scale(1.2);
+        -webkit-transform: rotate(360deg) scale(1.2);
+        -o-transform: rotate(360deg) scale(1.2);
+        transform: rotate(360deg) scale(1.2);
+        background: #369;
+        border: 1px solid rgba(255,230,255,08);
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+        border-radius: 25px;
+        margin-left: 280px;
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 15px;
+    }
+}
+//小圆在大圆里旋转
+.rotating_box{
+    background: #faab68;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin: 50px auto;
+    .boc{
+        height: 300px;
+        line-height: 300px;
+        text-align: center;
+    }
+    .circle{
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background: #0db789;
+        border-radius: 50%;
+        vertical-align: middle;
+        transform-origin:50% 50%;
+        animation: spin 3s infinite linear;
+    }
+    @keyframes spin{
+        from{
+            transform: rotate(0deg) translateY(-125px) translateY(50%) rotate(360deg);
+        }
+        to {
+            transform: rotate(360deg) translateY(-125px) translateY(50%) rotate(0deg);
+        }
+    }
+}
+//饼图
+.piechart{
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: yellowgreen;
+    background-image: linear-gradient(to right, transparent 50%, #655 0);
+    &:before {
+        content: '';
+        display: block;
+        margin-left: 50%;
+        height: 100%;
+        border-radius: 0 100% 100% 0 / 50%;
+        background-color: inherit;//给它应用一个绿色的背景，使用background-color: inherit来避免重复定义，因为我们本来就希望它和父元素的背景颜色保持一致。
+        transform-origin: left; //中心点在伪元素的左边
+        animation: spin 3s linear infinite,
+        bg 6s step-end infinite;
+    }
+    @keyframes spin {
+        to { transform: rotate(.5turn); }
+    }
+    @keyframes bg {
+        50% { background: #655; }
+    }
+}

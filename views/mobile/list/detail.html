@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <title>详情</title>
+    <link type="text/css" rel="stylesheet" href="../../../static/asset/mobile/dest/css/usual.css">
+    <style type="text/css">
+        .countdown em{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            background: #f77304;
+            color: #fff;
+            border-radius: 2px;
+        }
+        .countdown  i{
+            padding: 0 2px;
+            font-size: .5rem;
+            vertical-align: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mod_topbar">
+        <a class="back" href="javascript:;"  onclick="history.go(-1)"><i class="icon-arr-left"></i></a>
+        <div class="title">首页</div>
+        <a class="lik" href="javascript:;">明细<i class="icon-arr-right"></i></a>
+    </div>
+    <ul class="mod_tabs" id="J_Tabs">
+        <li class="current"><span>全部</span></li>
+        <li><a href="#">可结算</a></li>
+        <li><span>不可结算</span></li>
+    </ul>
+    <div class="mod-form">
+        <div class="tips">基本情况</div>
+        <form id="forms">
+            <!--图文表单-->
+            <div class="mod-form-item  graphic" id="J_Pay">
+                <div class="item-unit">
+                    <div class="item-tit">
+                        <i class="sprite_code sm-img"></i>
+                    </div>
+                    <div class="item-con tr clear">
+                        <input type="tel" class="form-input J_InputClear" placeholder="银行预留手机号" id="J_Phone" required>
+                        <i class="sprite_clear J_Clear"></i>
+                    </div>
+                </div>
+                <div class="item-unit">
+                    <div class="item-tit">
+                        <i class="sprite_ic_phone sm-img"></i>
+                    </div>
+                    <div class="item-con code">
+                        <input type="text" class="form-input J_InputClear J_OnlySixNum" placeholder="请输入验证码" required>
+                        <div class="form-countdown" id="J_Countdown">
+                            <button type="button" >获取验证码</button>
+                            <span class="hide">60s</span>
+                            <input type="hidden" id="J_endtime" value="01/24/2017 18:00:00">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="mod-form-item mt15" id="J_count_down">
+            <div class="item-unit" data-deadline="2017/03/24 18:00:00" data-id="1">
+                <div class="item-tit">倒计时：</div>
+                <div class="item-con tr countdown J_times">
+                    <span class="J_day"><em>01</em><i>天</i></span><span class="J_hours"><em>00</em><i>：</i></span><span class="J_minutes"><em>00</em><i>：</i></span><span class="J_seconds"><em>00</em></span>
+                </div>
+            </div>
+            <div class="item-unit" data-deadline="2017/05/05 16:20:55" data-id="2">
+                <div class="item-tit">倒计时2：</div>
+                <div class="item-con tr countdown">
+                    <span class="J_day"><em>01</em><i>天</i></span><span class="J_hours"><em>00</em><i>：</i></span><span class="J_minutes"><em>00</em><i>：</i></span><span class="J_seconds"><em>00</em></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--默认左边留出15px的边距-->
+    <div class="mod-form-item border-nbottom spacing mt15">
+        <div class="item-unit">
+            <div class="item-tit">c c v 2</div>
+            <div class="item-con tr"></div>
+        </div>
+    </div>
+    <div class="mod-form-item space spacing">
+        <div class="item-unit">
+            <div class="item-tit">收 款 金 额</div>
+            <div class="item-con tr">500.00 <i class="icon-arr-right"></i>
+            </div>
+        </div>
+        <div class="item-unit">
+            <div class="item-tit color_gray">名 称</div>
+            <div class="item-con more clearfix">
+                <p class="more-text">父元素高度确定的多行文本（内联元素）</p>
+            </div>
+        </div>
+        <div class="item-unit">
+            <div class="item-tit color_gray">验 证 码</div>
+            <div class="item-con more">
+                <p class="more-text">建设路口</p>
+            </div>
+        </div>
+    </div>
+    <div class="btn_group">
+        <button type="button" class="btn btn_block" id="J_PayBtn">下一步</button>
+    </div>
+    <script src="../../../static/asset/mobile/dest/js/jquery-2.1.4.min.js"></script>
+    <script src="../../../static/asset/mobile/dest/js/lib/layer/layer.js"></script>
+    <!--ios:解决blur与click冲突(点击某元素导致前一个元素失去焦点，blur事件优先于click事件) 目前用deferred对象处理 这个可不需要引入 -->
+    <!--<script src="../../../static/asset/mobile/dest/js/lib/fastclick.min.js"></script>-->
+    <script src="../../../static/asset/mobile/dest/js/common/public.js"></script>
+    <script src="../../../static/asset/mobile/dest/js/common/form.js"></script>
+    <script>
+        //FastClick.attach(document.body);
+
+        var constant = {}
+        //不可编辑状态
+        constant.notEditable = 0;
+        //页面初始化
+        activity.init([
+            'upload',//上传图片
+            'delImg',//图片的删除图标
+            'delBtn',
+            ['back','/presell/admin/activityList'],//返回
+            'switch',//关联
+            ['isEditable',constant.notEditable]
+        ]);
+
+        // tabs
+        var $tabsCons = $('.tabs-con-box .ui-record');
+        $('#J_Tabs li').on('click', function(){
+            var $this = $(this);
+            var index = $this.index();
+
+            $this.addClass('current').siblings().removeClass('current');
+            $tabsCons.addClass('hide').eq(index).removeClass('hide');
+        });
+        var app = {
+            init: function(){
+                this.delClick(); //方法一
+                //this.focusClick(); //方法二
+                this.getAuthcode();
+                this.hasPhone();
+                this.OnlySixNum();
+                this.infoFull();
+                this.btnClick();
+            },
+            delClick:function(){
+                /**
+                 * 方法一: 用Deferred延迟对象处理
+                 * */
+                //聚焦
+                $(".J_InputClear").on('focus', function() {
+                    $(".J_Clear").hide();
+                    var $ClearCont = $(this).next(".J_Clear");
+                    $ClearCont.show();
+                })
+                //先清除再失焦
+                this.blurClick().then(function(){
+                    $('.J_InputClear').on('blur', function() {
+                        var $ClearCont = $(this).next(".J_Clear");
+                        $ClearCont.hide();
+                    });
+                })
+            },
+            focusClick:function(){
+                /**
+                 * 方法二: ios 用fastclick.min.js插件处理blur与click冲突
+                 *         安卓 添加mousedown事件  方法如下：
+                 * */
+                //聚焦或失焦
+                $(".J_InputClear").on('focus', function() {
+                    var $ClearCont = $(this).next(".J_Clear");
+                    $ClearCont.show();
+                }).on('blur', function() {
+                    var $ClearCont = $(this).next(".J_Clear");
+                    $ClearCont.hide();
+                });
+                //清除键
+                $('.J_Clear').on('mousedown click', function(event){
+                    event.preventDefault(); //取消事件的默认动作
+                    $(this).hide().prev().val('').focus();
+                });
+            },
+            blurClick:function(){
+                var dtd = $.Deferred(); // 新建一个deferred对象
+                var tasks = function(){
+                    $('.J_Clear').on('click', function(){
+                        $(this).hide().prev().val('').focus();
+                    })
+                    dtd.reject(); // 改变deferred对象的执行状态
+                };
+                setTimeout(tasks,300);
+                return dtd;
+            },
+            isPhone: function(st){
+                return /^1[3-9]\d{9}$/g.test(st);
+            },
+            hasPhone: function(){
+                var self = this;
+                var $btn = $('#J_Countdown').find('button');
+                $('#J_Phone').keyup(function() {
+                    var $this = $(this);
+                    var phone = this.value;
+                    phone = phone.replace(/\D/g, '');
+                    if (phone.length > 11) {
+                        phone = phone.substr(0, 11);
+                    }
+                    $this.val(phone);
+                    $btn[self.isPhone(phone) ? 'addClass' : 'removeClass']('on');
+                });
+            },
+            OnlySixNum: function(){
+                $('.J_OnlySixNum').keyup(function() {
+                    var $this = $(this);
+                    var val = this.value;
+                    val = val.replace(/\D/g, '');
+                    if (val.length > 6) {
+                        val = val.substr(0, 6);
+                    }
+                    $this.val(val);
+                });
+            },
+            getAuthcode: function(){
+                var self = this;
+                var $countdown = $('#J_Countdown');
+                var $el   = $countdown.find('button');
+                var $time = $countdown.find('span');
+                $countdown.find('button').on('click', function(){
+                    var $this = $(this);
+                    if ($this.hasClass('on')) {
+                        $this.addClass('hide');
+                        $time.removeClass('hide');
+                        //方法一：
+                        self.countdown(60, $time)
+                                .then(function(){
+                                    // 倒计时结束
+                                    $el.removeClass('hide');
+                                    $time.text('60s').addClass('hide');
+
+                                });
+                        //方法二：
+                      /*  self.timerToSMS($time,function(){
+                            $el.removeClass('hide');
+                            $time.addClass('hide');
+                        },5);*/
+                    } else {
+                        layer.open({
+                            content: '银行预留手机号不能为空'
+                            ,time: 2
+                            ,skin: 'msg'  // footer（即底部对话框风格）、msg（普通提示）
+                        });
+                    }
+
+                });
+
+            },
+            //获取验证码方法二。
+            timerToSMS:function(element, callback, times){
+                var timekeeping;
+                times = times || 60;
+                element.text(times+'s');
+                timekeeping = setInterval(function(){
+                    times--;
+                    if(times<=0){
+                        clearInterval(timekeeping);
+                        callback && callback.apply(element, arguments);
+                    }
+                    element.text(times+'s');
+                }, 1000);
+            },
+            countdown: function(t, shell){
+                var df = $.Deferred();
+                clearInterval(this.countdownTimer);
+                this.countdownTimer = setInterval(function(){
+                    t--;
+                    if (t <= 0) {
+                        df.resolve();
+                        clearInterval(this.countdownTimer);
+                        return;
+                    }
+                    $(shell).text(t+'s');
+                }, 1000);
+
+                return df;
+            },
+            infoFull: function(){
+                // 判断信息是否填写完整
+                var $input = $('#J_Pay').find('input[required]');
+                var $payBtn = $('#J_PayBtn');
+                var l = $input.length;
+
+                $input.keyup(checkInfo);
+
+                function checkInfo() {
+                    var n = 0;
+                    $input.each(function(){
+                        if ($(this).val()) n++;
+                    });
+
+                    $payBtn[n === l ? 'addClass' : 'removeClass']('orange');
+                }
+            },
+            btnClick:function(){
+                //下一步操作
+                $("#J_PayBtn").click(function(){
+                    var _this=$("#J_defeat").find(".uper-tips");
+                    var reg_mobile=/^1[3|4|5|7|8][0-9]\d{8}$/;  //手机号码
+                    var reg_tel=/^((0\d{2,3})-)?(\d{7,8})(-(\d{3,}))?$/   //电话号码
+                    if  (!reg_mobile.test($("#J_Phone").val()) &&
+                            !reg_tel.test($("#J_Phone").val())) {
+                        console.log("联系电话不正确");
+                        return false;
+                    }
+                });
+            }
+        };
+        app.init();
+        //倒计时
+        var TimeD = [];
+        var getTime = [];
+        function count_down(){
+            $("#J_count_down").find("div").each(function(){
+                var _this=$(this);
+                var deadline=_this.data('deadline');
+                var id=_this.data('id');
+
+                TimeD[id] =0;
+                var now=parseInt(new Date().getTime()/1000,10);
+
+                getTime[id] =function GetRTime(){
+                    var     EndTime= new Date(deadline),
+                            t =(EndTime.getTime() / 1000) - now,
+                            d=Math.floor(t/60/60/24),
+                            h=Math.floor(t/60/60%24),
+                            m=Math.floor(t/60%60),
+                            s=Math.floor(t%60);
+                            ms=Math.floor(t*999%999);
+                    if(t>0){
+                        d=d>9?d:'0'+d;
+                        h=h>9?h:'0'+h;
+                        m=m>9?m:'0'+m;
+                        s=s>9?s:'0'+s;
+                        if(parseInt(d)!=0){
+                            _this.find(".J_day em").html(d);
+                        }else{
+                            _this.find(".J_day").hide();
+                        }
+                        _this.find(".J_hours em").html(h);
+                        _this.find(".J_minutes em").html(m);
+                        _this.find(".J_seconds em").html(s);
+                    }else{
+                        if (t <= 0) {
+                            _this.find(".countdown").html("已结束");
+                        } else {
+                            _this.find(".countdown").html("已售罄");
+                        }
+                        clearInterval(TimeD[id]);
+                    }
+                    now++;
+                }
+                getTime[id]();
+                TimeD[id] = setInterval(getTime[id], 1000);
+            });
+        }
+        count_down();
+    </script>
+</body>
+</html>

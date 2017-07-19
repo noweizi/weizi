@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>签到有礼</title>
+    <link rel="stylesheet/less" href="../../statics/css/sign/main.less">
+    <script>
+        var less = {
+            env: "development",
+            logLevel: 2,
+            async: false,
+            fileAsync: false,
+            poll: 1000,
+            functions: {},
+            dumpLineNumbers: "comments",
+            relativeUrls: false,
+            globalVars: {
+              var1: '"string value"',
+              var2: 'regular value'
+            },
+            rootpath: ""
+          };
+    </script>
+    <script src="../../statics/js/common/less/2.5.1/less.js"></script>
+</head>
+<body class="signpage">
+    <div class="sign_hd">
+        <input type="hidden" class="J_start"/>
+        <input type="hidden" class="J_end"/>
+        <ul class="sign_hbbox clearfix">
+            <li>
+                <p>周一</p>
+                <p class="p_date"></p>
+            </li>
+            <li>
+                <p>周二</p>
+                <p class="p_date"></p>
+            </li>
+            <li>
+                <p>周三</p>
+                <p class="p_date"></p>
+            </li>
+            <li>
+                <p>周四</p>
+                <p class="p_date"></p>
+            </li>
+            <li>
+                <p>周五</p>
+                <p class="p_date"></p>
+            </li>
+            <li>
+                <p>周六</p>
+                <p class="p_date"></p>
+            </li>
+            <li>
+                <p>周日</p>
+                <p class="p_date"></p>
+            </li>
+        </ul>
+    </div>
+    <div class="sign_bd">
+        <div class="circle_box">
+             <!--<p class="singel">签到</p>-->
+             <p class="double_big">补签</p>
+             <p class="double_small">本周漏签<em>1</em>天</p>
+        </div>
+        <div class="circle_box">
+            <!--<p class="singel">签到</p>-->
+            <p class="double_small pt20">本周漏签<em>1</em>天</p>
+            <p class="double_big pt10">补签</p>
+        </div>
+        <p>签到攻略</p>
+        <div class="img_box"></div>
+    </div>
+    <div class="ui-dialog" style="display: none;">
+        <div class="ui-dialog-img">
+            <img src="../../statics/img/patnother/icon-pic.png" width="100%" alt="" />
+        </div>
+        <div class="ui-dialog-hd">
+            签到成功,抽个红包试手气
+        </div>
+        <div class="ui-dialog-bd">
+            <ul class="sign_hbbox clearfix">
+                <li ><img id="dd" src="../../statics/img/outorin/small.png" width="100%" alt="" /></li>
+                <li><img src="../../statics/img/outorin/fail.png" width="100%" alt="" /></li>
+                <li><img src="../../statics/img/outorin/bill.png" width="100%" alt="" /></li>
+            </ul>
+        </div>
+        <div class="ui-dialog-ft">
+            <div class="ui-dialog-buttons">
+                <button class="J_btn_sure">确定</button>
+            </div>
+        </div>
+    </div>
+    <div class="ui-dialog-mask" style="display: none;"></div>
+    <script src="../../statics/js/common/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        formOnload();
+        var dateTo = new Date();
+        var curtime = dateTo.getDate(); //今天的日期
+        function formOnload()
+        {
+            //按周日为一周的最后一天计算
+            var date = new Date();
+            curtime = date.getDate(); //今天的日期
+            var this_day = date.getDay(); //今天是这周的第几天
+            var step_s = -this_day+1; //上周日距离今天的天数（负数表示）
+            if (this_day == 0) {
+                step_s = -7; // 如果今天是周日
+            }
+            var step_m = 7 - this_day; // 周日距离今天的天数（负数表示）
+            var thisTime = date.getTime();
+            var monday = new Date(thisTime +  step_s * 24 * 3600* 1000);
+            var sunday = new Date(thisTime +  step_m * 24 * 3600* 1000);
+            //默认统计一周的时间
+            var starttime = transferDate(monday); //本周一的日期 （起始日期）
+            var endtime = transferDate(sunday);  //本周日的日期 （结束日期）
+            $(".J_start").val(starttime);
+            $(".J_end").val(endtime);
+        }
+        $("li").each(function(i){
+            var cruda=parseInt($(".J_start").val())+parseInt(i);
+            $(this).find('.p_date').html(cruda);
+            if(cruda == curtime){
+                $(this).addClass('cur');
+            }else if( cruda > curtime){
+                $(this).addClass('tomm');
+            }else{
+            }
+        });
+        function transferDate(date) {
+            var yearTemp = date.getYear();
+            var monthTemp = date.getMonth()+1;
+            var dayTemp = date.getDate();
+            if(parseInt(monthTemp) < 10) {
+                monthTemp = "0" + monthTemp;
+            }
+            if(parseInt(dayTemp) < 10) {
+                dayTemp = "0" + dayTemp;
+            }
+            return dayTemp;
+        }
+        //点击遮罩层
+        $(".ui-dialog-mask").click(function(){
+            $(this).hide();
+            $('.ui-dialog').hide();
+        });
+        //点击确定按钮
+        $(".J_btn_sure").click(function(){
+            $('.ui-dialog-mask').hide();
+            $('.ui-dialog').hide();
+        });
+        var czflag=0;//是否有抽红包
+        //点击红包。。。
+        $(".sign_hbbox li").click(function(){
+            if(czflag == 0){
+                var that=$(this);
+                $(this).addClass('flipx').siblings().removeClass('flipx');
+                setTimeout(function(){
+                    that.removeClass('flipx');
+                    $('.sign_hbbox li').find('img').attr('src','../../statics/img/outorin/fail.png');
+                },5000);
+                czflag ++;
+            }
+
+        });
+    </script>
+</body>
+</html>

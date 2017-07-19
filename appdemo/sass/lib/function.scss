@@ -1,0 +1,165 @@
+@charset "utf-8";
+//已确认颜色
+$themeOrange: #f77304;
+$themeOrange_thin: #f77304;
+$themeOrange_deep: #fe6025;
+//待确认颜色
+$colOrange1: #ff6815;
+$colTit: #333;
+$colBorder: #ddd;
+
+//mobile img sprite 必须配置项
+@mixin sprite($sprite) {
+	@include sprite-image($sprite);
+	@include sprite-position($sprite);
+	@include sprite-width($sprite);
+	@include sprite-height($sprite);
+	background-size: $failed-total-width $failed-total-height;
+}
+/*
+调用方法示例
+.xx{
+    @include sprite($imgname);
+}
+*/
+@mixin hover{
+	color: #f60;
+}
+@mixin radius($val: 2px){
+	border-radius: $val;
+}
+@mixin ellipsis{
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+@mixin triangleUp($widHori: 5px, $widVerti: 4px, $col: #727272){
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-left: $widVerti solid transparent;
+	border-right: $widVerti solid transparent;
+	border-top: $widHori solid transparent;
+	border-bottom: $widHori solid $col;
+}
+@mixin triangleDown($widHori: 5px, $widVerti: 4px, $col: #727272){
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-left: $widVerti solid transparent;
+	border-right: $widVerti solid transparent;
+	border-bottom: $widHori solid transparent;
+	border-top: $widHori solid $col;
+}
+@mixin triangleLeft($widHori: 5px, $widVerti: 4px, $col: #727272){
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-top: $widVerti solid transparent;
+	border-right: $widVerti solid transparent;
+	border-bottom: $widHori solid transparent;
+	border-left: $widHori solid $col;
+}
+@mixin triangleRight($widHori: 5px, $widVerti: 4px, $col: #727272){
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-top: $widVerti solid transparent;
+	border-left: $widVerti solid transparent;
+	border-bottom: $widHori solid transparent;
+	border-right: $widHori solid $col;
+}
+// 按钮组
+@mixin btn($ft: 18px, $h: 45px, $pd: 30px,$bg: #e43b3e,$cl: #fff,$bog: #e43b3e){
+	display: inline-block;
+	font-size: $ft;
+	color: $cl;
+	height: $h;
+	line-height: $h;
+	background: $bg;
+    border: 1px solid $bog;
+	padding-left: $pd;
+	padding-right: $pd;
+	@include radius;
+	text-decoration: none;
+	text-align: center;
+}
+@mixin btnHover{
+	background: darken(#e43b3e,10%);
+    border-color: darken(#e43b3e,10%);
+	color: #fff;
+}
+@mixin btnSmall{
+	@include btn(12px, 26px, 20px)
+}
+// 动画组
+@mixin ani($t: .4s, $d: 0s, $m: ease-in){
+	-webkit-transition: all $t $m $d;
+	-moz-transition: all $t $m $d;
+	transition: all $t $m $d;
+}
+// 标签分类组
+@mixin tips{
+	display: inline-block;
+	font-size: 12px;
+	line-height: 16px;
+	color: #fff;
+	padding: 0 6px;
+	@include radius;
+	vertical-align: 2px;
+    //跟团游
+	&.g{
+		background: #1fbeec;
+	}
+    //自由行
+	&.z{
+		background: #70cb04;
+	}
+}
+@mixin mt($val: 0){
+	margin-top: $val!important;
+}
+@mixin mb($val: 0){
+	margin-bottom: $val!important;
+}
+@mixin ml($val: 0){
+	margin-left: $val!important;
+}
+@mixin mr($val: 0){
+	margin-right: $val!important;
+}
+@mixin pt($val: 0){
+	padding-top: $val!important;
+}
+@mixin pb($val: 0){
+	padding-bottom: $val!important;
+}
+@mixin pl($val: 0){
+	padding-left: $val!important;
+}
+@mixin pr($val: 0){
+	padding-right: $val!important;
+}
+//尾部组
+@mixin mod_foot($bg: #fff, $h: 45px, $bog: #dedede){
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: $bg;
+    width: 100%;
+    height: $h;
+    line-height: $h;
+    border: 1px solid $bog;
+}
+//图标
+@mixin icon($img:'../img/sprite@2x.png',$bgsx:308px,$bgsh:295px,$bgpw:22px,$bgph:22px,$w:22px,$h:22px){
+    display: inline-block;
+    background: url($img) no-repeat;
+    background-size: $bgsx $bgsh;
+    background-position: $bgpw $bgph;
+    width: $w;
+    height: $h;
+}
+

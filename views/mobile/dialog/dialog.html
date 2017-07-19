@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>弹窗公共样式</title>
+    <link type="text/css" rel="stylesheet" href="../../../static/asset/mobile/dest/css/zone.css">
+</head>
+<body>
+    <ul>
+        <li id="dialog-btn1">单个按钮（哭脸）</li>
+        <li id="dialog-btn2">单个按钮（尴尬脸 多列文字）</li>
+        <li id="dialog-btn4">单个按钮（招手）</li>
+        <li id="dialog-btn6">单个按钮（微笑）</li>
+        <li id="dialog-btn3">多个按钮（尴尬脸 多列文字）</li>
+        <li id="dialog-btn5">多个按钮（招手）</li>
+        <li id="dialog-btn7">手续费提示</li>
+        <li id="dialog-btn8">删除卡提示</li>
+        <li id="dialog-btn9">下拉列表提示</li>
+        <li id="dialog-btn10">下拉卡提示</li>
+    </ul>
+    <!--表情不一样 fail:哭脸  numng:尴尬脸 happy:招手 smile:微笑-->
+    <!-- 单个按钮（哭脸）start -->
+    <div class="dialog-com" id="dialog1">
+        <div class="dialog-box">
+            <div class="dialog-uper">
+                <img src="../../../static/asset/mobile/dest/img/dialog/fail.png" alt="" width="70">
+                <div class="uper-tips">手机号码不对，请重新输入</div>
+            </div>
+            <div class="dialog-hart">
+                <button type="button" class="btn btn_block orange J_tryagain">重新输入</button>
+            </div>
+        </div>
+    </div>
+    <!-- 单个按钮（哭脸）end -->
+    <!-- 单个按钮（尴尬脸）start -->
+    <div class="dialog-com" id="dialog2">
+        <div class="dialog-box">
+            <div class="dialog-uper">
+                <img src="../../../static/asset/mobile/dest/img/dialog/numng.png" alt="" width="70">
+                <div class="uper-tips more">
+                    <p>您尚未进行实名认证，</p>
+                    <p>认证后才可使用代付功能。</p>
+                </div>
+            </div>
+            <div class="dialog-hart">
+                <button type="button" class="btn btn_block orange J_tryagain">重新输入</button>
+            </div>
+        </div>
+    </div>
+    <!-- 单个按钮（尴尬脸）end -->
+    <!-- 单个按钮（招手）start -->
+    <div class="dialog-com" id="dialog4">
+        <div class="dialog-box">
+            <div class="dialog-uper">
+                <img src="../../../static/asset/mobile/dest/img/dialog/happy.png" alt="" width="70">
+                <div class="uper-tips">收款金额需要大于0.00元</div>
+            </div>
+            <div class="dialog-hart">
+                <button type="button" class="btn btn_block orange J_tryagain">重新输入</button>
+            </div>
+        </div>
+    </div>
+    <!-- 单个按钮（招手）end -->
+    <!-- 单个按钮（微笑）start -->
+    <div class="dialog-com" id="dialog6">
+        <div class="dialog-box">
+            <div class="dialog-uper">
+                <img src="../../../static/asset/mobile/dest/img/dialog/smile.png" alt="" width="70">
+                <div class="uper-tips">收款金额需要大于0.00元</div>
+            </div>
+            <div class="dialog-hart">
+                <button type="button" class="btn btn_block orange J_tryagain">知道了</button>
+            </div>
+        </div>
+    </div>
+    <!-- 单个按钮（微笑）end -->
+    <!-- 多个按钮（尴尬脸）start -->
+    <div class="dialog-com" id="dialog3">
+        <div class="dialog-box">
+            <div class="dialog-uper">
+                <img src="../../../static/asset/mobile/dest/img/dialog/numng.png" alt="" width="70">
+                <div class="uper-tips more">
+                    <p>您尚未进行实名认证，</p>
+                    <p>认证后才可使用代付功能。</p>
+                </div>
+            </div>
+            <div class="dialog-hart more J-double">
+                <button type="button" class="btn white  J_tryagain">下次再说</button>
+                <button type="button" class="btn orange J_tryagain">马上认证</button>
+            </div>
+        </div>
+    </div>
+    <!-- 多个按钮（尴尬脸）end -->
+    <!-- 多个按钮（招手）start -->
+    <div class="dialog-com" id="dialog5">
+        <div class="dialog-box">
+            <div class="dialog-uper">
+                <img src="../../../static/asset/mobile/dest/img/dialog/happy.png" alt="" width="70">
+                <div class="uper-tips">
+                    <p>您尚未进行实名认证，</p>
+                </div>
+            </div>
+            <div class="dialog-hart more J-double">
+                <button type="button" class="btn white J_tryagain">下次再说</button>
+                <button type="button" class="btn orange J_tryagain">马上认证</button>
+            </div>
+        </div>
+    </div>
+    <!-- 多个按钮（招手）end -->
+    <!-- 手续费提示 JWY start-->
+    <div class="dialog-com" id="dialog7">
+        <div class="dialog-box prompt">
+            <div class="dialog-head">
+                <h2 class="title">提示</h2>
+            </div>
+            <div class="dialog-uper">
+                <div class="uper-tips more">
+                    <p>代付金额：20,000.00元</p>
+                    <p>手&nbsp;&nbsp;续&nbsp;&nbsp;费：100.00元</p>
+                    <p>实际入账：1,9900.00元</p>
+                </div>
+            </div>
+            <div class="dialog-hart more J-double">
+                <button type="button" class="btn  white J_tryagain">下次再说</button>
+                <button type="button" class="btn  orange J_tryagain">马上认证</button>
+            </div>
+        </div>
+    </div>
+    <!-- 手续费提示 JWY end-->
+    <!-- 删除卡提示 start-->
+    <div class="dialog-com" id="dialog8">
+        <div class="dialog-box prompt">
+            <div class="dialog-head">
+                <h2 class="title">提示</h2>
+            </div>
+            <div class="dialog-uper">
+                <div class="uper-tips">确认删除该信用卡？</div>
+            </div>
+            <div class="dialog-hart more J-double">
+                <button type="button" class="btn  white J_tryagain">取消</button>
+                <button type="button" class="btn  orange J_tryagain">确认</button>
+            </div>
+        </div>
+    </div>
+    <!-- 下拉列表弹窗 start-->
+    <div class="dialog-com" id="dialog9">
+        <div class="dialog-downup list">
+            <div class="img-box">
+                <img src="../../../static/asset/mobile/dest/img/dialog/icon-pic.png" width="70" alt="">
+            </div>
+            <div class="dialog-head">
+                <h2 class="title">选择付款信用卡</h2>
+                <i class="close J-close">&nbsp;</i>
+            </div>
+            <div class="dialog-uper">
+                <ul class="bank-list">
+                    <li>
+                        <img class="def" src="../../../static/asset/mobile/dest/img/dialog/zhongx.png" alt="">
+                        <div class="txt">
+                            <p class="txt-name">中信银行</p>
+                            <p class="txt-num">尾号6986</p>
+                        </div>
+                        <i class="del-bank"></i>
+                    </li>
+                    <li>
+                        <img class="def" src="../../../static/asset/mobile/dest/img/dialog/zhongx.png" alt="">
+                        <div class="txt">
+                            <p class="txt-name">中信银行</p>
+                            <p class="txt-num">尾号6986</p>
+                        </div>
+                        <i class="del-bank"></i>
+                    </li>
+                    <li>
+                        <img class="def" src="../../../static/asset/mobile/dest/img/dialog/zhongx.png" alt="">
+                        <div class="txt">
+                            <p class="txt-name">中信银行</p>
+                            <p class="txt-num">尾号6986</p>
+                        </div>
+                        <i class="del-bank"></i>
+                    </li>
+                    <li>
+                        <img class="def" src="../../../static/asset/mobile/dest/img/dialog/zhongx.png" alt="">
+                        <div class="txt">
+                            <p class="txt-name">中信银行</p>
+                            <p class="txt-num">尾号6986</p>
+                        </div>
+                        <i class="del-bank"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="dialog-hart">
+                <a class="choose-new" href="javascript:;">选择新卡付款<i class="txt-right">></i></a>
+                <a class="choose-new" href="javascript:;">选择旧卡付款<i class="txt-right">></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- 下拉列表弹窗 end-->
+    <!-- 下拉弹窗提示 start-->
+    <div class="dialog-com" id="dialog10">
+        <div class="dialog-downup">
+            <div class="dialog-head">
+                <h2 class="title">选择付款信用卡</h2>
+                <i class="close J-close">&nbsp;</i>
+            </div>
+            <div class="dialog-uper">
+                <div class="uper-tips">确认删除该信用卡？</div>
+                <div class="uper-tips more" style="display: none;">
+                    <p>您尚未进行实名认证，</p>
+                    <p>认证后才可使用代付功能。</p>
+                </div>
+            </div>
+            <div class="dialog-hart more">
+                <button type="button" class="btn  white J_tryagain">取消</button>
+                <button type="button" class="btn  orange J_tryagain">确认</button>
+            </div>
+        </div>
+    </div>
+    <!-- 下拉弹窗提示 end-->
+    <script src="../../../static/asset/mobile/dest/js/jquery-2.1.4.min.js"></script>
+    <script>
+        // 单个按钮（哭脸）
+        $("#dialog-btn1").on("click", function(){
+            $("#dialog1").fadeIn();
+        });
+        // 单个按钮（尴尬脸）
+        $("#dialog-btn2").on("click", function(){
+            $("#dialog2").fadeIn();
+        });
+        //多个个按钮（尴尬脸）
+        $("#dialog-btn3").on("click", function(){
+            $("#dialog3").fadeIn();
+        });
+        // 单个按钮（招手）
+        $("#dialog-btn4").on("click", function(){
+            $("#dialog4").fadeIn();
+        });
+        // 多个按钮（招手）
+        $("#dialog-btn5").on("click", function(){
+            $("#dialog5").fadeIn();
+        });
+        // 单个按钮（微笑）
+        $("#dialog-btn6").on("click", function(){
+            $("#dialog6").fadeIn();
+        });
+        //手续费提示
+        $("#dialog-btn7").on("click", function(){
+            $("#dialog7").fadeIn();
+        });
+        //删除卡提示
+        $("#dialog-btn8").on("click", function(){
+            $("#dialog8").fadeIn();
+        });
+        //下拉列表提示
+        $("#dialog-btn9").on("click", function(){
+            $("#dialog9").fadeIn();
+        });
+        //下拉卡提示
+        $("#dialog-btn10").on("click", function(){
+            $("#dialog10").fadeIn();
+        });
+        //弹窗消失
+        $(".J_tryagain,.J-close").on("click", function(){
+            $(".dialog-com").fadeOut();
+        })
+    </script>
+</body>
+</html>

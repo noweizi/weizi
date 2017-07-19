@@ -1,0 +1,63 @@
+@charset "UTF-8";
+body, h1, h2, h3, h4, h5, h6, p, form, ul, ol, li, dt, dl, dd, th, td, label, bottom, input, textarea {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: "Microsoft Yahei", Tahoma;
+  font-size: 12px;
+  line-height: 1.5;
+  background: #f1f1f1;
+  color: #333;
+  -webkit-text-size-adjust: none; }
+
+h1, h2, h3, h4, h5, h6, button, input, select, textarea {
+  font-size: 100%;
+  font-family: "Microsoft Yahei", Tahoma; }
+
+b {
+  font-weight: bold; }
+
+input {
+  border: none;
+  outline: none; }
+
+fieldset, img {
+  border: 0; }
+
+img {
+  vertical-align: top; }
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+strong {
+  font-weight: bold; }
+
+em, i {
+  font-style: normal; }
+
+sup {
+  vertical-align: text-top; }
+
+sub {
+  vertical-align: text-bottom; }
+
+a {
+  color: #555;
+  text-decoration: none; }
+
+/*清除浮动*/
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table; }
+.clearfix:after {
+  clear: both; }
+
+/*# sourceMappingURL=initial.css.map */

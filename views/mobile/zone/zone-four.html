@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+        <title>省市区三级联动 -- 方法四</title>
+        <link type="text/css" rel="stylesheet" href="../../../static/asset/mobile/dest/css/zone.css">
+    </head>
+    <style type="text/css">
+        .dialog-com{
+            height: auto;
+            z-index: 10;
+        }
+        .mask{ z-index: 5;}
+        .dialog-uper{
+            height: 250px;
+            overflow-y: scroll;
+        }
+        .mod_ulusual{ text-align: left;}
+        .mod_ulusual li{
+            background: #fff;
+            padding: 0 10px;
+        }
+        .mod_ulusual li a{
+            display: block;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #dedede;
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+    </style>
+    <body>
+        <div class="mod-form">
+            <div class="mod-form-item">
+                <div class="item-unit">
+                    <div class="item-tit">所在城市</div>
+                    <div class="item-con tr J_detail">省 > 市 > 区/县</div>
+                </div>
+            </div>
+        </div>
+        <!--选择地区弹层-->
+        <div class="dialog-com" id="dialog" >
+            <div class="dialog-downup list">
+                <div class="dialog-head">
+                    <i class="icon-arr-left back" id="backUp" onclick="intProvince();"></i>
+                    <h2 class="title">选择地区</h2>
+                    <i class="icon-close close J-close"></i>
+                </div>
+                <div class="dialog-uper" id="areaBox">
+                    <ul class="mod_ulusual" id="areaList"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="mask"></div>
+        <script src="../../../static/asset/mobile/dest/js/jquery-2.1.4.min.js"></script>
+        <script src="../../../static/asset/mobile/dest/js/zone/zone.js"></script>
+        <script src="../../../static/asset/mobile/dest/js/zone/area.js"></script>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+@charset "utf-8";
+body,h1,h2,h3,h4,h5,h6,p,form,ul,ol,li,dt,dl,dd,th,td,label,button,input,textarea{ margin:0;padding:0;}
+body{ font:.75rem "Microsoft Yahei", Helvetica;line-height:1.5;background:#f1f1f1;color:#000;-webkit-text-size-adjust:none;}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea{ font:.75rem "Microsoft Yahei";}
+input,button{border:none;outline:none;-webkit-appearance: none;border-radius: 0;}
+::-webkit-input-placeholder { /* WebKit browsers */ color:#999;}
+fieldset,img{border:0;}
+img{vertical-align: top;}
+ul{list-style:none;}
+table{ border-collapse:collapse; border-spacing:0; width:100%;}
+strong{ font-weight:bold;}
+em,i{ font-style:normal;}
+sup{ vertical-align:text-top;}
+sub{ vertical-align:text-bottom;}
+.clearfix:after,.clearfix:before {display: block;clear: both;font-size: 0;height: 0;content: "";}
+.clearfix{zoom: 1;}
+a{
+    text-decoration:none;
+    color:#333;
+
+}
+.layermbox0 .layermchild{
+    min-width:auto !important;
+}
+.tc{ text-align: center;}
+.tl{ text-align: left;}
+.tr{ text-align: right;}
+.show{ display: block;}
+.hide{ display: none;}
+
+
+/* css3媒体查询开发标准 */
+/*
+html{font-size: 42.6px}
+@media screen and (min-width:320px){html{font-size: 42.6px}}
+
+@media screen and (min-width:330px){html{font-size: 44px}}
+@media screen and (min-width:360px){html{font-size: 48px}}
+
+@media screen and (min-width:375px){html{font-size: 50px}}
+@media screen and (min-width:390px){html{font-size: 52px}}
+@media screen and (min-width:414px){html{font-size: 55.2px}}
+
+@media screen and (min-width:420px){html{font-size: 56px}}
+@media screen and (min-width:450px){html{font-size: 60px}}
+@media screen and (min-width:480px){html{font-size: 64px}}
+
+@media screen and (min-width:750px){html{font-size: 100px} body{ max-width:750px;}}
+@media screen and (min-width:850px){html{font-size: 64px} body{ max-width:640px;}}
+*/

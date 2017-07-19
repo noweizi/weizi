@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../css/pc.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+</head>
+<body>
+    <div class="pc_const">
+        <h1 class="list_h1">第一种</h1>
+        <div class="icon_o">
+            <label class="input_select">
+                <select name="product_type" id="J_product_type">
+                    <option value="9999">业务类型</option>
+                    <option value="1">线路</option>
+                    <option value="2">门票</option>
+                </select>
+            </label>
+        </div>
+        <style>p { background:yellow; margin:6px 0; } p.off { background: black; }</style>
+        <p>Hello</p>
+        how are
+        <p>you?</p>
+        <button>Attach/detach paragraphs</button>
+    </div>
+    <script>
+        $("p").click(function(){
+            $(this).toggleClass("off");
+        });
+        var p;
+        $("button").click(function(){
+            if ( p ) {
+                console.log("===")
+                p.appendTo("body");
+                p = null;
+            } else {
+                console.log("@@@@@@@")
+                p = $("p").detach();
+            }
+        });</script>
+<script>
+</script>
+</body>
+</html>

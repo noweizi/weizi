@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+html{ font-size: 42.6px;}
+@media screen and (min-width:320px){html{font-size: 42.6px}}
+
+@media screen and (min-width:330px){html{font-size: 44px}}
+@media screen and (min-width:360px){html{font-size: 48px}}
+
+@media screen and (min-width:375px){html{font-size: 50px}}
+@media screen and (min-width:390px){html{font-size: 52px}}
+@media screen and (min-width:414px){html{font-size: 55.2px}}
+
+@media screen and (min-width:420px){html{font-size: 56px}}
+@media screen and (min-width:450px){html{font-size: 60px}}
+@media screen and (min-width:480px){html{font-size: 64px}}
+
+@media screen and (min-width:750px){
+	html{
+		font-size: 100px;
+	} 
+	body{ 
+		max-width:768px; 
+		margin: 0 auto;
+	}
+}

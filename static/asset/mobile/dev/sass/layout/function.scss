@@ -1,0 +1,145 @@
+@charset "utf-8";
+//已确认颜色
+$themeBlue: #0390f4;
+$themeBlue_thin: #1e9ef8;
+$themeBlue_deep: #0f75d4;
+$themeOrange:#f77304;
+$white:#fff;
+$colTit: #333;
+$colThin: #999;
+$colDeep: #666;
+$colBorder: #ccc;
+$colBorderOut: #dedede;
+$colBorderIn: #e6e6e6;
+//字体
+%f10{font-size:0.625rem !important;}
+%f12{font-size:0.75rem !important;}
+%f13{font-size:0.8125rem !important;}
+%f14{font-size: 0.875rem !important;}
+%f15{font-size: 0.9375rem !important}
+%f16{font-size: 1rem !important;}
+%f18{font-size: 1.125rem !important;}
+//文字省略号
+@mixin ellipsis{
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+// 按钮组
+@mixin btn($ft: 18px, $h: 45px, $pd: 30px){
+    display: inline-block;
+    font-size: $ft;
+    color: #fff;
+    height: $h;
+    line-height: $h;
+    background: #e43b3e;
+    border: 1px solid #e43b3e;
+    padding-left: $pd;
+    padding-right: $pd;
+    border-radius:2px;
+    text-decoration: none;
+    text-align: center;
+}
+// 按钮组hover效果
+@mixin btnHover{
+    background: darken(#e43b3e,10%);
+    border-color: darken(#e43b3e,10%);
+    color: #fff;
+}
+
+@mixin btnSmall{
+    @include btn(12px, 26px, 20px);
+}
+
+//边距
+@mixin mt($val: 0){
+    margin-top: $val!important;
+}
+@mixin mb($val: 0){
+    margin-bottom: $val!important;
+}
+@mixin ml($val: 0){
+    margin-left: $val!important;
+}
+@mixin mr($val: 0){
+    margin-right: $val!important;
+}
+@mixin pt($val: 0){
+    padding-top: $val!important;
+}
+@mixin pb($val: 0){
+    padding-bottom: $val!important;
+}
+@mixin pl($val: 0){
+    padding-left: $val!important;
+}
+@mixin pr($val: 0){
+    padding-right: $val!important;
+}
+
+//定义border
+@mixin border-default($width,$style,$color){
+    border-width:$width;
+    border-style:$style;
+    border-color:$color;
+}
+
+//定义4border
+@mixin border($arg,$width,$style,$color){
+    @if $arg==top{
+        border-top-width:$width;
+        border-top-style:$style;
+        border-top-color:$color;
+    }
+    @else if $arg==right {
+        border-right-width:$width;
+        border-right-style:$style;
+        border-right-color:$color;
+    }
+    @else if $arg==bottom {
+        border-bottom-width:$width;
+        border-bottom-style:$style;
+        border-bottom-color:$color;
+    }
+    @else if $arg==left {
+        border-left-width:$width;
+        border-left-style:$style;
+        border-left-color:$color;
+    }
+}
+
+//定义border-radius圆角
+@mixin border-radius($radius){
+    border-radius:$radius;
+}
+//定义border-radius圆角4个角任意数字
+@mixin border-4radius($radiusTop,$radiusRight,$radiusBottom,$radiusLeft){
+    border-radius:$radiusTop $radiusRight $radiusBottom $radiusLeft;
+}
+//定义三角
+@mixin triangle($direction,$size,$maxsize,$borderColor){
+    width:0;
+    height:0;
+    content:"";
+    @if $direction==top {
+        border-width:0 $size $maxsize;
+        border-style:solid;
+        border-color:transparent transparent $borderColor ;
+    }
+    @else if $direction==right {
+        border-width:$size 0 $size $maxsize;
+        border-style:solid;
+        border-color:transparent transparent transparent $borderColor;
+    }
+    @else if $direction==bottom{
+        border-width:$maxsize $size 0;
+        border-style:solid;
+        border-color:$borderColor transparent transparent;
+    }
+    @else if $direction==left{
+        border-width:$size $maxsize $size 0;
+        border-style:solid;
+        border-color:transparent $borderColor transparent transparent;
+    }
+}

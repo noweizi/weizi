@@ -1,0 +1,22 @@
+@charset "utf-8";
+/*
+Author: sly
+Date: 2016-01-12
+tip: 平常所需样式
+*/
+//初始化
+@import "layout/initial.scss";
+@import "layout/function.scss";
+@import "layout/iconfont.scss";
+//雪碧图
+@import "sprite/sprite_usual.scss";
+//公用样式
+@import "mod/public.scss";
+//tab/表单样式
+@import "mod/mod_form.scss";
+//图形样式
+@import "mod/graphics.scss";
+//滚动样式
+@import "mod/rolling.scss";
+//loading 动画效果
+@import "mod/loading.scss";

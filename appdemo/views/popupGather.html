@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../css/mobile.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+</head>
+<body>
+    <div class="mod_topbar bbno">
+        <i class="back"  onclick="history.go(-1)" ></i>
+        <div class="hd">
+            <div class="mod_switchtab J_tab_box">
+                <div class="box">
+                    <a href="javascript:;" class="">游客订单</a>
+                    <a href="javascript:;" class="on">采购订单</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mod_slidetab" id="content-5">
+        <table>
+            <tr>
+                <td><a href="javascript:;" data-input_name="product_type" data-val="1" class="J_search on">线路</a></td>
+                <td><a href="javascript:;" data-input_name="product_type" data-val="2" class="J_search">门票</a></td>
+                <td><a href="javascript:;" data-input_name="product_type" data-val="6" class="J_search">签证</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="mod_filterlist J_filterList">
+        <table class="hd">
+            <tr>
+                <td><div class="sele"><span>订单状态</span><i class="icon-arr down"></i></div></td>
+            </tr>
+        </table>
+        <div class="bd">
+            <p id="J_flag_9999" data-input_name="flag" data-val="9999" class="cur">所有订单<i class="icon"></i></p>
+            <p id="J_flag_0" data-input_name="flag" data-val="0" >待确认 <i class="icon"></i></p>
+            <p id="J_flag_1" data-input_name="flag" data-val="1" >待支付<i class="icon"></i></p>
+            <p id="J_flag_21" data-input_name="flag" data-val="21" >已支付<i class="icon"></i></p>
+            <p id="J_flag_22" data-input_name="flag" data-val="22" >待结算<i class="icon"></i></p>
+            <p id="J_flag_3" data-input_name="flag" data-val="3" >完成交易<i class="icon"></i></p>
+            <p id="J_flag_-3" data-input_name="flag" data-val="-3" >退团退款中<i class="icon"></i></p>
+            <p id="J_flag_-1" data-input_name="flag" data-val="-1" >无效<i class="icon"></i></p>
+        </div>
+    </div>
+   <!-- <div class="mod_filterlist J_filterList " id="J_statics">
+        <table class="hd">
+            <tr>
+                <td>
+                    <div class="sele"><span>综合排序</span><i class="icon-arr down"></i></div>
+                </td>
+                <td>
+                    <div class="sele"><span>全部类型</span><i class="icon-arr down"></i></div>
+                </td>
+            </tr>
+        </table>
+        <div class="bd" data-type="sort">
+            <p data-sort="0" class="cur">综合排序<i class="icon"></i></p>
+            <p data-sort="1">按等级（从高到低）<i class="icon"></i></p>
+            <p data-sort="2">按人气（从高到低）<i class="icon"></i></p>
+        </div>
+        <div class="bd" data-type="supplier_type">
+            <p data-supplier_type="0" class="cur">全部类型  <i class="icon"></i></p>
+            <p data-supplier_type="1">专线批发商<i class="icon"></i></p>
+            <p data-supplier_type="2">综合批发商<i class="icon"></i></p>
+        </div>
+    </div>-->
+    <div class="mask"></div>
+    <div class="mod_footer">
+        <!--<a href="javascript:;" class="btn no">立即邀请</a>-->
+        <!--两个按钮-->
+        <a href="javascript:;" class="btn red">立即邀请</a>
+        <a href="javascript:;" class="btn yellow">下载APP</a>
+    </div>
+    <!--  <div class="mod_footer2">
+          <a href="javascript:;" class="btn red">立即邀请</a>
+          <a href="javascript:;" class="btn yellow">下载APP</a>
+      </div>-->
+    <!-- <div class="mod_footer2">
+         <a href="javascript:;" class="btn  btnbd"><span>立即邀请</span></a>
+         <a href="javascript:;" class="btn  btnbd"><span>下载APP</span></a>
+     </div>-->
+     <script type="text/javascript">
+         // 点击蒙层，下拉收起
+         $('.mask').click(function() {
+             $('body').removeClass('no-scroll');
+             if ($('.J_filterTitle .icon-arr').hasClass('up')) {
+                 $('.J_filterTitle_sele .bd').slideUp();
+                 $('.J_filterTitle .icon-arr').removeClass('up').addClass('down');
+                 $('.J_filterTitle').siblings().find('.icon-arr').removeClass('down').addClass('up');
+             } else {
+                 $('.J_filterList .sele').each(function() {
+                     var that = this,
+                             idx  = $(that).closest('td').index();
+                     if ($(that).find('.icon-arr').hasClass('up')) {
+                         $(that).parents('.J_filterList ').find('.bd').eq(idx).slideUp().siblings('.bd').hide();
+                         $(that).find('.icon-arr').removeClass('up').addClass('down');
+                         $(that).siblings().find('.icon-arr').removeClass('down').addClass('up');
+                     }
+                 });
+             }
+             $(this).hide();
+         });
+         //类型切换
+         $('.J_search').click(function(){
+             var that = $(this);
+             that.addClass('on').parent('td').siblings().find('.J_search').removeClass('on');
+             $('.J_filterList .bd').hide();
+             $('.J_filterList .sele').find('.icon-arr').removeClass('up').addClass('down');
+             $('.mask').hide();
+             $('.J_filterList .bd p[data-val="9999"]').addClass('cur').siblings().removeClass('cur');
+
+             $('input[name="' + that.attr('data-input_name') + '"]').val(that.attr('data-val'));
+             $('#J_page_num').val(2);
+             $('.J_filterList .sele span').html("订单状态");
+             $('input[name="flag"]').val('');
+
+             var request_url = "/fenxiao/order/index";
+             var product_type = $('input[name="product_type"]').val();
+             var data = {
+                 product_type : product_type,
+                 ajax : 1
+             };
+             if (product_type == 6) {
+                 $('#J_flag_0').hide();
+                 $('#J_flag_-3').html('退款中<i class="icon"></i>');
+             } else {
+                 $('#J_flag_0').show();
+                 $('#J_flag_-3').html('退团退款中<i class="icon"></i>');
+             }
+
+            /* $.ajax({
+                 type: 'get',
+                 url: request_url,
+                 data : data,
+                 beforeSend:function(){
+                     layer.open({type:2});
+                 },
+                 complete:function(){layer.closeAll();},
+                 success : function(retdat){
+                     $('.J_list').html(retdat);
+                 }
+             });*/
+         });
+         //下拉订单状态筛选
+         $('.J_filterList .sele').click(function(){
+             var that = this,
+                     idx  = $(that).closest('td').index();
+             if($(that).find('.icon-arr').hasClass('down')){
+                 $('.J_filterList .bd').eq(idx).slideDown().siblings('.bd').hide();
+                 $(that).find('.icon-arr').removeClass('down').addClass('up');
+                 $(that).closest('td').siblings().find('.icon-arr').removeClass('up').addClass('down');
+                 $('.mask').show();
+             }else{
+                 $('.J_filterList .bd').eq(idx).slideUp().siblings('.bd').hide();
+                 $(that).find('.icon-arr').removeClass('up').addClass('down');
+                 $(that).siblings().find('.icon-arr').removeClass('down').addClass('up');
+                 $('.mask').hide();
+             }
+         });
+
+         $('.J_filterList .bd p').click(function(){
+             var that = $(this);
+             var curVal = $(this).text();
+             that.addClass('cur').siblings().removeClass('cur');
+             $('.J_filterList .sele').find('span').html(curVal);
+             that.closest('.J_filterList').find('.icon-arr').addClass('down').removeClass('up');
+
+             that.addClass('cur').siblings().removeClass('cur');
+             $('.J_filterList .bd').hide();
+             $('.mask').hide();
+            /*
+             $('input[name="' + that.attr('data-input_name') + '"]').val(that.attr('data-val'));
+             $('#J_page_num').val(2);
+             var request_url = "/fenxiao/order/index";
+             var product_type = $('input[name="product_type"]').val();
+             var flag = $('input[name="flag"]').val();
+             var data = {
+                 product_type : product_type,
+                 flag : flag,
+                 ajax : 1
+             };
+             $.ajax({
+                 type: 'get',
+                 url: request_url,
+                 data : data,
+                 beforeSend:function(){
+                     layer.open({type:2});
+                 },
+                 complete:function(){layer.closeAll();},
+                 success : function(retdat){
+                     $('.J_list').html(retdat);
+                     that.addClass('cur').siblings().removeClass('cur');
+                     $('.J_filterList .bd').hide();
+                     $('.mask').hide();
+                 }
+             });*/
+         });
+         /*//筛选模块
+         $(".J_filterList .hd td").click(function(){
+             $(".J_filterList .bd").css("display","none");
+             $(".J_filterList .bd").css("display","none");
+             $(".mask").css("display","block");
+             var idx=$(this).index();
+             if(idx==0){
+                 $(".J_filterList .bd[data-type='sort']").css("display","block");
+             }else{
+                 $(".J_filterList .bd[data-type='supplier_type']").css("display","block");
+             }
+         });
+         $(".J_filterList .bd p").click(function(){
+             var _this=$(this);
+             var idx=$(this).index();
+             $(".J_filterList .bd").find(".sele").eq(idx).text(_this.text());
+             $(".J_filterList .bd").eq(idx).css("display","none");
+             $(".mask").css("display","none");
+         });
+         $(".mask").click(function(){
+             $(".J_filterList .bd").css("display","none");
+             $(".mask").css("display","none");
+         });*/
+     </script>
+</body>
+</html>

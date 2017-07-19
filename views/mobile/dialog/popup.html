@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <title>弹窗</title>
+    <link type="text/css" rel="stylesheet" href="../../../static/asset/mobile/dest/css/usual.css">
+</head>
+<body>
+    <div class="main-wrap">
+        <div class="mod_topbar">
+            <a class="back" href="javascript:;"  onclick="history.go(-1)"><i class="icon-arr-left"></i></a>
+            <div class="title">弹窗集合</div>
+        </div>
+        <div class="arrbox">
+            <p class="title" id="demo1">提示框</p>
+            <p class="title" id="demo2">对话框</p>
+            <p class="title" id="demo3">传递值的对话框</p>
+            <p class="title" id="demo4">弹窗滚动列表</p>
+        </div>
+    </div>
+    <script type="text/html" id="J_new_task">
+        <div class="tssbox">
+            <p>此处为弹出层</p>
+            {{value}}
+        </div>
+    </script>
+    <style type="text/css">
+        .popuo-list .layui-m-layercont{
+            max-height: 100px;
+            overflow: scroll;
+        }
+    </style>
+    <!--支持银行弹窗-->
+    <script type="text/html" id="J-banklist">
+        <p class="title">提示框</p>
+        <p class="title">提示框</p>
+        <p class="title">提示框</p>
+        <p class="title">提示框</p>
+        <p class="title">提示框</p>
+        <p class="title">提示框</p>
+        <p class="title">提示框</p>
+        <p class="title">提示框</p>
+        <p class="title">提示框</p>
+        <p class="title">提示框</p>
+        <p class="title">提示框</p>
+        <p class="title">提示框</p>
+    </script>
+    <script src="../../../static/asset/mobile/dest/js/jquery-2.1.4.min.js"></script>
+    <script src="../../../static/asset/mobile/dest/js/lib/layer/layer.js"></script>
+    <script src="../../../static/asset/mobile/dest/js/lib/layer/artTemplate.js"></script>
+    <script>
+        $("#demo1").click(function () {
+            layer.open({
+                content: '这是提示框'
+                ,style: 'background-color:#09C1FF; color:#fff; border:none;' //自定风格
+//                ,time: 3
+            });
+        });
+        $("#demo2").click(function () {
+            layer.open({
+                title:"对话框",
+                content: '这是对话框'
+                ,className: 'popuo-login'
+                ,btn: ['确认', '取消']
+                ,shadeClose: false
+                ,yes: function(){
+                    layer.open({
+                        content: '好的'
+                        ,time: 2
+                        ,skin: 'msg'  // footer（即底部对话框风格）、msg（普通提示）
+                    });
+                }
+                ,no:function(index){
+                    layer.close(index); //layer.closeAll()
+                }
+            });
+        });
+        $("#demo3").click(function () {
+            //如何简单解决移动端弹出层滚动 body不滚动的常见问题
+            $('body,html').css({'height':'100%','overflow':'hidden'});
+            var tplData = {};
+            tplData.value='恭喜您获得100元采购券奖励（有效期60天）！';
+            layer.open({
+                content:template('J_new_task', tplData),// or  template('J_new_task', {}) or $('#J_new_task').html()
+                btn:['确定','取消'],
+                className: '',
+                yes:function(){},
+                no:function(){
+                    //如何简单解决移动端弹出层滚动 body不滚动的常见问题
+                    $('body,html').removeAttr("style");
+                }
+            })
+        });
+        $("#demo4").click(function () {
+            $(".main-wrap").addClass('prevent-bodyscroll');
+            layer.open({
+                content:$("#J-banklist").html(),// or  template('J_new_task', {}) or $('#J_new_task').html()
+                btn:['确定','取消'],
+                className: 'popuo-list',
+                yes:function(){},
+                no:function(){
+                    $('.main-wrap').removeClass('prevent-bodyscroll');
+                }
+            })
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../css/pc.css">
+    <link type="text/css" rel="stylesheet" href="../css/responsiveslides.css">
+    <script src="../js/jquery-1.12.3.js"></script>
+    <style type="text/css">
+        body,html{
+            background: #fff;
+        }
+        .simgbox{
+            margin: 10px auto 0;
+            text-align: center;
+        }
+        .simgbox .lxsv_certimg{
+            width: 100px;
+           height: 100px;
+        }
+        .imgbox-overlay{
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: #000;
+            opacity: .5;
+            z-index: 80;
+        }
+        .imgbox-wrap{
+            visibility: hidden;
+            position: fixed;
+            top:50%;
+            left: 50%;
+            z-index: 90;
+        }
+        .imgbox-img{
+            padding: 0;
+            margin: 0;
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="simgbox">
+    <img class="lxsv_certimg" src="../img/3.jpg">
+    <div class="imgbox-wrap" >
+        <img class="imgbox-img" src="../img/3.jpg" />
+    </div>
+</div>
+<div class="imgbox-overlay"></div>
+<script>
+    $(".lxsv_certimg").click(function(){
+        var img_height=parseInt($('.imgbox-img').height()/2);
+        var img_width=parseInt($('.imgbox-img').width()/2);
+        console.log(img_height)
+        $('.imgbox-wrap').css({
+            'margin-top': -img_height + 'px',
+            'margin-left': -img_width + 'px',
+            'visibility':'visible'
+        });
+        $('.imgbox-overlay').show();
+    });
+    $('.imgbox-overlay,.imgbox-wrap').click(function(){
+        $('.imgbox-overlay').hide();
+        $('.imgbox-wrap').css('visibility','hidden');
+    });
+</script>
+
+</body>
+</html>
